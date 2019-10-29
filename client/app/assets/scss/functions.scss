@@ -1,0 +1,11 @@
+@function rem($pixels, $content: $xlMainFontSize) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+  
+    @if (unitless($content)) {
+        $content: $content * 1px;
+    }
+  
+    @return $pixels / $content * 1rem;
+}

@@ -1,0 +1,18 @@
+@import '~/assets/scss/resources.scss';
+
+html {
+    font-size: $xlMainFontSize;
+
+    @media screen and (max-width: $lgWidth) {
+        font-size: $lgMainFontSize;
+    }
+    @media screen and (max-width: $mdWidth) {
+        font-size: $mdMainFontSize;
+    }
+    @media screen and (max-width: $smWidth) {
+        font-size: $smMainFontSize;
+    }
+    @media screen and (max-width: $xsWidth) {
+        font-size: $xsMainFontSize;
+    }
+}

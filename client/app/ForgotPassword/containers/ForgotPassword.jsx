@@ -2,7 +2,7 @@ import './ForgotPassword.scss';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ForgotPassword extends Component {
     state = {
@@ -17,14 +17,14 @@ class ForgotPassword extends Component {
 
     render() {
         return (
-            <Router>
+            <>
                 <MDBBtn onClick={this.toggle}>ForgotPassword</MDBBtn>
                 <MDBContainer>
-                    <MDBModal isOpen={this.state.modal} toggle={this.toggle} id="forgotPasswordFormField">
-                        <MDBModalHeader toggle={this.toggle} id="forgotPasswordQuestion">Забыли пароль?</MDBModalHeader>
+                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+                        <MDBModalHeader toggle={this.toggle}>Забыли пароль?</MDBModalHeader>
                         <MDBModalBody>
                             <form>
-                                <p className="h6 text-center mb-4" id="forgotPasswordInstruction">
+                                <p className="h6 text-center mb-4">
                                     Мы отправим вам инструкции по переустановке пароля по email.
                                 </p>
                                 <label htmlFor="forgotPasswordFormEmail">
@@ -37,17 +37,17 @@ class ForgotPassword extends Component {
                                 />
                                 <br/>
                                 <div className="text-center mt-4">
-                                    <MDBBtn type="submit" id="forgotPasswordSubmit">Отправить</MDBBtn>
+                                    <MDBBtn type="submit">Отправить</MDBBtn>
                                 </div>
                             </form>
                         </MDBModalBody>
                         <MDBModalFooter>
-                            <Link to="/" id="linkFromForgotPasswordToAuth"> Нет личного кабинета?
+                            <Link to="/"> Нет личного кабинета?
                                 Зарегистрируйся </Link>
                         </MDBModalFooter>
                     </MDBModal>
                 </MDBContainer>
-            </Router>
+            </>
         );
     }
 }

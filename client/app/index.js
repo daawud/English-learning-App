@@ -16,7 +16,7 @@ saga.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Routes />
+        <Routes/>
     </Provider>,
     document.getElementById('root'),
 );

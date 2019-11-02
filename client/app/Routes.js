@@ -1,12 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import App from '~/components/App.jsx';
+import MainPage from '~/layouts/MainPage/MainPage.jsx';
+import PageNotFound from '~/PageNotFound/PageNotFound.jsx';
 
 function Routes() {
     return (
         <Router>
-            <App/>
+            <Switch>
+                <Route path="/" component={MainPage}/>
+                <Route path="*" component={PageNotFound}/>
+            </Switch>
         </Router>
     );
 }

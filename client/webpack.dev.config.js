@@ -52,6 +52,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         compress: true,
         port: 9000,
         headers: { 'Access-Control-Allow-Origin': '*' },
+        historyApiFallback: true,
     },
     module: {
         rules,

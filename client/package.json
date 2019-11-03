@@ -20,8 +20,10 @@
         "last 3 version"
     ],
     "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.5.5",
         "babel-runtime": "^6.26.0",
         "bootstrap": "^4.3.1",
+        "mdbreact": "^4.22.0",
         "react": "^16.9.0",
         "react-bootstrap": "^1.0.0-beta.14",
         "react-dom": "^16.9.0",

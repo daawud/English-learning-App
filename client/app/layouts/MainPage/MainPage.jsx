@@ -1,13 +1,12 @@
 import './MainPage.scss';
-import AuthForm from '../../components/Auth/Auth.jsx';
-import RegisterForm from '../../components/Register/Register.jsx';
-
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+import React from 'react';
+import AuthForm from '~/components/Auth/Auth.jsx';
+import RegisterForm from '~/components/Register/Register.jsx';
+import ForgotPassword from '~/ForgotPassword/containers/ForgotPassword.jsx';
 
 export default function MainPage() {
     return (
@@ -26,10 +25,9 @@ export default function MainPage() {
             <Row className="mb-3">
                 <Col md={{ span: 2, offset: 5 }}><AuthForm /></Col>
             </Row>
+            <Row className="mb-3">
+                <Col md={{ span: 2, offset: 5 }}><ForgotPassword /></Col>
+            </Row>
         </Container>
-        // <Container>
-        //     <RegisterForm />
-        //     <AuthForm />
-        // </Container>
     );
 }

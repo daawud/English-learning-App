@@ -1,33 +1,37 @@
 import './MainPage.scss';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import React from 'react';
-import AuthForm from '~/components/Auth/Auth.jsx';
-import RegisterForm from '~/components/Register/Register.jsx';
+
 import ForgotPassword from '~/ForgotPassword/containers/ForgotPassword.jsx';
+import RegisterForm from '~/Register/containers/Register.jsx';
+import AuthForm from '~/Auth/containers/Auth.jsx';
 
 export default function MainPage() {
     return (
-        <Container>
-            <Row className="mb-3">
+        <div className="container">
+            <div className="row mb-3">
                 <h3>Главная страница</h3>
-            </Row>
-            <Row className="mb-3">
-                <Col className="text-center">
+            </div>
+            <div className="row mb-3">
+                <div className="text-center">
                     <h4>Мотивирующий текст</h4>
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col md={{ span: 2, offset: 5 }}><RegisterForm /></Col>
-            </Row>
-            <Row className="mb-3">
-                <Col md={{ span: 2, offset: 5 }}><AuthForm /></Col>
-            </Row>
-            <Row className="mb-3">
-                <Col md={{ span: 2, offset: 5 }}><ForgotPassword /></Col>
-            </Row>
-        </Container>
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div>
+                    <RegisterForm />
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div>
+                    <AuthForm />
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div>
+                    <ForgotPassword />
+                </div>
+            </div>
+        </div>
     );
 }

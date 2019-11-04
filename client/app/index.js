@@ -1,8 +1,14 @@
 import './index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import {
+    Provider
+} from 'react-redux';
+import {
+    createStore,
+    applyMiddleware,
+    combineReducers
+} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import Routes from './Routes';
@@ -14,9 +20,13 @@ const store = createStore(combineReducers(rootReducers), applyMiddleware(saga));
 
 saga.run(rootSaga);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Routes/>
-    </Provider>,
+ReactDOM.render( <
+    Provider store = {
+        store
+    } >
+    <
+    Routes / >
+    <
+    /Provider>,
     document.getElementById('root'),
 );

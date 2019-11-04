@@ -1,4 +1,4 @@
-//import './ForgotPassword.scss';
+import './ForgotPassword.scss';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 import React, { Component } from 'react';

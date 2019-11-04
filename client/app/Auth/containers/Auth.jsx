@@ -34,12 +34,7 @@ class Auth extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { modal, ...fields } = this.state;
-        console.log('ввели в поля:');
-        console.log(fields);
         let validation = new Validator(fields);
-        console.log(`общая проверка всей формы - ${validation.valid}`);
-        console.log('ошибки по форме в строке ниже:');
-        console.log(validation.errorsLog);
         if (validation.errorsLog) {
             this.setState({
                 ...this.state,

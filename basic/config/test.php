@@ -22,7 +22,12 @@ return [
             'basePath' => __DIR__ . '/../web/assets',
         ],
         'urlManager' => [
-            'showScriptName' => true,
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+            ],
         ],
         'user' => [
             'identityClass' => 'app\models\User',

@@ -1,9 +1,3 @@
-import authFormReducer from '~/Auth/reducer';
-import registerFormReducer from '~/Register/reducer';
-
-const rootReducers = {
-    authFormReducer,
-    registerFormReducer
-};
+const rootReducers = {};
 
 export default rootReducers;

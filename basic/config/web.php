@@ -20,11 +20,7 @@ $config = [
         ],
 
         ],
-        'response' => [
-            'format' => yii\web\Response::FORMAT_JSON,
-            'charset' => 'UTF-8',
-            
-        ],
+       
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

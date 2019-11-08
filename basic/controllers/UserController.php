@@ -15,6 +15,8 @@ class UserController extends ActiveController
 
     public function behaviors()
     {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
         return ArrayHelper::merge(parent::behaviors(),[
             'authenticator' => [
                 'authMethods' => [
@@ -29,6 +31,9 @@ class UserController extends ActiveController
                         },
                     ]
                 ]
+            ],
+            'formats' => [
+                'application/json' => \yii\web\Response::FORMAT_JSON,
             ]
         ]);
     }

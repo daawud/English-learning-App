@@ -1,30 +1,36 @@
 import './Header.scss';
 import React, {Component} from 'react';
-import { MDBNavbar, MDBNavbarBrand,  MDBNavbarNav,    MDBNavbarToggler,    MDBCollapse,    MDBNavItem,    MDBIcon,    MDBBtn} from 'mdbreact';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {  Link } from 'react-router-dom';
 
-import NavbarRight from '~/Header/components/HeaderNavbarRight/HeaderNavbarRight.jsx';
-import authFormReducer from "~/Auth/reducer";
+import HeaderUserPic from "~/Header/components/HeaderUserPic/HeaderUserPic.jsx";
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userIsLogged: false,
+        }
+    }
 
     render() {
         return (
-            <header>
-                <MDBNavbar className="bg-secondary" dark expand="md" scrolling fixed="top">
-                    <MDBNavbarBrand>
-                        <Link to="/" className="btn bg-light" data-toggle="tooltip" title="Перейти на главную страницу">Logotip</Link>
-                    </MDBNavbarBrand>
-                        <NavbarRight userLogged={this.props.isLoggedIn}/>
-                </MDBNavbar>
+            <header className="bg-secondary d-flex justify-content-between align-items-center" >
+                <div>
+                    <Link to="/" className="btn bg-light" data-toggle="tooltip" title="Перейти на главную страницу">Logotip</Link>
+                </div>
+                <div>
+                    { (this.state.userIsLogged) ?
+                        <Link to="/auth" className="btn bg-light" data-toggle="tooltip" title="Войти в учетную запись">Войти</Link> :
+                        <>
+                            <span className="text-white" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">100</span>
+                            <HeaderUserPic />
+                            <Link to="/cabinet"><button className="btn bg-light" data-toggle="tooltip" title="Войти в личный кабинет">Войти в личный кабинет</button></Link>
+                        </>
+                    }
+                </div>
             </header>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return state.authFormReducer;
-}
-
-export default connect(mapStateToProps)(Header);
+export default Header;

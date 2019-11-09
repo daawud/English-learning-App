@@ -1,13 +1,13 @@
 import './HeaderUserPic.scss';
 import React from 'react';
-import {MDBBtn, MDBNavItem, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from "mdbreact";
+import {MDBBtn, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from "mdbreact";
 
 const imageIcon = 'http://gensec.eu/doc/trap/database/trap/images/Adwaita/256x256/status/avatar-default.png';
 
 function HeaderUserPic() {
     return (
         <MDBPopover placement="bottom" popover hover id="popper1">
-            <MDBBtn className="user-pic"><img className="user-pic" src={imageIcon}/></MDBBtn>
+            <MDBBtn ><img className="user-pic" src={imageIcon} alt="" /></MDBBtn>
             <div>
                 <MDBPopoverHeader>Пользователь:</MDBPopoverHeader>
                 <MDBPopoverBody>

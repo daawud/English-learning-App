@@ -14,16 +14,17 @@ class Header extends Component {
     }
 
     render() {
-        let loginUser;
+        let userBlock;
+
         if (this.state.userIsLogged) {
-            loginUser = (
+            userBlock = (
                 <>
                     <span className="text-white" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">100</span>
                     <HeaderUserPic />
                     <Link to="/cabinet" className="btn bg-light" data-toggle="tooltip" title="Войти в личный кабинет">Войти в личный кабинет</Link>
                 </>)
             } else {
-                loginUser = (<Link to="/auth" className="btn bg-light" data-toggle="tooltip" title="Войти в учетную запись">Войти</Link>);
+                userBlock = (<Link to="/auth" className="btn bg-light" data-toggle="tooltip" title="Войти в учетную запись">Войти</Link>);
             }
 
         return (
@@ -32,7 +33,7 @@ class Header extends Component {
                     <Link to="/" className="btn bg-light" data-toggle="tooltip" title="Перейти на главную страницу">Logotip</Link>
                 </MDBNavbarBrand>
                 <div>
-                    {loginUser}
+                    {userBlock}
                 </div>
             </header>
         );

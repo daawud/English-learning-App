@@ -20,12 +20,13 @@ class Header extends Component {
                 </div>
                 <div>
                     { (this.state.userIsLogged) ?
-                        <Link to="/auth" className="btn bg-light" data-toggle="tooltip" title="Войти в учетную запись">Войти</Link> :
                         <>
                             <span className="text-white" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">100</span>
                             <HeaderUserPic />
                             <Link to="/cabinet"><button className="btn bg-light" data-toggle="tooltip" title="Войти в личный кабинет">Войти в личный кабинет</button></Link>
                         </>
+                         :
+                        <Link to="/auth" className="btn bg-light" data-toggle="tooltip" title="Войти в учетную запись">Войти</Link>
                     }
                 </div>
             </header>

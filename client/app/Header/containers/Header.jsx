@@ -30,8 +30,6 @@ class Header extends Component {
             <header className="bg-secondary d-flex justify-content-between align-items-center" >
                 <MDBNavbarBrand>
                     <Link to="/" className="btn bg-light" data-toggle="tooltip" title="Перейти на главную страницу">Logotip</Link>
-                    <a className="btn btn-primary" data-toggle="popover" data-img="https://mdbootstrap.com/img/logo/mdb192x192.jpg">Hover
-                        me</a>
                 </MDBNavbarBrand>
                 <div>
                     {loginUser}

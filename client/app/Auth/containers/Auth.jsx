@@ -1,12 +1,12 @@
 import './Auth.scss';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import {MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter} from 'mdbreact';
 import Validator from '~/classes/Validator';
 
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {Redirect, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import { authOpen, authClose, formFieldsUpdate } from '~/Auth/actions';
+import {authOpen, authClose, formFieldsUpdate, fieldValidationErrors} from '~/Auth/actions';
 import authFormReducer from '~/Auth/reducer';
 
 class Auth extends Component {
@@ -14,34 +14,52 @@ class Auth extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.authFormToOpen = this.authFormToOpen.bind(this);
-        this.authFormToClose = this.authFormToClose.bind(this);
+        this.validation = this.validation.bind(this);
     }
 
+    /**
+     * обрабатывает вводе в поле INPUT и отправляет данные в глобальное хранилище при потере "фокуса" с поля
+     * @param event
+     */
     handleChange(event) {
-        let fields = {
-            [event.currentTarget.name]: event.target.value,
+        const filed = {
+            name: event.currentTarget.name,
+            value: event.target.value,
         };
-        this.props.dispatch(formFieldsUpdate(fields));
+        this.props.dispatch(formFieldsUpdate(filed));
+        this.validation(new Validator({[event.currentTarget.name]: event.target.value}));
     }
 
+    /**
+     * обрабатывает нажатие по сабмиту
+     * @param event
+     */
     handleSubmit(event) {
         event.preventDefault();
-        const { email } = this.props;
-        let validation = new Validator({email});
+        this.validation(new Validator({email: this.props.email}));
     }
 
-    authFormToOpen() {
-        this.props.dispatch(authOpen());
-    }
-    authFormToClose() {
-        this.props.dispatch(authClose());
+    /**
+     * общая функция для валидации
+     * @param validation (object) - объект с полями
+     */
+    validation(validation) {
+        if (validation.isValid) {
+            this.props.dispatch(fieldValidationErrors({errorsLog: ''}));
+            // далее логика авторизации через сервер
+        } else {
+            this.props.dispatch(fieldValidationErrors(validation.errorsLog));
+        }
     }
 
+    /**
+     * Строка <Redirect to="/" /> сработает в случае клика мышью в стороне от модального окна
+     */
     render() {
         return (
             <>
-                <MDBModal isOpen={this.props.authModalOpened} toggle={this.authFormToClose}>
+                <MDBModal isOpen={this.props.authModalOpened} toggle={() => this.props.dispatch(authClose())}>
+                    {!this.props.authModalOpened && <Redirect to="/" />}
                     <MDBModalBody>
                         <div className="row d-flex mx-3">
                             <div className="col">Войти в личный кабинет</div>
@@ -52,26 +70,29 @@ class Auth extends Component {
                             <input
                                 type="email"
                                 id="EmailLoggingForm"
-                                className="form-control mb-4"
+                                className={this.props.emailError ? 'form-control mb-2 is-invalid' : 'form-control mb-5'}
                                 name="email"
-                                value={this.props.email}
-                                onChange={this.handleChange}
+                                onChange={() => null}
+                                onBlur={this.handleChange}
                             />
+                            {this.props.emailError
+                            && <div className="small text-danger mb-2 ">{this.props.emailError}</div>}
                             <label htmlFor="PasswordForm">ПАРОЛЬ</label>
                             <input
                                 type="password"
                                 id="PasswordForm"
                                 className="form-control mb-4"
                                 name="password"
-                                value={this.props.password}
-                                onChange={this.handleChange}
+                                onChange={() => null}
+                                onBlur={this.handleChange}
+                                required
                             />
                             <button className="btn btn-info btn-block my-4" type="submit">
-                                    ВОЙТИ
+                                ВОЙТИ
                             </button>
-                            <Link to="/checkPassword">Восстановить пароль</Link>
+                            <Link to="/reset_password">Восстановить пароль</Link>
                             <div>
-                                    Нет личного кабинета? <Link to="/register"> Зарегистрируйся </Link>
+                                Нет личного кабинета? <Link to="/register"> Зарегистрируйся </Link>
                             </div>
                         </form>
                     </MDBModalBody>
@@ -81,11 +102,11 @@ class Auth extends Component {
     }
 
     componentDidMount() {
-        this.authFormToOpen();
+        this.props.dispatch(authOpen());
     }
 
     componentWillUnmount() {
-        this.authFormToClose();
+        this.props.dispatch(authClose());
     }
 }
 

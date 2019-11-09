@@ -7,12 +7,12 @@ export default class Validator {
         this.patterns = { // сюда накидываем регулярки для всех видов полей
             name: /^[a-zа-яё]+$/i,
             phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
-            email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i
+            email: /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i
         };
         this.errors = { // для каждого поля создаем тест ошибки
             name: 'Имя должно содержать только буквы',
             phone: 'Введите номер телефона в формате +7(000)000-0000',
-            email: 'E-mail должен выглядеть как "mymail@mail.ru", или "my.mail@mail.ru", или "my-mail@mail.ru"'
+            email: 'Введен некорректный E-mail'
         };
 
         this.fields = fields; // object ввиде { name: 'Vasilii', email: test@mail.com}
@@ -41,6 +41,7 @@ export default class Validator {
      * @param value (string) - значение поля формы
      */
     _validate(key, value) {
+
         if (this.patterns[key]) { // если такого поля в паттернах нет то его проверка не производится
             if (this.patterns[key].test(value)) { // проверяем по регулярному выражению
                 this.validations.push('true');

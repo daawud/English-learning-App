@@ -5,7 +5,7 @@ const initStore = {
     emailError: '',
     password: '',
     authModalOpened: false,
-    userAuthenticateStatus: false
+    userIsLogged: false
 };
 
 const authFormReducer = (store = initStore, { type, payload }) => {

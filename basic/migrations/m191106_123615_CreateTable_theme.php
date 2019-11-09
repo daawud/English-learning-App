@@ -25,19 +25,4 @@ class m191106_123615_CreateTable_theme extends Migration
     {
        $this->dropTable('theme');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_123615_theme cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

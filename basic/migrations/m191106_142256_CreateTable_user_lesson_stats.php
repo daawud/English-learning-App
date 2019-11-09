@@ -47,19 +47,4 @@ class m191106_142256_CreateTable_user_lesson_stats extends Migration
         
         $this->dropTable('user_lesson_stats');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_142256_user_lesson_stats cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

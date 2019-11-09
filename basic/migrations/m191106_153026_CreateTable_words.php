@@ -29,19 +29,4 @@ class m191106_153026_CreateTable_words extends Migration
     {
         $this->dropTable('words');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_153026_words cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

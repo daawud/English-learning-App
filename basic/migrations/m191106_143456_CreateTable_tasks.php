@@ -35,19 +35,4 @@ class m191106_143456_CreateTable_tasks extends Migration
         
         $this->dropTable('tasks');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_143456_tasks cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

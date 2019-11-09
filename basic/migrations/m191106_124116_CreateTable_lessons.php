@@ -38,19 +38,4 @@ class m191106_124116_CreateTable_lessons extends Migration
         
         $this->dropTable('lessons');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_124116_lessons cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

@@ -14,7 +14,7 @@ class m191107_145425_Insert_theme extends Migration
     {
         $this->batchInsert( 'theme', [
             'name'
-        ], [
+        ],[
             ['Семья'],
             ['Дом'],
             ['Еда'],
@@ -24,7 +24,6 @@ class m191107_145425_Insert_theme extends Migration
             ['Спорт'],
             ['Природа'],
             ['Профессии']
-           
         ]);
     }
 
@@ -35,19 +34,4 @@ class m191107_145425_Insert_theme extends Migration
     {
         $this->truncateTable('theme');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191107_145425_Insert_theme cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

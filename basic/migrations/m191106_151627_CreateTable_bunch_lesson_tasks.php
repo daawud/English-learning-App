@@ -46,19 +46,4 @@ class m191106_151627_CreateTable_bunch_lesson_tasks extends Migration
         
         $this->dropTable('bunch_lesson_tasks');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_151627_bunch_lesson_tasks cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

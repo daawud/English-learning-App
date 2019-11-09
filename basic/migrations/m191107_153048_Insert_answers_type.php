@@ -27,20 +27,4 @@ class m191107_153048_Insert_answers_type extends Migration
     {
          $this->truncateTable('answers_type');
     }
-    
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191107_153048_Insert_answers_type cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

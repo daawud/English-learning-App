@@ -17,8 +17,8 @@ class m191107_151825_Insert_task_type extends Migration
         $this->batchInsert( 'task_types', [
             'name', 'description'
         ], [
-            ['chooseRusWord', 'Выберите правильный перевод с английского языка'],
-            ['chooseEngWord', 'Выберите правильный перевод с русского языка'],
+            ['chooseRusWord', 'Переведите на русский язык'],
+            ['chooseEngWord', 'Переведите на английский язык'],
             ['typeEngWord', 'Введите перевод на английский язык'],
             ['typeRusWord', 'Введите перевод на русский язык']
         ]);
@@ -30,21 +30,5 @@ class m191107_151825_Insert_task_type extends Migration
     public function safeDown()
     {
         $this->truncateTable('task_types');
-
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191107_151825_Insert_task_type cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

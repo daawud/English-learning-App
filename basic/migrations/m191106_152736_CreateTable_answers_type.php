@@ -26,19 +26,4 @@ class m191106_152736_CreateTable_answers_type extends Migration
     {
         $this->dropTable('answers_type');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191106_152736_answers_type cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

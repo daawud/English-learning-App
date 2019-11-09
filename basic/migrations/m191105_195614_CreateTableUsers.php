@@ -29,19 +29,4 @@ class m191105_195614_CreateTableUsers extends Migration
     {
         $this->dropTable('users');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m191105_195614_CreateTableUsers cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

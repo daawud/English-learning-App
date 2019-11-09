@@ -3,14 +3,12 @@ import aTypes from './actionTypes';
 export function authOpen() {
     return {
         type: aTypes.AUTH_MODAL_OPEN,
-        payload: '',
     };
 }
 
 export function authClose() {
     return {
         type: aTypes.AUTH_MODAL_CLOSE,
-        payload: '',
     };
 }
 

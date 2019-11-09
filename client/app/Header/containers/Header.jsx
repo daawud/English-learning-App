@@ -8,7 +8,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userIsLogged: false,
+            userIsLogged: true,
         }
     }
 
@@ -23,7 +23,7 @@ class Header extends Component {
                         <>
                             <span className="text-white" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">100</span>
                             <HeaderUserPic />
-                            <Link to="/cabinet"><button className="btn bg-light" data-toggle="tooltip" title="Войти в личный кабинет">Войти в личный кабинет</button></Link>
+                            <Link to="/cabinet" className="btn bg-light" data-toggle="tooltip" title="Войти в личный кабинет">Войти в личный кабинет</Link>
                         </>
                          :
                         <Link to="/auth" className="btn bg-light" data-toggle="tooltip" title="Войти в учетную запись">Войти</Link>

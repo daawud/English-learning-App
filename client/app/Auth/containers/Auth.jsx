@@ -49,10 +49,10 @@ class Auth extends Component {
                             <Link to='/'>X</Link>
                         </div>
                         <form onSubmit={this.handleSubmit} className="text-center p-5">
-                            <label htmlFor="EmailLoggingForm">ЭЛЕКТРОННАЯ ПОЧТА / ЛОГИН</label>
+                            <label htmlFor="EmailForm">ЭЛЕКТРОННАЯ ПОЧТА / ЛОГИН</label>
                             <input
                                 type="email"
-                                id="EmailLoggingForm"
+                                id="EmailForm"
                                 className={this.props.emailValidationError ? 'form-control mb-2 is-invalid' : 'form-control mb-5'}
                                 name="email"
                                 onChange={() => null}
@@ -70,6 +70,7 @@ class Auth extends Component {
                                     name="password"
                                     onChange={() => null}
                                     onBlur={this.handleChange}
+                                    maxLength="50"
                                     required
                                 />
                                 <div

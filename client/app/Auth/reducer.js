@@ -29,16 +29,12 @@ const authFormReducer = (store = initStore, {type, payload}) => {
             }
         }
         case aTypes.PASSWORD_FIELD_UPDATE: {
-            if (payload.length >50) {
-                return {...store, password: '',
-                    passwordValidationError: 'Длина пароля не должна превышать 50 символов'};
-            } else {
-                return {...store, password: payload};
-            }
+            return {...store, password: payload};
 
         }
         case aTypes.SHOW_PASSWORD_FIELD: {
-            return {...store,
+            return {
+                ...store,
                 typeOfPasswordInput: payload === 'password' ? 'text' : 'password'
             };
         }

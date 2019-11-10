@@ -10,8 +10,8 @@
     },
     "main": "index.js",
     "scripts": {
-        "build": "webpack --config ../../../Downloads/English-learning-App-master/client/webpack.prod.config.js",
-        "ds": "webpack-dev-server --open --config ../../../Downloads/English-learning-App-master/client/webpack.dev.config.js",
+        "build": "webpack --config webpack.prod.config.js",
+        "ds": "webpack-dev-server --open --config webpack.dev.config.js",
         "jest": "jest",
         "lc": "node_modules/.bin/eslint client/app"
     },

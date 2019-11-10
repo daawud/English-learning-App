@@ -1,0 +1,11 @@
+.password_input {
+  position: relative;
+  z-index: 0;
+}
+.show-password {
+  position: absolute;
+  z-index: 9999;
+  top: 25px;
+  right: 5px;
+  font-size: 40px;
+}

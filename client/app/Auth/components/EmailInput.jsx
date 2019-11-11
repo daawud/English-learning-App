@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class EmailInput extends Component {
     render() {
@@ -9,7 +8,7 @@ class EmailInput extends Component {
                 <input
                     type="email"
                     id="EmailForm"
-                    className={this.props.emailValidationError ? 'form-control mb-2 is-invalid' : 'form-control mb-3'}
+                    className="form-control mb-3"
                     name="email"
                     maxLength="50"
                     onChange={() => null}
@@ -21,8 +20,4 @@ class EmailInput extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return state.authFormReducer;
-}
-
-export default connect(mapStateToProps)(EmailInput);
+export default EmailInput;

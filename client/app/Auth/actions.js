@@ -2,9 +2,9 @@ import aTypes from './actionTypes';
 
 /**
  * Функция отвечающая за показ модального окна Формы входа в личный кабинет
- * @returns {{type: string}} - название типа action
+ * @returns {string} type - название типа action
  */
-export function authOpen() {
+export function authFormToOpen() {
     return {
         type: aTypes.AUTH_MODAL_OPEN,
     };
@@ -12,41 +12,33 @@ export function authOpen() {
 
 /**
  * Функция отвечающая за закрытие модального окна Формы входа в личный кабинет
- * @returns {{type: string}} - название типа action
+ * @returns {string} type - название типа action
  */
-export function authClose() {
+export function authFormToClose() {
     return {
         type: aTypes.AUTH_MODAL_CLOSE,
     };
 }
 
 /**
- *
- * @param field {Object} - объект с данными полей формы
- * @returns {{payload: *, type: *}} - payload - action, type - название типа action
+ * Функция обработки изменения данных в полях формы
+ * @param {string} key - наименование ключа поля
+ * @param {string} value - значение поля
+ * @returns {string} payload - action, {string} type - название типа action
  */
-export function formFieldsUpdate(field) {
-    let [key] = Object.keys(field);
-    let [value] = Object.values(field);
+export function formFieldsUpdate({key, value}) {
     switch (key) {
         case 'email': {
             return {
-                type: aTypes.EMAIL_FIELD_UPDATE,
+                type: aTypes.EMAIL_FIELD_BLUR,
                 payload: value,
             };
         }
         case 'password': {
             return {
-                type: aTypes.PASSWORD_FIELD_UPDATE,
+                type: aTypes.PASSWORD_FIELD_BLUR,
                 payload: value,
             };
         }
     }
-}
-
-export function showPassword(data) {
-    return {
-        type: aTypes.SHOW_PASSWORD_FIELD,
-        payload: data,
-    };
 }

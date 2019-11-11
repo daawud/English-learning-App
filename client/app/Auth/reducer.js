@@ -1,14 +1,10 @@
 import aTypes from './actionTypes';
-import Validator from '~/classes/Validator';
 
 const initStore = {
     email: '',
-    emailValidationError: '',
     password: '',
-    passwordValidationError: '',
     authModalOpened: false,
     userIsLogged: false,
-    typeOfPasswordInput: 'password'
 };
 
 const authFormReducer = (store = initStore, {type, payload}) => {
@@ -17,26 +13,13 @@ const authFormReducer = (store = initStore, {type, payload}) => {
             return {...store, authModalOpened: true};
         }
         case aTypes.AUTH_MODAL_CLOSE: {
-            return {...store, authModalOpened: false,};
+            return {...store, ...initStore};
         }
-        case aTypes.EMAIL_FIELD_UPDATE: {
-            const emailValidation = new Validator();
-            emailValidation.validateForm({email: payload});
-            if (emailValidation.isValid) {
-                return {...store, email: payload, emailValidationError: ''};
-            } else {
-                return {...store, email: '', emailValidationError: emailValidation.error};
-            }
+        case aTypes.EMAIL_FIELD_BLUR: {
+            return {...store, email: payload};
         }
-        case aTypes.PASSWORD_FIELD_UPDATE: {
+        case aTypes.PASSWORD_FIELD_BLUR: {
             return {...store, password: payload};
-
-        }
-        case aTypes.SHOW_PASSWORD_FIELD: {
-            return {
-                ...store,
-                typeOfPasswordInput: payload === 'password' ? 'text' : 'password'
-            };
         }
     }
     return store;

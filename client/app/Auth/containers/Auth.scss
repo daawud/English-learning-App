@@ -1,11 +1,23 @@
-.password_input {
+.input-cover {
   position: relative;
   z-index: 0;
 }
+
 .show-password {
   position: absolute;
   z-index: 9999;
-  top: 25px;
+  top: 24px;
   right: 5px;
-  font-size: 40px;
+}
+
+.input-eye {
+  width: 30px;
+  height: 30px;
+}
+.input-custom {
+  padding-right: 40px!important;
+}
+.close-form {
+  cursor: pointer;
+  font-size: 30px;
 }

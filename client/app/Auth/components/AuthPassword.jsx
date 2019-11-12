@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { passwordOnBlur } from '~/Auth/actions';
-
+import img from '~/assets/img/Vector.png'
 
 class AuthPassword extends Component {
     constructor(props) {
@@ -22,19 +22,6 @@ class AuthPassword extends Component {
     }
 
     render() {
-        const eye = (
-            <div
-                className='auth-form__show-password'
-                onClick={() => this.setState(
-                    {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'}
-                )}
-            ><img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Feather-core-eye.svg/1024px-Feather-core-eye.svg.png"
-                    className="auth-form__input-eye"
-                    alt=""/>
-            </div>
-        );
-
         return (
             <>
                 <label htmlFor="PasswordForm">ПАРОЛЬ</label>
@@ -49,7 +36,12 @@ class AuthPassword extends Component {
                         maxLength="50"
                         required
                     />
-                    {eye}
+                    <div
+                        className='auth-form__show-password'
+                        onClick={() => this.setState(
+                            {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'}
+                        )}><img src={img} alt=""/>
+                    </div>
                 </div>
             </>
         );

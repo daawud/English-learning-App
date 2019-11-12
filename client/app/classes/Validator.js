@@ -1,11 +1,8 @@
 /**
  * Анонимная функция валидации поля
- * @type {{validate(*=): void}}
  */
-const validateForm = {
-    validate(field) {
-        let [key] = Object.keys(field);
-        let [value] = Object.values(field);
+const privates = {
+    validate({key, value}) {
         if (this.patterns[key]) { // если такого поля в паттернах нет то его проверка не производится
             if (this.patterns[key].test(value)) { // проверяем по регулярному выражению
                 this.isValid = true;
@@ -23,18 +20,14 @@ const validateForm = {
 export default class Validator {
     constructor() {
         this.patterns = {
-            name: /^[0-9a-zа-яё]/i,
-            phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
-            email: /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i,
-            password: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z0-9!@#$%^&*]{6,50}/g
+            name: /^[0-9a-zA-Zа-яА-ЯёЁ]+$/i,
+            email: /^[0-9a-zA-Z-\.]+\@[0-9a-zA-Z-]{2,}\.[a-zA-Z]{2,}$/i,
+            password: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z0-9!@#$%^&*]{6,}/i
         };
         this.errors = {
             name: 'Имя должно содержать только буквы и цифры',
-            phone: 'Введите номер телефона в формате +7(000)000-0000',
             email: 'Введен некорректный E-mail',
-            password: 'Ваш пароль недостаточно надежен ' +
-                '(Минимум одна цифра, одна заглавная и одна строчная буквы, ' +
-                'длина пароля не менее 6 но не более 50 символов )',
+            password: 'Ваш пароль недостаточно надежен:\n минимум одна цифра, одна заглавная и одна строчная буквы, длина пароля не менее 6, но не более 50 символов',
         };
         this.isValid = false;
         this.error = '';
@@ -44,7 +37,8 @@ export default class Validator {
      * Метод запроса валидации
      * @param field {Object} - объект с данными поля
      */
-    validateForm(field) {
-        validateForm.validate.call(this, field);
+    validateForm({key, value}) {
+
+        privates.validate.call(this, {key, value});
     }
 }

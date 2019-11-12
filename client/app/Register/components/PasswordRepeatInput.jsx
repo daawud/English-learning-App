@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PopUpMessageArrowLeft from '~/components/PopUpMassageArrorLeft/PopUpMessageArrowLeft.jsx';
-import img from '~/assets/img/Vector.png'
+import img from '~/assets/img/passwordEyeIcon.png'
 
 import { passwordRepeatOnBlur, clearPasswordRepeatErrorMassage } from '~/Register/actions';
 

@@ -2,7 +2,7 @@ import aTypes from './actionTypes';
 
 /**
  * Функция отвечающая за показ модального окна Формы входа в личный кабинет
- * @returns {string} type - название типа action
+ * @returns {Object} type - название типа action
  */
 export function authFormToOpen() {
     return {
@@ -12,7 +12,7 @@ export function authFormToOpen() {
 
 /**
  * Функция отвечающая за закрытие модального окна Формы входа в личный кабинет
- * @returns {string} type - название типа action
+ * @returns {Object} type - название типа action
  */
 export function authFormToClose() {
     return {
@@ -21,24 +21,25 @@ export function authFormToClose() {
 }
 
 /**
- * Функция обработки изменения данных в полях формы
- * @param {string} key - наименование ключа поля
- * @param {string} value - значение поля
- * @returns {string} payload - action, {string} type - название типа action
+ * Функция обработки изменения данных в поле email по onBlur
+ * @param {string} value - значение поля email
+ * @returns {Object} payload - название action, type - название типа action
  */
-export function formFieldsUpdate({key, value}) {
-    switch (key) {
-        case 'email': {
-            return {
-                type: aTypes.EMAIL_FIELD_BLUR,
-                payload: value,
-            };
-        }
-        case 'password': {
-            return {
-                type: aTypes.PASSWORD_FIELD_BLUR,
-                payload: value,
-            };
-        }
-    }
+export function emailOnBlur(value) {
+    return {
+        type: aTypes.EMAIL_FIELD_BLUR,
+        payload: value,
+    };
+}
+
+/**
+ * Функция обработки изменения данных в поле password по onBlur
+ * @param {string} value - значение поля password
+ * @returns {Object} payload - название action, {Object} type - название типа action
+ */
+export function passwordOnBlur(value) {
+    return {
+        type: aTypes.PASSWORD_FIELD_BLUR,
+        payload: value,
+    };
 }

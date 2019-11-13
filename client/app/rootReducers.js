@@ -1,7 +1,7 @@
-const rootReducers = {};
-import forgotPasswordReducer from '~/ForgotPassword/reducer';
+import authFormReducer from '~/Auth/reducer';
 
 const rootReducers = {
-    forgotPasswordReducer,
+    authFormReducer,
 };
+
 export default rootReducers;

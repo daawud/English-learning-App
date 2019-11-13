@@ -34,14 +34,11 @@ class Auth extends Component {
                 >
                     {!this.props.authModalOpened && <Redirect to="/"/>}
                     <MDBModalBody className="auth-modal__body">
-                        <form onSubmit={this.handleSubmit}
-                            className="text-center px-5 position-relative auth-form">
+                        <form onSubmit={this.handleSubmit} className="text-center px-5 position-relative auth-form">
                             <h5 className="mt-2 mb-5">Войти в учетную запись</h5>
-                            <MDBCloseIcon
-                                className="auth-form__close"
-                                onClick={() => this.props.dispatch(authFormToClose())}/>
-                            <AuthEmail/>
-                            <AuthPassword/>
+                            <MDBCloseIcon className="auth-form__close" onClick={() => this.props.dispatch(authFormToClose())}/>
+                            <AuthEmail vavue={this.props.name}/>
+                            <AuthPassword vavue={this.props.password}/>
                             <button
                                 className="col-md-6 offset-md-3 btn btn-dark btn-block my-4 border-white rounded-pill"
                                 type="submit"> ВОЙТИ

@@ -26,6 +26,7 @@ class AuthEmail extends Component {
                     type="email"
                     id="EmailForm"
                     className="form-control mb-3"
+                    value={this.props.value}
                     name="email"
                     maxLength="50"
                     onChange={() => null}

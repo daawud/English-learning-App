@@ -11,7 +11,13 @@ import rootReducers from './rootReducers';
 import rootSaga from './rootSaga';
 
 const saga = createSagaMiddleware();
-const store = createStore(combineReducers(rootReducers), applyMiddleware(saga, createLogger()));
+
+let middleware = [saga];
+
+if (process.env.NODE_ENV !== 'production') {
+    middleware = [...middleware, createLogger()]
+}
+const store = createStore(combineReducers(rootReducers), applyMiddleware(...middleware));
 
 saga.run(rootSaga);
 

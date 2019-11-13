@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { passwordOnBlur } from '~/Auth/actions';
-import img from '~/assets/img/Vector.png'
+import img from '~/assets/img/passwordEyeIcon.png'
 
 class AuthPassword extends Component {
     constructor(props) {
@@ -31,6 +31,7 @@ class AuthPassword extends Component {
                         id="PasswordForm"
                         className="auth-form__input-custom form-control mb-4 "
                         name="password"
+                        value={this.props.password}
                         onChange={() => null}
                         onBlur={this.handleChange}
                         maxLength="50"

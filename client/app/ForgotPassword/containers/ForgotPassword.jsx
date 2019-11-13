@@ -6,27 +6,16 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { forgotPasswordModalToOpen, forgotPasswordModalToClose, emailOnBlur } from '~/ForgotPassword/actions';
-import { forgotPasswordReducer } from '~/ForgotPassword/reducer';
-import { handleChange, handleSubmit } from '~/ForgotPassword/helpers';
+import  ForgotPasswordEmail  from '~/ForgotPassword/components/ForgotPasswordEmail.jsx';
 
 class ForgotPassword extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     /**
-     * Метод, обрабатывающий ввод в поле INPUT и отправляющий данные в глобальное хранилище при потере "фокуса" с поля
-     * @param {Object} event - объект с данными события формы
-     */
-    handleChange(event) {
-        this.props.dispatch(emailOnBlur(event.target.value));
-    }
-
-    /**
-     * Метод, обрабатывающий нажатие по сабмиту
-     * @param {Object} event - объект с данными события формы
+     * Метод, обрабатывающий нажатие на кнопку ОТПРАВИТЬ
      */
     handleSubmit(event) {
         event.preventDefault();
@@ -41,26 +30,14 @@ class ForgotPassword extends Component {
                     <MDBModalBody>
                         <p className="text-center">Забыли пароль?
                             <MDBCloseIcon
-                                onClick={() => this.props.dispatch(forgotPasswordModalToClose())}>&times;
+                                onClick={() => this.props.dispatch(forgotPasswordModalToClose())}>
                             </MDBCloseIcon>
                         </p>
                         <form onSubmit={this.handleSubmit} className="text-center p-5">
                             <p className="h6 text-center mb-4">
                                 Мы отправим на Вашу электронную почту новый пароль
                             </p>
-                            <label htmlFor="forgotPasswordFormEmail">
-                                ЭЛЕКТРОННАЯ ПОЧТА
-                            </label>
-                            <input
-                                className="form-control mb-4"
-                                type="email"
-                                maxLength="50"
-                                id="forgotPasswordFormEmail"
-                                onChange={() => null}
-                                onBlur={this.handleChange}
-                                required
-                            />
-                            <br/>
+                            <ForgotPasswordEmail value={this.props.value}/>
                             <MDBBtn className="btn btn-info btn-block my-4" type="submit">
                                 Отправить
                             </MDBBtn>

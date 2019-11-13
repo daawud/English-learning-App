@@ -12,7 +12,7 @@ class PasswordInput extends Component {
         this.state = {
             passwordInputType: 'password',
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.onBlurHandler = this.onBlurHandler.bind(this);
         this.onFocusHandler = this.onFocusHandler.bind(this);
     }
 
@@ -20,10 +20,10 @@ class PasswordInput extends Component {
      * обрабатывает ввод в поле PASSWORD и отправляет данные в глобальное хранилище при потере "фокуса" с поля
      * @param {Object} event - объект с данными события формы
      */
-    handleChange(event) {
-        if (!event.target.value) return;
-
-        this.props.dispatch(passwordOnBlur( event.target.value));
+    onBlurHandler(event) {
+        if (event.target.value !== '') {
+            this.props.dispatch(passwordOnBlur(event.target.value));
+        }
     }
 
     /**
@@ -44,7 +44,7 @@ class PasswordInput extends Component {
                         className="form-control mb-3 reg-form__input-custom"
                         name="password"
                         onChange={() => null}
-                        onBlur={this.handleChange}
+                        onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}
                         maxLength="50"
                         required
@@ -53,7 +53,8 @@ class PasswordInput extends Component {
                         className='reg-form__show-password'
                         onClick={() => this.setState(
                             {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'}
-                        )}><img className="reg-form__input-eye" src={img} alt="показать пароль"/>
+                        )}>
+                        <img className="reg-form__input-eye" src={img} alt="показать пароль"/>
                     </div>
                     {this.props.error
                     && <PopUpMessageArrowLeft message={this.props.error}/>}

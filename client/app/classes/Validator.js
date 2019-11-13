@@ -3,8 +3,10 @@
  */
 const privates = {
     validate({key, value}) {
-        if (this.patterns[key]) { // если такого поля в паттернах нет то его проверка не производится
-            if (this.patterns[key].test(value)) { // проверяем по регулярному выражению
+        // если такого поля в паттернах нет то его проверка не производится
+        if (this.patterns[key]) {
+            // проверяем по регулярному выражению
+            if (this.patterns[key].test(value)) {
                 this.isValid = true;
             } else {
                 this.error = this.errors[key];

@@ -7,7 +7,7 @@ import { emailOnBlur, clearEmailErrorMassage } from '~/Register/actions';
 class EmailInput extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.onBlurHandler = this.onBlurHandler.bind(this);
         this.onFocusHandler = this.onFocusHandler.bind(this);
     }
 
@@ -15,10 +15,10 @@ class EmailInput extends Component {
      * Обрабатывает ввод в поле EMAIL и отправляет данные в глобальное хранилище при потере "фокуса" с поля
      * @param {Object} event - объект с данными события формы
      */
-    handleChange(event) {
-        if (!event.target.value) return;
-
-        this.props.dispatch(emailOnBlur( event.target.value));
+    onBlurHandler(event) {
+        if (event.target.value !== '') {
+            this.props.dispatch(emailOnBlur( event.target.value));
+        }
     }
 
     /**
@@ -40,7 +40,7 @@ class EmailInput extends Component {
                         name="email"
                         maxLength="50"
                         onChange={() => null}
-                        onBlur={this.handleChange}
+                        onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}
                         required
                     />

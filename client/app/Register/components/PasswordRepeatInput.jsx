@@ -12,7 +12,7 @@ class PasswordRepeatInput extends Component {
         this.state = {
             passwordInputType: 'password',
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.onBlurHandler = this.onBlurHandler.bind(this);
         this.onFocusHandler = this.onFocusHandler.bind(this);
     }
 
@@ -20,10 +20,10 @@ class PasswordRepeatInput extends Component {
      * обрабатывает ввод в поле PASSWORD REPEAT и отправляет данные в глобальное хранилище при потере "фокуса" с поля
      * @param {Object} event - объект с данными события формы
      */
-    handleChange(event) {
-        if (!event.target.value) return;
-
-        this.props.dispatch(passwordRepeatOnBlur( event.target.value));
+    onBlurHandler(event) {
+        if (event.target.value !== '') {
+            this.props.dispatch(passwordRepeatOnBlur( event.target.value));
+        }
     }
 
     /**
@@ -34,7 +34,6 @@ class PasswordRepeatInput extends Component {
     }
 
     render() {
-
         return (
             <>
                 <label htmlFor="PasswordFormRepeat">ПОВТОРИТЕ ПАРОЛЬ</label>
@@ -45,7 +44,7 @@ class PasswordRepeatInput extends Component {
                         className="form-control mb-3 reg-form__input-custom"
                         name="password_repeat"
                         onChange={() => null}
-                        onBlur={this.handleChange}
+                        onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}
                         maxLength="50"
                         required

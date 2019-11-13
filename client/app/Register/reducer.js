@@ -88,6 +88,4 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
     return store;
 };
 
-
-
 export default registerFormReducer;

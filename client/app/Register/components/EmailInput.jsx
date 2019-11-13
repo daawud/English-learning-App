@@ -38,6 +38,7 @@ class EmailInput extends Component {
                         id="EmailForm"
                         className="form-control mb-3"
                         name="email"
+                        value={this.props.email}
                         maxLength="50"
                         onChange={() => null}
                         onBlur={this.onBlurHandler}

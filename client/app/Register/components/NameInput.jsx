@@ -38,6 +38,7 @@ class NameInput extends Component {
                         id="nameForm"
                         className="form-control mb-3"
                         name="name"
+                        value={this.props.name}
                         onChange={() => null}
                         onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}

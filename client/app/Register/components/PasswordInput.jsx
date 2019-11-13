@@ -43,6 +43,7 @@ class PasswordInput extends Component {
                         id="PasswordForm"
                         className="form-control mb-3 reg-form__input-custom"
                         name="password"
+                        value={this.props.password}
                         onChange={() => null}
                         onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}

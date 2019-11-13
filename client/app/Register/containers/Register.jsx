@@ -37,17 +37,13 @@ class Register extends Component {
                 >
                     {!this.props.registerModalOpened && <Redirect to="/"/>}
                     <MDBModalBody className="reg-modal__body">
-                        <form onSubmit={this.handleSubmit}
-                            className="text-center px-5 position-relative reg-form">
+                        <form onSubmit={this.handleSubmit} className="text-center px-5 position-relative reg-form">
                             <h5 className="mt-2 mb-5">Зарегистрироваться</h5>
-                            <MDBCloseIcon
-                                className="reg-form__close"
-                                onClick={() => this.props.dispatch(registerFormClose())}
-                            />
-                            <NameInput error={this.props.nameValidationError} />
-                            <EmailInput error={this.props.emailValidationError} />
-                            <PasswordInput error={this.props.passwordValidationError} />
-                            <PasswordRepeatInput error={this.props.passwordRepeatValidationError} />
+                            <MDBCloseIcon className="reg-form__close" onClick={() => this.props.dispatch(registerFormClose())} />
+                            <NameInput vavue={this.props.name} error={this.props.nameValidationError} />
+                            <EmailInput vavue={this.props.email} error={this.props.emailValidationError} />
+                            <PasswordInput vavue={this.props.password} error={this.props.passwordValidationError} />
+                            <PasswordRepeatInput vavue={this.props.passwordRepeat} error={this.props.passwordRepeatValidationError} />
                             <button
                                 className="col-md-6 offset-md-3 btn btn-dark btn-block my-4 border-white rounded-pill"
                                 type="submit"> СОЗДАТЬ </button>
@@ -60,11 +56,9 @@ class Register extends Component {
             </>
         );
     }
-
     componentDidMount() {
         this.props.dispatch(registerFormOpen());
     }
-
     componentWillUnmount() {
         this.props.dispatch(registerFormClose())
     }

@@ -43,6 +43,7 @@ class PasswordRepeatInput extends Component {
                         id="PasswordFormRepeat"
                         className="form-control mb-3 reg-form__input-custom"
                         name="password_repeat"
+                        value={this.props.passwordRepeat}
                         onChange={() => null}
                         onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}

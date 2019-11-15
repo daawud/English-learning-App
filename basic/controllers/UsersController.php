@@ -20,13 +20,7 @@ class UsersController extends ApiBaseController
 
 
     public function actionIndex(){
-        $rights = $this->checkToken();
-        if ($rights == "Expired token") return "$rights";
-        if ($this->checkToken()) {
-            return Users::find()->orderBy('userId')->all();
-        } else {
-            return "У вас нет прав к данному контенту";
-        }
+       return Users::find()->orderBy('userId')->all();
     }
 
     public function actionUpdate(){

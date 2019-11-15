@@ -17,9 +17,7 @@ class UsersController extends ActiveController
         return [
             [
                 'class' => \yii\filters\ContentNegotiator::className(),
-                'formats' => [
-                    'application/json' => \yii\web\Response::FORMAT_JSON,
-                ],
+
             ],
         ];
     }

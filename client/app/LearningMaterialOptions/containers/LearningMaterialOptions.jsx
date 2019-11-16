@@ -5,40 +5,44 @@ import { connect } from 'react-redux';
 import LearningMaterialButton from '~/LearningMaterialOptions/components/LearningMaterialButton.jsx';
 
 class LearningMaterialOptions extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
     render() {
         const buttonText = {
             button_1: {
-                text: 'Тренировка',
-                link: '/choose_course'
+                buttonText: 'Тренировка',
+                link: '/choose_course',
+                popoverText: 'Тренировка на случайно подобранных заданиях',
             },
             button_2: {
-                text: 'Проверить уровень знаний',
-                link: '/test_level'
+                buttonText: 'Начать обучение',
+                link: '/choose_course',
+                popoverText: 'Перейти к обучению по систематизированному учебному пособию',
             },
             button_3: {
-                text: 'Начать обучение',
-                link: '/choose_course'
+                buttonText: 'Проверить уровень знаний',
+                link: '/test_level',
+                popoverText: 'Проверить Ваш уровень владения английским языком',
             },
             button_4: {
-                text: 'Продолжить',
-                link: '/continue'
+                buttonText: 'Продолжить',
+                link: '/continue',
+                popoverText: 'Продолжить выполнение ранее начатого задания',
             },
         };
 
         return (
-            <>
-                <h4 className="text-center font-weight-bold mb-5">
+            <div className="container">
+                <h5 className="text-center mb-5">
                     Выберите с чем будете работать
-                </h4>
-                <LearningMaterialButton {...buttonText.button_1}/>
-                <LearningMaterialButton {...buttonText.button_2}/>
-                <LearningMaterialButton {...buttonText.button_3}/>
-                <LearningMaterialButton {...buttonText.button_4}/>
-            </>
+                </h5>
+                <LearningMaterialButton {...buttonText.button_1} />
+                <LearningMaterialButton {...buttonText.button_2} />
+                <LearningMaterialButton {...buttonText.button_3} />
+                <LearningMaterialButton {...buttonText.button_4} />
+            </div>
         );
     }
 }

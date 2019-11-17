@@ -35,12 +35,12 @@ const TestOptions = (props) => {
                     <TestOptionBlock {...blocks.block_1.level2}/>
                 </div>
                 <div className="test-option__block d-flex align-items-center">
-                    <div className="test-option__user"><p className="m-0 p-0">Basic User</p></div>
+                    <div className="test-option__user"><p className="m-0 p-0">Independent User</p></div>
                     <TestOptionBlock {...blocks.block_2.level1}/>
                     <TestOptionBlock {...blocks.block_2.level2}/>
                 </div>
                 <div className="test-option__block d-flex align-items-center">
-                    <div className="test-option__user"><p className="m-0 p-0">Basic User</p></div>
+                    <div className="test-option__user"><p className="m-0 p-0">Proficient User</p></div>
                     <TestOptionBlock {...blocks.block_3.level1}/>
                     <TestOptionBlock {...blocks.block_3.level2}/>
                 </div>

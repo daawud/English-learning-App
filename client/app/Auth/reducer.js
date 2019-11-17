@@ -7,11 +7,11 @@ const initStore = {
 
 const authFormReducer = (store = initStore, {type, payload}) => {
     switch (type) {
-        case aTypes.EMAIL_FIELD_CHANGE: {
+        case aTypes.AUTH_EMAIL_FIELD_CHANGE: {
             return {...store, email: payload};
         }
 
-        case aTypes.PASSWORD_FIELD_CHANGE: {
+        case aTypes.AUTH_PASSWORD_FIELD_CHANGE: {
             return {...store, password: payload};
         }
     }

@@ -3,9 +3,9 @@ import './TopBlockMainPage.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import LearningMaterialOptions from '~/TopBlockMainPage/components/LearningMaterialOptions/containers/LearningMaterialOptions.jsx';
+import LearningMaterialOptions from '~/LearningMaterialOptions/containers/LearningMaterialOptions.jsx';
 import Welcome from '~/TopBlockMainPage/components/WelcomeBlock/WelcomeBlock.jsx';
-import TestOptions from '~/TopBlockMainPage/components/TestOptions/containers/TestOptions.jsx';
+import TestOptions from '~/TestOptions/containers/TestOptions.jsx';
 import { mainBlockToShow } from '~/TopBlockMainPage/actions';
 
 class TopBlockMainPage extends Component {
@@ -15,11 +15,11 @@ class TopBlockMainPage extends Component {
     
     render() {
         return (
-            <>
+            <div className="wrapper">
                 {this.props.mainTopBlockShow && <Welcome />}
                 {this.props.materialOptionsBlockShow && <LearningMaterialOptions />}
                 {this.props.testOptionsBlockShow && <TestOptions />}
-            </>
+            </div>
         );
     }
 

@@ -2,7 +2,7 @@ import './TestOptions.scss';
 
 import React from 'react';
 
-import TestOptionBlock from '~/TopBlockMainPage/components/TestOptions/components/TestOptionBlock/TestOptionBlock.jsx';
+import TestOptionBlock from '~/TestOptions/components/TestOptionBlock/TestOptionBlock.jsx';
 import ReturnButton from '~/TopBlockMainPage/components/ReturnButton/ReturnButton.jsx';
 import { materialOptionsBlockToShow } from '~/TopBlockMainPage/actions';
 

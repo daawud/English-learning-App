@@ -7,7 +7,7 @@ import aTypes from './actionTypes';
  */
 export function passwordOnChange(value) {
     return {
-        type: aTypes.PASSWORD_FIELD_CHANGE,
+        type: aTypes.AUTH_PASSWORD_FIELD_CHANGE,
         payload: value,
     };
 }
@@ -19,7 +19,7 @@ export function passwordOnChange(value) {
  */
 export function emailOnChange(value) {
     return {
-        type: aTypes.EMAIL_FIELD_CHANGE,
+        type: aTypes.AUTH_EMAIL_FIELD_CHANGE,
         payload: value,
     };
 }

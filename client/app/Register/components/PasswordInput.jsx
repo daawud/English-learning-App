@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PopUpMessageArrowLeft from '~/components/PopUpMassageArrorLeft/PopUpMessageArrowLeft.jsx';
-import img from '~/assets/img/passwordEyeIcon.png'
+import passwordEyeOpen from '~/assets/img/passwordEyeOpen.svg';
+import passwordEyeClose from '~/assets/img/passwordEyeClose.svg';
 
-import { passwordOnBlur, clearPasswordErrorMassage } from '~/Register/actions';
+import { passwordOnChange, passwordOnBlur, clearPasswordErrorMassage } from '~/Register/actions';
 
 class PasswordInput extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class PasswordInput extends Component {
         };
         this.onBlurHandler = this.onBlurHandler.bind(this);
         this.onFocusHandler = this.onFocusHandler.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     /**
@@ -33,6 +35,14 @@ class PasswordInput extends Component {
         this.props.dispatch(clearPasswordErrorMassage());
     }
 
+    /**
+     * обрабатывает ввод в поле PASSWORD и отправляет данные в глобальное хранилище при заполнении поля
+     * @param {Object} event - объект с данными события формы
+     */
+    onChangeHandler(event) {
+        this.props.dispatch(passwordOnChange( event.target.value));
+    }
+
     render() {
         return (
             <>
@@ -43,8 +53,8 @@ class PasswordInput extends Component {
                         id="PasswordForm"
                         className="form-control mb-3 reg-form__input-custom"
                         name="password"
-                        value={this.props.password}
-                        onChange={() => null}
+                        value={this.props.value}
+                        onChange={this.onChangeHandler}
                         onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}
                         maxLength="50"
@@ -55,7 +65,9 @@ class PasswordInput extends Component {
                         onClick={() => this.setState(
                             {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'}
                         )}>
-                        <img className="reg-form__input-eye" src={img} alt="показать пароль"/>
+                        <img className="reg-form__input-eye"
+                            src={this.state.passwordInputType === 'password' ? passwordEyeClose : passwordEyeOpen}
+                            alt="откр/закр глаз"/>
                     </div>
                     {this.props.error
                     && <PopUpMessageArrowLeft message={this.props.error}/>}

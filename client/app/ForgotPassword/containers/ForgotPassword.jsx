@@ -2,10 +2,9 @@ import './ForgotPassword.scss';
 import { MDBModal, MDBModalBody, MDBCloseIcon, MDBBtn } from 'mdbreact';
 
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { forgotPasswordModalToOpen, forgotPasswordModalToClose, emailOnBlur } from '~/ForgotPassword/actions';
+import { forgotPasswordModalToClose, registerFormOpen } from '~/Header/actions';
 import ForgotPasswordEmail from '~/ForgotPassword/components/ForgotPasswordEmail.jsx';
 
 class ForgotPassword extends Component {
@@ -19,25 +18,24 @@ class ForgotPassword extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
+        // Далее подключаем логику с БД
+        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
     }
 
     render() {
         return (
             <>
-                <MDBModal isOpen={this.props.forgotPasswordModalOpened}
-                          toggle={() => this.props.dispatch(forgotPasswordModalToClose())}
-                          className="forgot-password-modal">
-                    {!this.props.forgotPasswordModalOpened && <Redirect to="/"/>}
+                <MDBModal isOpen toggle={() => this.props.dispatch(forgotPasswordModalToClose())} className="forgot-password-modal">
                     <MDBModalBody className="forgot-password-modal__body">
                         <form onSubmit={this.handleSubmit}
-                              className="text-center px-5 position-relative forgot-password-form">
+                            className="text-center px-5 position-relative forgot-password-form">
                             <h5 className="mt-2 mb-5">Забыли пароль?</h5>
                             <MDBCloseIcon className="forgot-password-form__close"
-                                          onClick={() => this.props.dispatch(forgotPasswordModalToClose())}/>
+                                onClick={() => this.props.dispatch(forgotPasswordModalToClose())}/>
                             <p className="h6 text-center mb-4">
                                 Мы отправим на Вашу электронную почту новый пароль
                             </p>
-                            <ForgotPasswordEmail value={this.props.value}/>
+                            <ForgotPasswordEmail value={this.props.email}/>
                             <MDBBtn
                                 className="col-md-6 offset-md-3 btn btn-dark btn-block my-4 border-white rounded-pill"
                                 type="submit">
@@ -45,16 +43,13 @@ class ForgotPassword extends Component {
                             </MDBBtn>
                         </form>
                         <p className="text-center"> Нет личного кабинета?
-                            <Link className="forgot-password-form__link" to="/register"> Зарегистрируйся </Link>
+                            <span className="forgot-password-form__link"
+                                onClick={() => this.props.dispatch(registerFormOpen())}> Зарегистрируйся </span>
                         </p>
                     </MDBModalBody>
                 </MDBModal>
             </>
         );
-    }
-
-    componentDidMount() {
-        this.props.dispatch(forgotPasswordModalToOpen());
     }
 
     componentWillUnmount() {

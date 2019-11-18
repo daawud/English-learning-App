@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { emailOnBlur } from '~/ForgotPassword/actions';
+import { emailOnChange } from '~/ForgotPassword/actions';
 
 class ForgotPasswordEmail extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     /**
      * Метод, обрабатывающий ввод в поле INPUT и отправляющий данные в глобальное хранилище при потере "фокуса" с поля
      */
-    handleChange(event) {
-        this.props.dispatch(emailOnBlur(event.target.value));
+    onChangeHandler(event) {
+        this.props.dispatch(emailOnChange(event.target.value));
     }
 
     render() {
@@ -27,8 +27,7 @@ class ForgotPasswordEmail extends Component {
                     maxLength="50"
                     id="forgotPasswordFormEmail"
                     value={this.props.value}
-                    onChange={() => null}
-                    onBlur={this.handleChange}
+                    onChange={this.onChangeHandler}
                     required
                 />
             </>

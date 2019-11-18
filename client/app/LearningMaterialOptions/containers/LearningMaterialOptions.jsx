@@ -1,7 +1,6 @@
 import './LearningMaterialOptions.scss';
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import LearningMaterialButton from '~/LearningMaterialOptions/components/LearningMaterialButton.jsx';
 
 class LearningMaterialOptions extends Component {
@@ -12,43 +11,35 @@ class LearningMaterialOptions extends Component {
     render() {
         const buttonText = {
             button_1: {
-                buttonText: 'Тренировка',
-                link: '/choose_course',
-                popoverText: 'Тренировка на случайно подобранных заданиях',
+                text: 'Тренировка',
+                link: '/choose_course'
             },
             button_2: {
-                buttonText: 'Начать обучение',
-                link: '/choose_course',
-                popoverText: 'Перейти к обучению по систематизированному учебному пособию',
+                text: 'Проверить уровень знаний',
+                link: '/test_level'
             },
             button_3: {
-                buttonText: 'Проверить уровень знаний',
-                link: '/test_level',
-                popoverText: 'Проверить Ваш уровень владения английским языком',
+                text: 'Начать обучение',
+                link: '/choose_course'
             },
             button_4: {
-                buttonText: 'Продолжить',
-                link: '/continue',
-                popoverText: 'Продолжить выполнение ранее начатого задания',
+                text: 'Продолжить',
+                link: '/continue'
             },
         };
 
         return (
-            <div className="container">
-                <h5 className="text-center mb-5">
+            <div className="material-show ">
+                <h4 className="text-center font-weight-bold mb-5">
                     Выберите с чем будете работать
-                </h5>
-                <LearningMaterialButton {...buttonText.button_1} />
-                <LearningMaterialButton {...buttonText.button_2} />
-                <LearningMaterialButton {...buttonText.button_3} />
-                <LearningMaterialButton {...buttonText.button_4} />
+                </h4>
+                <LearningMaterialButton {...buttonText.button_1}/>
+                <LearningMaterialButton {...buttonText.button_2}/>
+                <LearningMaterialButton {...buttonText.button_3}/>
+                <LearningMaterialButton {...buttonText.button_4}/>
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return state.learningMaterialReducer;
-}
-
-export default connect(mapStateToProps)(LearningMaterialOptions);
+export default LearningMaterialOptions;

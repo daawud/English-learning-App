@@ -1,24 +1,17 @@
 import './LearningMaterialButton.scss';
-import { MDBBtn, MDBPopover, MDBPopoverBody} from 'mdbreact';
-
+import { MDBBtn } from 'mdbreact';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { testOptionsBlockToShow } from '~/TopBlockMainPage/actions';
 
 const LearningMaterialButton = (props) => {
     return (
-        <>
-            <MDBPopover placement="bottom"
-                        popover
-                        hover>
-                <MDBBtn className="learning-material-btn">
-                    <Link className="learning-material-link" to={props.link}> {props.buttonText} </Link>
-                </MDBBtn>
-                <MDBPopoverBody>
-                    {props.popoverText}
-                </MDBPopoverBody>
-            </MDBPopover>
-        </>
+        <MDBBtn>
+            <div className="border border-dark rounded p-2"
+                onClick={() => props.dispatch(testOptionsBlockToShow())}> 
+                {props.text} 
+            </div>
+        </MDBBtn>
     );
 };
-
-export default LearningMaterialButton;
+export default connect()(LearningMaterialButton);

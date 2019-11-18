@@ -2,10 +2,9 @@ import './Auth.scss';
 import { MDBModal, MDBModalBody, MDBCloseIcon, MDBBtn } from 'mdbreact';
 
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { authFormToOpen, authFormToClose } from '~/Auth/actions';
+import { authFormToClose, registerFormOpen, forgotPasswordModalToOpen } from '~/Header/actions';
 import AuthEmail from '~/Auth/components/AuthEmail.jsx'
 import AuthPassword from '~/Auth/components/AuthPassword.jsx';
 
@@ -22,39 +21,33 @@ class Auth extends Component {
     handleSubmit(event) {
         event.preventDefault();
         // Далее подключаем логику с БД
+        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
     }
 
     render() {
         return (
             <>
-                <MDBModal
-                    isOpen={this.props.authModalOpened}
-                    toggle={() => this.props.dispatch(authFormToClose())}
-                    className="auth-modal"
-                >
-                    {!this.props.authModalOpened && <Redirect to="/"/>}
+                <MDBModal isOpen toggle={() => this.props.dispatch(authFormToClose())} className="auth-modal">
                     <MDBModalBody className="auth-modal__body">
                         <form onSubmit={this.handleSubmit} className="text-center px-5 position-relative auth-form">
                             <h5 className="mt-2 mb-5">Войти в учетную запись</h5>
                             <MDBCloseIcon className="auth-form__close" onClick={() => this.props.dispatch(authFormToClose())}/>
-                            <AuthEmail vavue={this.props.name}/>
-                            <AuthPassword vavue={this.props.password}/>
-                            <button
+                            <AuthEmail value={this.props.email}/>
+                            <AuthPassword value={this.props.password}/>
+                            <MDBBtn
                                 className="col-md-6 offset-md-3 btn btn-dark btn-block my-4 border-white rounded-pill"
                                 type="submit"> ВОЙТИ
-                            </button>
-                            <Link className="auth-form__link" to="/reset_password">Восстановить пароль</Link>
-                            <p>Нет личного кабинета? <Link className="auth-form__link"
-                                to="/register">Зарегистрируйся</Link></p>
+                            </MDBBtn>
+                            <p className="auth-form__link" 
+                                onClick={() => this.props.dispatch(forgotPasswordModalToOpen())}>Восстановить пароль</p>
+                            <p>Нет личного кабинета? &nbsp;
+                                <span className="auth-form__link" 
+                                    onClick={() => this.props.dispatch(registerFormOpen())}> Зарегистрируйся</span></p>
                         </form>
                     </MDBModalBody>
                 </MDBModal>
             </>
         );
-    }
-
-    componentDidMount() {
-        this.props.dispatch(authFormToOpen());
     }
 
     componentWillUnmount() {

@@ -1,5 +1,5 @@
 import './Header.scss';
-import { MDBNavbarBrand } from 'mdbreact';
+import { MDBNavbarBrand, MDBBtn } from 'mdbreact';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -27,22 +27,24 @@ class Header extends Component {
                 </>)
         } else {
             userBlock = (
-                <button className="btn bg-light"
+                <MDBBtn className="sign-in-btn"
                     data-toggle="tooltip"
                     title="Войти в учетную запись"
                     onClick={() => this.props.dispatch(authFormToOpen())}>
                     Войти
-                </button>
+                </MDBBtn>
             );
         }
 
         return (
-            <header className="wrapper bg-secondary d-flex justify-content-between align-items-center">
+            <header className="wrapper header_bg d-flex justify-content-between align-items-center">
                 {this.props.authModalOpened && <AuthForm />}
                 {this.props.registerModalOpened && <RegisterForm />}
                 {this.props.forgotPasswordModalOpened && <ForgotPasswordForm />}
                 <MDBNavbarBrand>
-                    <Link to="/" className="btn bg-light" data-toggle="tooltip" title="Перейти на главную страницу">Logotip</Link>
+                    <Link to="/" className="" data-toggle="tooltip" title="Перейти на главную страницу">
+                        <span className="logo-text">eLA</span>
+                    </Link>
                 </MDBNavbarBrand>
                 <div>
                     {userBlock}

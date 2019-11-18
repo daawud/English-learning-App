@@ -1,6 +1,10 @@
 const protocol = 'http';
 const domen = 'localhost';
 const port = 8080;
+export const URL_AUTH = 'http://ela-auth-service.abirula.com/api/v1/auth/';
+export const URL_REGISTER = 'http://ela-auth-service.abirula.com/api/v1/register';
+export const URL_AUTH_LOCAL = 'http://localhost:4000/refreshTokens';
+export const URL_AUTH_ERROR = 'http://localhost:4000/error400';
 
 export const rootURL = `${protocol}://${domen}:${port}`;
 

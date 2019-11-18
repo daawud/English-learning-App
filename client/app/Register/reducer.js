@@ -91,6 +91,10 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
         case aTypes.REGISTER_CLEAR_PASSWORD_REPEAT_ERROR_MESSAGE: {
             return { ...store, passwordRepeatValidationError: '' };
         }
+
+        case aTypes.REGISTER_CLEAR_FIELDS: {
+            return {...store, name: '', email: '', password: '', passwordRepeat: ''};
+        }
     }
     return store;
 };

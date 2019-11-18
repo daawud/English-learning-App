@@ -1,4 +1,5 @@
 import aTypes from './actionTypes';
+import aType from "~/TokenHandler/actionTypes";
 
 /**
  * Функция отвечающая за показ модального окна Формы входа в личный кабинет
@@ -60,3 +61,4 @@ export function forgotPasswordModalToClose() {
         type: aTypes.FORGOT_PASSWORD_MODAL_CLOSE,
     };
 }
+

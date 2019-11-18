@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import LearningMaterialOptions from '~/LearningMaterialOptions/containers/LearningMaterialOptions.jsx';
 import Welcome from '~/TopBlockMainPage/components/WelcomeBlock/WelcomeBlock.jsx';
 import TestOptions from '~/TestOptions/containers/TestOptions.jsx';
+import CourseOptions from '~/CourseOptions/containers/CourseOptions.jsx';
 import { mainBlockToShow } from '~/TopBlockMainPage/actions';
 
 class TopBlockMainPage extends Component {
@@ -19,6 +20,7 @@ class TopBlockMainPage extends Component {
                 {this.props.mainTopBlockShow && <Welcome />}
                 {this.props.materialOptionsBlockShow && <LearningMaterialOptions />}
                 {this.props.testOptionsBlockShow && <TestOptions />}
+                {this.props.courseOptionsBlockShow && <CourseOptions />}
             </div>
         );
     }

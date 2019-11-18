@@ -4,6 +4,7 @@ const initStore = {
     mainTopBlockShow: false,
     materialOptionsBlockShow: false,
     testOptionsBlockShow: false,
+    courseOptionsBlockShow: false,
 };
 
 const topPageBlockReducer = (store = initStore, {type, payload}) => {
@@ -16,6 +17,9 @@ const topPageBlockReducer = (store = initStore, {type, payload}) => {
         }
         case aTypes.TEST_OPTIONS_BLOCK_SHOW: {
             return {...initStore, testOptionsBlockShow: true};
+        }
+        case aTypes.COURSE_OPTIONS_BLOCK_SHOW: {
+            return {...initStore, courseOptionsBlockShow: true};
         }
     }
     return store;

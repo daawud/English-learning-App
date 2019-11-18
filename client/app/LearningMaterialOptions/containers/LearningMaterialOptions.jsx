@@ -3,7 +3,7 @@ import './LearningMaterialOptions.scss';
 import React, { Component } from 'react';
 import LearningMaterialButton
     from '~/LearningMaterialOptions/components/LearningMaterialButton/LearningMaterialButton.jsx';
-import { testOptionsBlockToShow, materialOptionsBlockToShow } from '~/TopBlockMainPage/actions';
+import { testOptionsBlockToShow, materialOptionsBlockToShow, courseOptionsBlockToShow } from '~/TopBlockMainPage/actions';
 
 class LearningMaterialOptions extends Component {
     constructor(props) {
@@ -15,12 +15,12 @@ class LearningMaterialOptions extends Component {
             button_1: {
                 buttonText: 'Тренировка',
                 popoverText: 'Тренировка на случайно подобранных заданиях',
-                showBlock: testOptionsBlockToShow(),
+                showBlock: courseOptionsBlockToShow(),
             },
             button_2: {
                 buttonText: 'Начать обучение',
                 popoverText: 'Перейти к обучению по систематизированному учебному пособию',
-                showBlock: testOptionsBlockToShow(),
+                showBlock: courseOptionsBlockToShow(),
             },
             button_3: {
                 buttonText: 'Проверить уровень знаний',

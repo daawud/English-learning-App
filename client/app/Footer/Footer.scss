@@ -1,0 +1,83 @@
+.footer-ela {
+  height: 230px;
+  background: #0A477D;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0 20px 0 0;
+  position: relative;
+  z-index: 0;
+}
+.layer {
+  position: absolute;
+  width: 955px;
+  height: 220px;
+  left: 0;
+  bottom: 0;
+  background: #0A477D;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0 20px 20px 0;
+  z-index: 1;
+  font-family: 'Raleway bold', serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #D9D4D4;
+  &__text {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+  }
+  &-1 {
+    position: absolute;
+    width: 635px;
+    height: 210px;
+    z-index: 2;
+  }
+  &-2 {
+    position: absolute;
+    z-index: 3;
+    width: 305px;
+    height: 200px;
+  }
+}
+
+.footer-icons {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: 43px;
+  right: 79px;
+  &__facebook {
+    top: -4px;
+    right: 14px;
+  }
+  &__youtube {
+    right: 5px;
+    bottom: 8px;
+  }
+  &__vkontakte {
+    left: 0;
+    top: 10px;
+  }
+  &__instagram {
+    left: 5px;
+    bottom: 0;
+  }
+}
+
+.footer-logo {
+  position: absolute;
+  font-family: 'Earwig Factory', serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 96px;
+  line-height: 102px;
+  color: #FFFFFF;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 175px;
+  height: 102px;
+  bottom: 60px;
+  left: 66px;
+  text-transform: initial;
+}

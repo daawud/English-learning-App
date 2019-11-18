@@ -15,7 +15,7 @@ class TopBlockMainPage extends Component {
     
     render() {
         return (
-            <div className="wrapper">
+            <div className="">
                 {this.props.mainTopBlockShow && <Welcome />}
                 {this.props.materialOptionsBlockShow && <LearningMaterialOptions />}
                 {this.props.testOptionsBlockShow && <TestOptions />}

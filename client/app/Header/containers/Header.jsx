@@ -37,7 +37,7 @@ class Header extends Component {
         }
 
         return (
-            <header className="wrapper header_bg d-flex justify-content-between align-items-center">
+            <header className="header_bg d-flex justify-content-between align-items-center">
                 {this.props.authModalOpened && <AuthForm />}
                 {this.props.registerModalOpened && <RegisterForm />}
                 {this.props.forgotPasswordModalOpened && <ForgotPasswordForm />}

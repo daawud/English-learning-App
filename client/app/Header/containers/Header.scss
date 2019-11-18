@@ -21,9 +21,11 @@
 .header_bg {
   height: 90px;
   background: #0A477D;
+  position: relative;
 }
 
 .logo-text {
+  display: block;
   position: absolute;
   font-family: 'Earwig Factory', serif;
   font-style: normal;
@@ -34,6 +36,6 @@
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   width: 175px;
   height: 102px;
-  left: 163px;
+  left: 162px;
   top: -16.77px;
 }

@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PopUpMessageArrowLeft from '~/components/PopUpMassageArrorLeft/PopUpMessageArrowLeft.jsx';
-import { nameOnBlur, clearNameErrorMassage } from '~/Register/actions';
+import { nameOnChange, nameOnBlur, clearNameErrorMassage } from '~/Register/actions';
 
 class NameInput extends Component {
     constructor(props) {
         super(props);
         this.onBlurHandler = this.onBlurHandler.bind(this);
         this.onFocusHandler = this.onFocusHandler.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     /**
@@ -28,6 +29,14 @@ class NameInput extends Component {
         this.props.dispatch(clearNameErrorMassage());
     }
 
+    /**
+     * обрабатывает ввод в поле NAME и отправляет данные в глобальное хранилище при заполнении поля
+     * @param {Object} event - объект с данными события формы
+     */
+    onChangeHandler(event) {
+        this.props.dispatch(nameOnChange( event.target.value));
+    }
+
     render() {
         return (
             <>
@@ -38,8 +47,8 @@ class NameInput extends Component {
                         id="nameForm"
                         className="form-control mb-3"
                         name="name"
-                        value={this.props.name}
-                        onChange={() => null}
+                        value={this.props.value}
+                        onChange={this.onChangeHandler}
                         onBlur={this.onBlurHandler}
                         onFocus={this.onFocusHandler}
                         maxLength="50"

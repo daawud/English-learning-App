@@ -1,15 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import MainPage from '~/layouts/MainPage/MainPage.jsx';
+import Header from '~/Header/containers/Header.jsx';
+import Footer from '~/Footer/Footer.jsx';
 
 function Routes() {
     return (
-        <Router>
+        <div className="wrapper">
+            <Header/>
             <Switch>
-                <Route path="/" component={MainPage}/>
+                <Redirect exact from="/" to="/home" />
+                <Route path="/home">
+                    <MainPage />
+                </Route>
             </Switch>
-        </Router>
+            <Footer/>
+        </div>
+        
     );
 }
 

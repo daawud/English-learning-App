@@ -1,22 +1,50 @@
 import aTypes from './actionTypes';
 
 /**
- * Функция отвечающая за показ модального окна Формы регистрации пользователя
- * @returns {Object} type - название типа action
+ * Функция обработки изменения данных в поле NAME по onChange
+ * @param {string} value - значение поля password
+ * @returns {Object} payload - название action, {Object} type - название типа action
  */
-export function registerFormOpen() {
+export function nameOnChange(value) {
     return {
-        type: aTypes.REGISTER_FORM_OPEN,
+        type: aTypes.REGISTER_NAME_FIELD_CHANGE,
+        payload: value,
     };
 }
 
 /**
- * Функция отвечающая за закрытие модального окна Формы регистрации пользователя
- * @returns {Object} type - название типа action
+ * Функция обработки изменения данных в поле EMAIL по onChange
+ * @param {string} value - значение поля email
+ * @returns {Object} payload - название action, type - название типа action
  */
-export function registerFormClose() {
+export function emailOnChange(value) {
     return {
-        type: aTypes.REGISTER_FORM_CLOSE,
+        type: aTypes.REGISTER_EMAIL_FIELD_CHANGE,
+        payload: value,
+    };
+}
+
+/**
+ * Функция обработки изменения данных в поле PASSWORD по onChange
+ * @param {string} value - значение поля password
+ * @returns {Object} payload - название action, {Object} type - название типа action
+ */
+export function passwordOnChange(value) {
+    return {
+        type: aTypes.REGISTER_PASSWORD_FIELD_CHANGE,
+        payload: value,
+    };
+}
+
+/**
+ * Функция обработки изменения данных в поле PASSWORD_REPEAT по onChange
+ * @param {string} value - значение поля email
+ * @returns {Object} payload - название action, type - название типа action
+ */
+export function passwordRepeatOnChange(value) {
+    return {
+        type: aTypes.REGISTER_PASSWORD_REPEAT_FIELD_CHANGE,
+        payload: value,
     };
 }
 
@@ -27,7 +55,7 @@ export function registerFormClose() {
  */
 export function nameOnBlur(name) {
     return {
-        type: aTypes.NAME_FIELD_BLUR,
+        type: aTypes.REGISTER_NAME_FIELD_BLUR,
         payload: {
             key: 'name',
             value: name
@@ -42,7 +70,7 @@ export function nameOnBlur(name) {
  */
 export function emailOnBlur(email) {
     return {
-        type: aTypes.EMAIL_FIELD_BLUR,
+        type: aTypes.REGISTER_EMAIL_FIELD_BLUR,
         payload: {
             key: 'email',
             value: email
@@ -57,7 +85,7 @@ export function emailOnBlur(email) {
  */
 export function passwordOnBlur(password) {
     return {
-        type: aTypes.PASSWORD_FIELD_BLUR,
+        type: aTypes.REGISTER_PASSWORD_FIELD_BLUR,
         payload: {
             key: 'password',
             value: password
@@ -72,7 +100,7 @@ export function passwordOnBlur(password) {
  */
 export function passwordRepeatOnBlur(password_repeat) {
     return {
-        type: aTypes.PASSWORD_FIELD_REPEAT_BLUR,
+        type: aTypes.REGISTER_PASSWORD_FIELD_REPEAT_BLUR,
         payload: {
             key: 'password_repeat',
             value: password_repeat
@@ -86,7 +114,7 @@ export function passwordRepeatOnBlur(password_repeat) {
  */
 export function clearNameErrorMassage() {
     return {
-        type: aTypes.CLEAR_NAME_ERROR_MESSAGE,
+        type: aTypes.REGISTER_CLEAR_NAME_ERROR_MESSAGE,
     };
 }
 
@@ -96,7 +124,7 @@ export function clearNameErrorMassage() {
  */
 export function clearEmailErrorMassage() {
     return {
-        type: aTypes.CLEAR_EMAIL_ERROR_MESSAGE,
+        type: aTypes.REGISTER_CLEAR_EMAIL_ERROR_MESSAGE,
     };
 }
 
@@ -106,7 +134,7 @@ export function clearEmailErrorMassage() {
  */
 export function clearPasswordErrorMassage() {
     return {
-        type: aTypes.CLEAR_PASSWORD_ERROR_MESSAGE,
+        type: aTypes.REGISTER_CLEAR_PASSWORD_ERROR_MESSAGE,
     };
 }
 
@@ -116,6 +144,6 @@ export function clearPasswordErrorMassage() {
  */
 export function clearPasswordRepeatErrorMassage() {
     return {
-        type: aTypes.CLEAR_PASSWORD_REPEAT_ERROR_MESSAGE,
+        type: aTypes.REGISTER_CLEAR_PASSWORD_REPEAT_ERROR_MESSAGE,
     };
 }

@@ -10,21 +10,28 @@ const initStore = {
     passwordValidationError: '',
     passwordRepeat: '',
     passwordRepeatValidationError: '',
-    registerModalOpened: false,
-    userIsRegistered: false
+
 };
 
 const registerFormReducer = (store = initStore, { type, payload }) => {
     switch (type) {
-        case aTypes.REGISTER_FORM_OPEN: {
-            return { ...store, registerModalOpened: true };
+        case aTypes.REGISTER_NAME_FIELD_CHANGE: {
+            return {...store, name: payload};
         }
 
-        case aTypes.REGISTER_FORM_CLOSE: {
-            return { ...store, ...initStore};
+        case aTypes.REGISTER_EMAIL_FIELD_CHANGE: {
+            return {...store, email: payload};
         }
 
-        case aTypes.NAME_FIELD_BLUR: {
+        case aTypes.REGISTER_PASSWORD_FIELD_CHANGE: {
+            return {...store, password: payload};
+        }
+
+        case aTypes.REGISTER_PASSWORD_REPEAT_FIELD_CHANGE: {
+            return {...store, passwordRepeat: payload};
+        }
+
+        case aTypes.REGISTER_NAME_FIELD_BLUR: {
             const nameValidation = new Validator();
 
             nameValidation.validateForm({...payload});
@@ -36,7 +43,7 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
             }
         }
 
-        case aTypes.EMAIL_FIELD_BLUR: {
+        case aTypes.REGISTER_EMAIL_FIELD_BLUR: {
             const emailValidation = new Validator();
 
             emailValidation.validateForm({...payload});
@@ -48,7 +55,7 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
             }
         }
 
-        case aTypes.PASSWORD_FIELD_BLUR: {
+        case aTypes.REGISTER_PASSWORD_FIELD_BLUR: {
             const passwordValidation = new Validator();
 
             passwordValidation.validateForm({...payload});
@@ -60,7 +67,7 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
             }
         }
 
-        case aTypes.PASSWORD_FIELD_REPEAT_BLUR: {
+        case aTypes.REGISTER_PASSWORD_FIELD_REPEAT_BLUR: {
 
             if (payload.value === store.password) {
                 return {...store, passwordRepeat: payload.value, passwordRepeatValidationError: ''};
@@ -69,19 +76,19 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
             }
         }
 
-        case aTypes.CLEAR_NAME_ERROR_MESSAGE: {
+        case aTypes.REGISTER_CLEAR_NAME_ERROR_MESSAGE: {
             return { ...store, nameValidationError: '' };
         }
 
-        case aTypes.CLEAR_EMAIL_ERROR_MESSAGE: {
+        case aTypes.REGISTER_CLEAR_EMAIL_ERROR_MESSAGE: {
             return { ...store, emailValidationError: '' };
         }
 
-        case aTypes.CLEAR_PASSWORD_ERROR_MESSAGE: {
+        case aTypes.REGISTER_CLEAR_PASSWORD_ERROR_MESSAGE: {
             return { ...store, passwordValidationError: '' };
         }
 
-        case aTypes.CLEAR_PASSWORD_REPEAT_ERROR_MESSAGE: {
+        case aTypes.REGISTER_CLEAR_PASSWORD_REPEAT_ERROR_MESSAGE: {
             return { ...store, passwordRepeatValidationError: '' };
         }
     }

@@ -15,8 +15,15 @@ $config = [
     ],
     'components' => [
         'request' => [
+            'parsers' => [
+                'application/json' => 'yii/web/JsonParser'
+            ],
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '4szcB4v1j3p1axAEBjwG_qbE2DDomQF5',
+            'response' => [
+                'format' => yii\web\Response::FORMAT_JSON,
+                'charset' => 'UTF-8',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -24,6 +31,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'enableSession' => false
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -45,14 +53,17 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [ 'class' => 'yii\rest\UrlRule',
+                    'controller' => 'rest',
+                    'pluralize' => false ],
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];

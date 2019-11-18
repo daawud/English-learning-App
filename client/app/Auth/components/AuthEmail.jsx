@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { emailOnBlur } from '~/Auth/actions';
+import { emailOnChange } from '~/Auth/actions';
 
 
 
 class AuthEmail extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     /**
-     * обрабатывает ввод в поле EMAIL и отправляет данные в глобальное хранилище при потере "фокуса" с поля
+     * обрабатывает ввод в поле EMAIL и отправляет данные в глобальное хранилище при заполнении поля
      * @param {Object} event - объект с данными события формы
      */
-    handleChange(event) {
-        this.props.dispatch(emailOnBlur( event.target.value));
+    onChangeHandler(event) {
+        this.props.dispatch(emailOnChange( event.target.value));
     }
 
     render() {
@@ -29,8 +29,7 @@ class AuthEmail extends Component {
                     value={this.props.value}
                     name="email"
                     maxLength="50"
-                    onChange={() => null}
-                    onBlur={this.handleChange}
+                    onChange={this.onChangeHandler}
                     required
                 />
             </>

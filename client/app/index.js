@@ -9,6 +9,7 @@ import { createLogger } from 'redux-logger';
 import Routes from './Routes';
 import rootReducers from './rootReducers';
 import rootSaga from './rootSaga';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 const saga = createSagaMiddleware();
 
@@ -23,7 +24,9 @@ saga.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Routes/>
+        <Router>
+            <Routes />
+        </Router>
     </Provider>,
     document.getElementById('root'),
 );

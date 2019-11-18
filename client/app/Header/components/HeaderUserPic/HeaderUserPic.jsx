@@ -1,6 +1,6 @@
 import './HeaderUserPic.scss';
 import React from 'react';
-import {MDBBtn, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from "mdbreact";
+import {MDBBtn, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from 'mdbreact';
 
 const imageIcon = 'http://gensec.eu/doc/trap/database/trap/images/Adwaita/256x256/status/avatar-default.png';
 

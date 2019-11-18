@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { passwordOnBlur } from '~/Auth/actions';
-import img from '~/assets/img/passwordEyeIcon.png'
+import { passwordOnChange } from '~/Auth/actions';
+import passwordEyeOpen from '~/assets/img/passwordEyeOpen.svg';
+import passwordEyeClose from '~/assets/img/passwordEyeClose.svg';
 
 class AuthPassword extends Component {
     constructor(props) {
@@ -10,15 +11,16 @@ class AuthPassword extends Component {
         this.state = {
             passwordInputType: 'password',
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
+
     /**
-     * обрабатывает ввод в поле PASSWORD и отправляет данные в глобальное хранилище при потере "фокуса" с поля
+     * обрабатывает ввод в поле PASSWORD и отправляет данные в глобальное хранилище при заполнении поля
      * @param {Object} event - объект с данными события формы
      */
-    handleChange(event) {
-        this.props.dispatch(passwordOnBlur( event.target.value));
+    onChangeHandler(event) {
+        this.props.dispatch(passwordOnChange( event.target.value));
     }
 
     render() {
@@ -31,17 +33,18 @@ class AuthPassword extends Component {
                         id="PasswordForm"
                         className="auth-form__input-custom form-control mb-4 "
                         name="password"
-                        value={this.props.password}
-                        onChange={() => null}
-                        onBlur={this.handleChange}
+                        value={this.props.value}
+                        onChange={this.onChangeHandler}
                         maxLength="50"
                         required
                     />
                     <div
                         className='auth-form__show-password'
                         onClick={() => this.setState(
-                            {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'}
-                        )}><img src={img} alt=""/>
+                            {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'})}>
+                        <img
+                            src={this.state.passwordInputType === 'password' ? passwordEyeClose : passwordEyeOpen}
+                            alt="откр/закр глаз"/>
                     </div>
                 </div>
             </>

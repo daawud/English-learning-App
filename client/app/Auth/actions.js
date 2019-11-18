@@ -1,5 +1,4 @@
 import aTypes from './actionTypes';
-import aType from "~/TokenHandler/actionTypes";
 
 /**
  * Функция обработки изменения данных в поле password по onChange

@@ -52,9 +52,6 @@ class Auth extends Component {
         );
     }
 
-    componentWillUnmount() {
-        //this.props.dispatch(authFormToClose());
-    }
 }
 
 function mapStateToProps(state) {

@@ -63,7 +63,6 @@ function* sendRequestForRegister() {
         ]);
 
     } catch(err) {
-        console.log(err.message);
         yield put({
             type: aType.RECEIVED_ERROR_REGISTER,
             payload: err.message,

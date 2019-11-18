@@ -54,9 +54,6 @@ class Register extends Component {
         );
     }
 
-    componentWillUnmount() {
-        //this.props.dispatch(registerFormClose())
-    }
 }
 
 function mapStateToProps(state) {

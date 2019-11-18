@@ -1,5 +1,4 @@
 import aTypes from './actionTypes';
-import aType from "~/TokenHandler/actionTypes";
 
 /**
  * Функция отвечающая за показ модального окна Формы входа в личный кабинет

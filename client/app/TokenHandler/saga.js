@@ -1,12 +1,11 @@
-import { call, put, fork, takeEvery, takeLatest, take, all } from 'redux-saga/effects';
+import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 import { store } from '~/index';
 
 import aType from "~/TokenHandler/actionTypes";
-import { fetchData, URL_AUTH, URL_AUTH_LOCAL, URL_AUTH_ERROR, URL_REGISTER } from '~/api';
+import { fetchData, URL_AUTH } from '~/api';
 
 const fetchParam = {
     method: 'POST',
-    credentials: 'include',
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
     },
@@ -15,12 +14,12 @@ const fetchParam = {
 function* sendRequestForAuth() {
     try {
         const param = {...fetchParam};
-        param.body = JSON.stringify(store.getState().authFormReducer);  // получаю email/password из store
-        const response = yield call(fetchData, URL_AUTH_LOCAL, param);
-        //console.log(response);
+        // извлечь email/password из store
+        param.body = JSON.stringify(store.getState().authFormReducer);
+        const response = yield call(fetchData, URL_AUTH + 'login', param);
 
         if (response.err) {
-            throw new Error(response);
+            throw new Error(response.err['errors']);
         }
 
         // Сохранить токены в localStorage
@@ -34,10 +33,9 @@ function* sendRequestForAuth() {
         ]);
 
     } catch(err) {
-        console.log(err);
         yield put({
             type: aType.RECEIVED_ERROR_AUTH,
-            payload: err,
+            payload: err.message,
         })
     }
 }
@@ -48,11 +46,15 @@ function* sendRequestForRegister() {
         // извлечь введенные пользователем name. email, password из store
         const {name, email, password} = store.getState().registerFormReducer;
         param.body = JSON.stringify({name, email, password});
-        const response = yield call(fetchData, URL_AUTH_ERROR , param);
+        const response = yield call(fetchData, URL_AUTH + 'register', param);
 
         if (response.err) {
-            throw new Error(response);
+            throw new Error(response.err['errors']);
         }
+
+        // Сохранить токены в localStorage
+        localStorage.setItem('token', response['token']);
+        localStorage.setItem('refreshToken', response['refreshToken']);
 
         //закрыть модально окно и очистить данные из редюсера
         yield all([
@@ -61,10 +63,10 @@ function* sendRequestForRegister() {
         ]);
 
     } catch(err) {
-        console.log(err);
+        console.log(err.message);
         yield put({
-            type: aType.RECEIVED_ERROR_AUTH,
-            payload: err,
+            type: aType.RECEIVED_ERROR_REGISTER,
+            payload: err.message,
         })
     }
 }

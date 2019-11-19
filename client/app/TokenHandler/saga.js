@@ -11,35 +11,35 @@ const fetchParam = {
     },
 };
 
-function* sendRequestForAuth() {
-    try {
-        const param = {...fetchParam};
-
-        // извлечь email/password из store
-        param.body = JSON.stringify(store.getState().authFormReducer);
-        const response = yield call(fetchData, URL_AUTH + 'login', param);
-
-        if (response.err) {
-            throw new Error(response.err['errors']);
-        }
-
-        // Сохранить токены в localStorage
-        localStorage.setItem('token', response['token']);
-        localStorage.setItem('refreshToken', response['refreshToken']);
-
-        //закрыть модально окно и очистить данные из редюсера
-        yield all([
-            put({type: aType.AUTH_MODAL_CLOSE}),
-            put({type: aType.AUTH_CLEAR_FIELDS}),
-        ]);
-
-    } catch(err) {
-        yield put({
-            type: aType.RECEIVED_ERROR_AUTH,
-            payload: err.message,
-        })
-    }
-}
+// function* sendRequestForAuth() {
+//     try {
+//         const param = {...fetchParam};
+//
+//         // извлечь email/password из store
+//         param.body = JSON.stringify(store.getState().authFormReducer);
+//         const response = yield call(fetchData, URL_AUTH + 'login', param);
+//
+//         if (response.err) {
+//             throw new Error(response.err['errors']);
+//         }
+//
+//         // Сохранить токены в localStorage
+//         localStorage.setItem('token', response['token']);
+//         localStorage.setItem('refreshToken', response['refreshToken']);
+//
+//         //закрыть модально окно и очистить данные из редюсера
+//         yield all([
+//             put({type: aType.AUTH_MODAL_CLOSE}),
+//             put({type: aType.AUTH_CLEAR_FIELDS}),
+//         ]);
+//
+//     } catch(err) {
+//         yield put({
+//             type: aType.RECEIVED_ERROR_AUTH,
+//             payload: err.message,
+//         })
+//     }
+// }
 
 function* sendRequestForRegister() {
     try {
@@ -72,15 +72,11 @@ function* sendRequestForRegister() {
     }
 }
 
-function* watchSendRequestForAuth() {
-    yield takeEvery(aType.SEND_REQUEST_FOR_AUTH, sendRequestForAuth);
-}
 
 function* watchSendRequestForRegister() {
     yield takeEvery(aType.SEND_REQUEST_FOR_REGISTER, sendRequestForRegister);
 }
 
 export default function* tokenHandlerSaga() {
-    yield fork(watchSendRequestForAuth);
     yield fork(watchSendRequestForRegister);
 }

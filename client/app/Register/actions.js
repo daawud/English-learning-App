@@ -147,3 +147,17 @@ export function clearPasswordRepeatErrorMassage() {
         type: aTypes.REGISTER_CLEAR_PASSWORD_REPEAT_ERROR_MESSAGE,
     };
 }
+
+/**
+ * Функция обработки изменения данных в поле email по onChange
+ *  @param {string} name - значение поля name
+ * @param {string} email - значение поля email
+ * @param {string} password - значение поля password
+ * @returns {Object} payload - название action, type - название типа action
+ */
+export function sendRequestForRegister(name, email, password) {
+    return {
+        type: aTypes.SEND_REQUEST_FOR_REGISTER,
+        payload: {name, email, password},
+    }
+}

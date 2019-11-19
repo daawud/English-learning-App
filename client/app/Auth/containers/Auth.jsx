@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { authFormToClose, registerFormOpen, forgotPasswordModalToOpen } from '~/Header/actions';
-import { sendRequestForAuth } from '~/TokenHandler/actions';
+import { sendRequestForAuth } from '~/Auth/actions';
 import AuthEmail from '~/Auth/components/AuthEmail.jsx'
 import AuthPassword from '~/Auth/components/AuthPassword.jsx';
 
@@ -21,9 +21,7 @@ class Auth extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        this.props.dispatch(sendRequestForAuth());
-        // Далее подключаем логику с БД
-        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
+        this.props.dispatch(sendRequestForAuth(this.props.email, this.props.password));
     }
 
     render() {

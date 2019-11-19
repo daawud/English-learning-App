@@ -10,6 +10,7 @@ const initStore = {
     passwordValidationError: '',
     passwordRepeat: '',
     passwordRepeatValidationError: '',
+    errorRegister: '',
 
 };
 
@@ -94,6 +95,10 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
 
         case aTypes.REGISTER_CLEAR_FIELDS: {
             return {...store, name: '', email: '', password: '', passwordRepeat: ''};
+        }
+
+        case aTypes.SEND_REQUEST_FOR_REGISTER_REJECT: {
+            return {...store, errorRegister: payload};
         }
     }
     return store;

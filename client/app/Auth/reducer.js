@@ -3,6 +3,7 @@ import aTypes from './actionTypes';
 const initStore = {
     email: '',
     password: '',
+    errorAuth: '',
 };
 
 const authFormReducer = (store = initStore, {type, payload}) => {
@@ -17,6 +18,10 @@ const authFormReducer = (store = initStore, {type, payload}) => {
 
         case aTypes.AUTH_CLEAR_FIELDS: {
             return{...store, email: '', password: ''};
+        }
+
+        case aTypes.SEND_REQUEST_FOR_AUTH_REJECT: {
+            return {...store, errorAuth: payload};
         }
     }
     return store;

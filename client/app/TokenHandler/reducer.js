@@ -11,9 +11,11 @@ const tokenErrorReducer = (store = initState, {type, payload}) => {
         case aType.RECEIVED_ERROR_AUTH: {
             return {...store, errorAuth: payload};
         }
+
         case aType.RECEIVED_ERROR_REGISTER: {
             return {...store, errorAuth: payload};
         }
+
         case aType.RECEIVED_ERROR_RESTORE_PASS: {
             return {...store, errorAuth: payload};
         }

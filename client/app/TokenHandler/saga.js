@@ -14,6 +14,7 @@ const fetchParam = {
 function* sendRequestForAuth() {
     try {
         const param = {...fetchParam};
+
         // извлечь email/password из store
         param.body = JSON.stringify(store.getState().authFormReducer);
         const response = yield call(fetchData, URL_AUTH + 'login', param);
@@ -43,6 +44,7 @@ function* sendRequestForAuth() {
 function* sendRequestForRegister() {
     try {
         const param = {...fetchParam};
+
         // извлечь введенные пользователем name. email, password из store
         const {name, email, password} = store.getState().registerFormReducer;
         param.body = JSON.stringify({name, email, password});

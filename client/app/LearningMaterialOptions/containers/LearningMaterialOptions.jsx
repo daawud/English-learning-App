@@ -1,7 +1,9 @@
 import './LearningMaterialOptions.scss';
 
 import React, { Component } from 'react';
-import LearningMaterialButton from '~/LearningMaterialOptions/components/LearningMaterialButton.jsx';
+import LearningMaterialButton
+    from '~/LearningMaterialOptions/components/LearningMaterialButton/LearningMaterialButton.jsx';
+import { testOptionsBlockToShow, materialOptionsBlockToShow } from '~/TopBlockMainPage/actions';
 
 class LearningMaterialOptions extends Component {
     constructor(props) {
@@ -9,34 +11,42 @@ class LearningMaterialOptions extends Component {
     }
 
     render() {
-        const buttonText = {
+        const buttons = {
             button_1: {
-                text: 'Тренировка',
-                link: '/choose_course'
+                buttonText: 'Тренировка',
+                popoverText: 'Тренировка на случайно подобранных заданиях',
+                showBlock: testOptionsBlockToShow(),
             },
             button_2: {
-                text: 'Проверить уровень знаний',
-                link: '/test_level'
+                buttonText: 'Начать обучение',
+                popoverText: 'Перейти к обучению по систематизированному учебному пособию',
+                showBlock: testOptionsBlockToShow(),
             },
             button_3: {
-                text: 'Начать обучение',
-                link: '/choose_course'
+                buttonText: 'Проверить уровень знаний',
+                popoverText: 'Проверить Ваш уровень владения английским языком',
+                showBlock: testOptionsBlockToShow(),
             },
             button_4: {
-                text: 'Продолжить',
-                link: '/continue'
+                buttonText: 'Продолжить',
+                popoverText: 'Продолжить выполнение ранее начатого задания',
+                showBlock: materialOptionsBlockToShow(),
             },
         };
 
         return (
-            <div className="material-show ">
-                <h4 className="text-center font-weight-bold mb-5">
+            <div className="material-show">
+                <p className="learning-material text-center font-weight-bold mb-2">
                     Выберите с чем будете работать
-                </h4>
-                <LearningMaterialButton {...buttonText.button_1}/>
-                <LearningMaterialButton {...buttonText.button_2}/>
-                <LearningMaterialButton {...buttonText.button_3}/>
-                <LearningMaterialButton {...buttonText.button_4}/>
+                </p>
+                <div className="row justify-content-center">
+                    <LearningMaterialButton {...buttons.button_1}/>
+                    <LearningMaterialButton {...buttons.button_2}/>
+                </div>
+                <div className="row justify-content-center">
+                    <LearningMaterialButton {...buttons.button_3}/>
+                    <LearningMaterialButton {...buttons.button_4}/>
+                </div>
             </div>
         );
     }

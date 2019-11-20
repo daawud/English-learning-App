@@ -150,7 +150,7 @@ export function clearPasswordRepeatErrorMassage() {
 
 /**
  * Функция обработки изменения данных в поле email по onChange
- *  @param {string} name - значение поля name
+ * @param {string} name - значение поля name
  * @param {string} email - значение поля email
  * @param {string} password - значение поля password
  * @returns {Object} payload - название action, type - название типа action

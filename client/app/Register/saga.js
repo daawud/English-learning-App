@@ -1,7 +1,8 @@
 import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 
-import { fetchData, URL_AUTH, saveToLocalStorage  } from '~/api';
+import { fetchData, URL_AUTH  } from '~/api';
 import aTypes from '~/Register/actionTypes';
+import Tokens from "~/classes/Tokens";
 
 const fetchParam = {
     method: 'POST',
@@ -23,7 +24,8 @@ function* sendRequestForRegister(action) {
         }
 
         // Сохранить токены в localStorage
-        saveToLocalStorage(response);
+        let token = new Tokens();
+        token.saveToLocalStorage(response);
 
         //закрыть модально окно и очистить данные из редюсера
         yield all([

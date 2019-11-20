@@ -24,9 +24,7 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        this.props.dispatch(sendRequestForRegister(this.props.email, this.props.email, this.props.password));
-        // Далее подключаем логику с БД
-        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
+        this.props.dispatch(sendRequestForRegister(this.props.name, this.props.email, this.props.password));
     }
 
     render() {

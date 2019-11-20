@@ -30,19 +30,12 @@ export async function fetchData(URL, options, timeout = 15000) {
             return await response.json();
         } else {
             const errorBody = await response.json();
-            errorBody.errorCode = response.status;
+
+            errorBody.errorCode = response.status  || response.timerError;
+
             return {err: errorBody};
         }
     } catch (err) {
         return err;
     }
-}
-
-/**
- * Сохранить пару токенов а LocalStorage
- * @param {Object} tokens объект из двух токенов
- */
-export function saveToLocalStorage(tokens) {
-    localStorage.setItem('token', tokens['token']);
-    localStorage.setItem('refreshToken', tokens['refreshToken']);
 }

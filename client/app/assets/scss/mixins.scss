@@ -1,1 +1,51 @@
 @import './functions.scss';
+@import './vars.scss';
+
+@mixin course-page-btn-big {
+  width: 100%;
+  height: rem(100);
+  background: $mainLightGreen;
+  box-sizing: border-box;
+  box-shadow: 0 rem(4) rem(4) rgba(0, 0, 0, 0.25);
+  border-radius: rem(24);
+  font-size: rem(24);
+  line-height: rem(28);
+  color: $mainBlue;
+  &:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+}
+
+@mixin page-headings-style {
+  color: $mainBlue;
+  font-size: rem(28);
+  font-family: $mainFontBold;
+}
+
+@mixin element-fully-centred {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin main-btn {
+  font-size: rem(24);
+  line-height: rem(28);
+  color: $mainBlue;
+  background: $mainLightGreen;
+  border: 3px solid $lightGrey;
+  box-sizing: border-box;
+  box-shadow: 0 rem(10) rem(10) rgba(0, 0, 0, 0.25);
+  border-radius: rem(24);
+  font-family: $mainFontBold;
+  height: rem(70);
+}
+
+@mixin logotype {
+  font-family: $logoFont;
+  font-size: 96px;
+  line-height: 102px;
+  color: #FFFFFF;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}

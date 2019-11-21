@@ -16,7 +16,7 @@ class m191113_155147_Rename_column_users extends Migration
         $sql = "ALTER TABLE `users` 
             CHANGE COLUMN `id` `userId` VARCHAR(36) NOT NULL;";
        
-       $this->execute($sql);
+        $this->execute($sql);
     }
 
     

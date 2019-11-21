@@ -60,3 +60,4 @@ export function forgotPasswordModalToClose() {
         type: aTypes.FORGOT_PASSWORD_MODAL_CLOSE,
     };
 }
+

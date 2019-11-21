@@ -9,7 +9,7 @@ const rootReducers = {
     registerFormReducer,
     forgotPasswordReducer,
     topPageBlockReducer,
-    headerReducer
+    headerReducer,
 };
 
 export default rootReducers;

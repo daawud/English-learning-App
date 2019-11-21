@@ -23,3 +23,16 @@ export function emailOnChange(value) {
         payload: value,
     };
 }
+
+/**
+ * Функция обработки изменения данных в поле email по onChange
+ * @param {string} email - значение поля email
+ * @param {string} password - значение поля password
+ * @returns {Object} payload - название action, type - название типа action
+ */
+export function sendRequestForAuth(email, password) {
+    return {
+        type: aTypes.SEND_REQUEST_FOR_AUTH,
+        payload: {email, password},
+    }
+}

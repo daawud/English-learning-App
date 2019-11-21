@@ -1,8 +1,4 @@
-const protocol = 'http';
-const domen = 'localhost';
-const port = 8080;
-
-export const rootURL = `${protocol}://${domen}:${port}`;
+export const URL_AUTH = 'http://ela-auth-service.abirula.com/api/v1/auth';
 
 /**
  * Создать ошибку по прошествии заданного времени
@@ -33,7 +29,11 @@ export async function fetchData(URL, options, timeout = 15000) {
         if (response.ok) {
             return await response.json();
         } else {
-            throw { err: new Error(`Error ${response.status}`) || response.timerError };
+            const errorBody = await response.json();
+
+            errorBody.errorCode = response.status  || response.timerError;
+
+            return {err: errorBody};
         }
     } catch (err) {
         return err;

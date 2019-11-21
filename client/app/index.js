@@ -18,6 +18,7 @@ let middleware = [saga];
 if (process.env.NODE_ENV !== 'production') {
     middleware = [...middleware, createLogger()]
 }
+
 const store = createStore(combineReducers(rootReducers), applyMiddleware(...middleware));
 
 saga.run(rootSaga);

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { registerFormClose, authFormToOpen } from '~/Header/actions';
+import { sendRequestForRegister } from '~/Register/actions';
 import EmailInput from '~/Register/components/EmailInput.jsx';
 import PasswordInput from '~/Register/components/PasswordInput.jsx';
 import NameInput from '~/Register/components/NameInput.jsx';
@@ -23,8 +24,7 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        // Далее подключаем логику с БД
-        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
+        this.props.dispatch(sendRequestForRegister(this.props.name, this.props.email, this.props.password));
     }
 
     render() {
@@ -52,9 +52,6 @@ class Register extends Component {
         );
     }
 
-    componentWillUnmount() {
-        this.props.dispatch(registerFormClose())
-    }
 }
 
 function mapStateToProps(state) {

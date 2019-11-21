@@ -23,8 +23,17 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        // Далее подключаем логику с БД
-        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
+
+        // если хоть одна ошибка валидации осталась выкидываем сообщение
+        if (this.props.nameValidationError !== ''
+            || this.props.emailValidationError !== ''
+            || this.props.passwordValidationError !== ''
+            || this.props.passwordRepeatValidationError !== '') {
+            this.setState({validationError: 'Не все поля прошли валидацию'});
+            return;
+        } else {
+            this.setState({validationError: ''});
+        }
     }
 
     render() {

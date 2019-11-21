@@ -22,5 +22,4 @@ class m191113_154353_Drop_FK_user_lesson_stats extends Migration
             'user_lesson_stats'
         );
     }
-      
 }

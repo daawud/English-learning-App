@@ -27,11 +27,11 @@ class AuthPassword extends Component {
         return (
             <>
                 <label htmlFor="PasswordForm">ПАРОЛЬ</label>
-                <div className="auth-form__input-cover">
+                <div className="forms__input-cover">
                     <input
                         type={this.state.passwordInputType}
                         id="PasswordForm"
-                        className="auth-form__input-custom form-control mb-4 "
+                        className="forms__input-custom form-control mb-5"
                         name="password"
                         value={this.props.value}
                         onChange={this.onChangeHandler}
@@ -39,7 +39,7 @@ class AuthPassword extends Component {
                         required
                     />
                     <div
-                        className='auth-form__show-password'
+                        className='forms__show-password'
                         onClick={() => this.setState(
                             {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'})}>
                         <img

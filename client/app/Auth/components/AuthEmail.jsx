@@ -25,7 +25,7 @@ class AuthEmail extends Component {
                 <input
                     type="email"
                     id="EmailForm"
-                    className="form-control mb-3"
+                    className="form-control mb-5"
                     value={this.props.value}
                     name="email"
                     maxLength="50"

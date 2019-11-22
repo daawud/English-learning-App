@@ -1,10 +1,11 @@
 import './Auth.scss';
-import { MDBModal, MDBModalBody, MDBCloseIcon, MDBBtn } from 'mdbreact';
+import { MDBModal, MDBModalBody, MDBBtn, MDBCloseIcon, MDBContainer } from 'mdbreact';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { authFormToClose, registerFormOpen, forgotPasswordModalToOpen } from '~/Header/actions';
+import { sendRequestForAuth } from '~/Auth/actions';
 import AuthEmail from '~/Auth/components/AuthEmail.jsx'
 import AuthPassword from '~/Auth/components/AuthPassword.jsx';
 
@@ -20,39 +21,42 @@ class Auth extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        // Далее подключаем логику с БД
-        // После положительного ответа от сервера стираем данные полей из редюсера - создаем доп экшны
+        this.props.dispatch(sendRequestForAuth(this.props.email, this.props.password));
     }
 
     render() {
         return (
-            <>
-                <MDBModal isOpen toggle={() => this.props.dispatch(authFormToClose())} className="auth-modal">
-                    <MDBModalBody className="auth-modal__body">
-                        <form onSubmit={this.handleSubmit} className="text-center px-5 position-relative auth-form">
-                            <h5 className="mt-2 mb-5">Войти в учетную запись</h5>
-                            <MDBCloseIcon className="auth-form__close" onClick={() => this.props.dispatch(authFormToClose())}/>
-                            <AuthEmail value={this.props.email}/>
-                            <AuthPassword value={this.props.password}/>
-                            <MDBBtn
-                                className="col-md-6 offset-md-3 btn btn-dark btn-block my-4 border-white rounded-pill"
-                                type="submit"> ВОЙТИ
-                            </MDBBtn>
-                            <p className="auth-form__link" 
-                                onClick={() => this.props.dispatch(forgotPasswordModalToOpen())}>Восстановить пароль</p>
-                            <p>Нет личного кабинета? &nbsp;
-                                <span className="auth-form__link" 
-                                    onClick={() => this.props.dispatch(registerFormOpen())}> Зарегистрируйся</span></p>
+            <MDBContainer className="container-fluid">
+                <MDBModal isOpen toggle={() => this.props.dispatch(authFormToClose())} className="forms-modal">
+                    <MDBModalBody className="forms-modal__body">
+                        <div className="forms__close"
+                            onClick={() => this.props.dispatch(authFormToClose())}>&times;</div>
+                        <form onSubmit={this.handleSubmit} className="text-center forms">
+                            <p className="forms__heading">Войти в учетную запись</p>
+                            <div className="d-flex justify-content-center">
+                                <div className="forms-fields text-left">
+                                    <AuthEmail value={this.props.email}/>
+                                    <AuthPassword value={this.props.password}/>
+                                    <MDBBtn
+                                        className="forms__btn btn btn-block border-white rounded-pill"
+                                        type="submit"> ВОЙТИ
+                                    </MDBBtn>
+                                </div>
+                            </div>
+                            <p className="forms__link"
+                                onClick={() => this.props.dispatch(forgotPasswordModalToOpen())}>Восстановить
+                                пароль</p>
+                            <p className="forms__text">Нет учетной записи?&nbsp;
+                                <span className="forms__link"
+                                    onClick={() => this.props.dispatch(registerFormOpen())}> Зарегистрируйся</span>
+                            </p>
                         </form>
                     </MDBModalBody>
                 </MDBModal>
-            </>
+            </MDBContainer>
         );
     }
 
-    componentWillUnmount() {
-        this.props.dispatch(authFormToClose());
-    }
 }
 
 function mapStateToProps(state) {

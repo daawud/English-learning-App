@@ -22,7 +22,7 @@ class ForgotPasswordEmail extends Component {
                     ЭЛЕКТРОННАЯ ПОЧТА
                 </label>
                 <input
-                    className="form-control mb-3"
+                    className="form-control mb-5"
                     type="email"
                     maxLength="50"
                     id="forgotPasswordFormEmail"

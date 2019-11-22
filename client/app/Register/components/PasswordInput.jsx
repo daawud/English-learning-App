@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Manager, Reference, Popper } from 'react-popper';
 
-import PopUpMessageArrowLeft from '~/components/PopUpMassageArrorLeft/PopUpMessageArrowLeft.jsx';
+import {Arrow} from '~/Register/Arrows/Arrows';
 import passwordEyeOpen from '~/assets/img/passwordEyeOpen.svg';
 import passwordEyeClose from '~/assets/img/passwordEyeClose.svg';
 
@@ -47,30 +48,44 @@ class PasswordInput extends Component {
         return (
             <>
                 <label htmlFor="PasswordForm">ПАРОЛЬ</label>
-                <div className="reg-form__input-cover">
-                    <input
-                        type={this.state.passwordInputType}
-                        id="PasswordForm"
-                        className="form-control mb-3 reg-form__input-custom"
-                        name="password"
-                        value={this.props.value}
-                        onChange={this.onChangeHandler}
-                        onBlur={this.onBlurHandler}
-                        onFocus={this.onFocusHandler}
-                        maxLength="50"
-                        required
-                    />
-                    <div
-                        className='reg-form__show-password'
-                        onClick={() => this.setState(
-                            {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'}
-                        )}>
-                        <img className="reg-form__input-eye"
-                            src={this.state.passwordInputType === 'password' ? passwordEyeClose : passwordEyeOpen}
-                            alt="откр/закр глаз"/>
-                    </div>
-                    {this.props.error
-                    && <PopUpMessageArrowLeft message={this.props.error}/>}
+                <div className="forms__input-cover">
+                    <Manager>
+                        <Reference>
+                            {({ref}) => (
+                                <>
+                                    <input
+                                        ref={ref}
+                                        type={this.state.passwordInputType}
+                                        id="PasswordForm"
+                                        className="form-control mb-5 forms__input-custom"
+                                        name="password"
+                                        value={this.props.value}
+                                        onChange={this.onChangeHandler}
+                                        onBlur={this.onBlurHandler}
+                                        onFocus={this.onFocusHandler}
+                                        maxLength="50"
+                                        required
+                                    />
+                                    <div
+                                        className='forms__show-password'
+                                        onClick={() => this.setState(
+                                            {passwordInputType: this.state.passwordInputType === 'password' ? 'text' : 'password'})}>
+                                        <img
+                                            src={this.state.passwordInputType === 'password' ? passwordEyeClose : passwordEyeOpen}
+                                            alt="откр/закр глаз"/>
+                                    </div>
+                                </>
+                            )}
+                        </Reference>
+                        {this.props.error && <Popper placement="bottom">
+                            {({ref, style, placement, arrowProps}) => (
+                                <div className="error-message rounded" ref={ref} style={style} data-placement={placement}>
+                                    {this.props.error}
+                                    <Arrow ref={arrowProps.ref} data-placement={placement} style={arrowProps.style} />
+                                </div>
+                            )}
+                        </Popper>}
+                    </Manager>
                 </div>
             </>
         );

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Manager, Reference, Popper } from 'react-popper';
 
-import PopUpMessageArrowLeft from '~/components/PopUpMassageArrorLeft/PopUpMessageArrowLeft.jsx';
+import {Arrow} from '~/Register/Arrows/Arrows';
 import { emailOnChange, emailOnBlur, clearEmailErrorMassage } from '~/Register/actions';
 
 class EmailInput extends Component {
@@ -18,7 +19,7 @@ class EmailInput extends Component {
      */
     onBlurHandler(event) {
         if (event.target.value !== '') {
-            this.props.dispatch(emailOnBlur( event.target.value));
+            this.props.dispatch(emailOnBlur(event.target.value));
         }
     }
 
@@ -34,28 +35,41 @@ class EmailInput extends Component {
      * @param {Object} event - объект с данными события формы
      */
     onChangeHandler(event) {
-        this.props.dispatch(emailOnChange( event.target.value));
+        this.props.dispatch(emailOnChange(event.target.value));
     }
 
     render() {
         return (
             <>
                 <label htmlFor="EmailForm">ЭЛЕКТРОННАЯ ПОЧТА</label>
-                <div className="reg-form__input-cover">
-                    <input
-                        type="email"
-                        id="EmailForm"
-                        className="form-control mb-3"
-                        name="email"
-                        value={this.props.value}
-                        maxLength="50"
-                        onChange={this.onChangeHandler}
-                        onBlur={this.onBlurHandler}
-                        onFocus={this.onFocusHandler}
-                        required
-                    />
-                    {this.props.error
-                    && <PopUpMessageArrowLeft message={this.props.error}/>}
+                <div className="forms__input-cover">
+                    <Manager>
+                        <Reference>
+                            {({ref}) => (
+                                <input
+                                    ref={ref}
+                                    type="email"
+                                    id="EmailForm"
+                                    className="form-control mb-4 forms__input-custom"
+                                    name="email"
+                                    value={this.props.value}
+                                    maxLength="50"
+                                    onChange={this.onChangeHandler}
+                                    onBlur={this.onBlurHandler}
+                                    onFocus={this.onFocusHandler}
+                                    required
+                                />
+                            )}
+                        </Reference>
+                        {this.props.error && <Popper placement="auto">
+                            {({ref, style, placement, arrowProps}) => (
+                                <div className="error-message rounded" ref={ref} style={style} data-placement={placement}>
+                                    {this.props.error}
+                                    <Arrow ref={arrowProps.ref} data-placement={placement} style={arrowProps.style} />
+                                </div>
+                            )}
+                        </Popper>}
+                    </Manager>
                 </div>
             </>
         );

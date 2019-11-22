@@ -1,15 +1,5 @@
+@import '~/assets/scss/resources.scss';
+
 .course-btn{
-  background: #62CEBB;
-  margin-top: 50px;
-  margin-left: 20px;
-  position: relative;
-  width: 375px;
-  height: 100px;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-}
-.course-btn:hover{
-  text-decoration: none;
-  color: #FFFFFF;
+  @include choice-button-big;
 }

@@ -5,6 +5,7 @@ import React from 'react';
 import TestOptionBlock from '~/TestOptions/components/TestOptionBlock/TestOptionBlock.jsx';
 import ReturnButton from '~/TopBlockMainPage/components/ReturnButton/ReturnButton.jsx';
 import { materialOptionsBlockToShow } from '~/TopBlockMainPage/actions';
+import { MDBCol, MDBContainer, MDBRow } from 'mdbreact';
 
 const TestOptions = (props) => {
     // структура страницы созданная ввиде объекта для пробрасывания в PROPSы дочерних компонентов
@@ -25,28 +26,31 @@ const TestOptions = (props) => {
 
     return (
         <>
-            <div className="test-option py-2">
-                <p className="test-option__heading text-center font-weight-bold mb-2">
-                    Выберите тест для проверки уровня знаний
-                </p>
-                <div className="test-option__block d-flex align-items-center">
-                    <div className="test-option__user"><p className="m-0 p-0">Basic User</p></div>
-                    <TestOptionBlock {...blocks.block_1.level1}/>
-                    <TestOptionBlock {...blocks.block_1.level2}/>
-                </div>
-                <div className="test-option__block d-flex align-items-center">
-                    <div className="test-option__user"><p className="m-0 p-0">Independent User</p></div>
-                    <TestOptionBlock {...blocks.block_2.level1}/>
-                    <TestOptionBlock {...blocks.block_2.level2}/>
-                </div>
-                <div className="test-option__block d-flex align-items-center">
-                    <div className="test-option__user"><p className="m-0 p-0">Proficient User</p></div>
-                    <TestOptionBlock {...blocks.block_3.level1}/>
-                    <TestOptionBlock {...blocks.block_3.level2}/>
-                </div>
-                {/* пробрасываем в кнопку экшн на открытие Модуля выбора материала для изучения  */}
-                <ReturnButton action={materialOptionsBlockToShow}/>
-            </div>
+            <MDBContainer className="test-option p-2">
+                <MDBRow className="d-flex justify-content-center">
+                    <p className="test-option__heading text-center font-weight-bold m-4">
+                        Выберите тест для проверки уровня знаний
+                    </p>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center align-items-center">
+                    <MDBCol sm={10} md={10} lg={3}><p className="m-0 p-0">Basic User</p></MDBCol>
+                    <MDBCol sm={8} md={5} lg={4}><TestOptionBlock {...blocks.block_1.level1}/></MDBCol>
+                    <MDBCol sm={8} md={5} lg={4}><TestOptionBlock {...blocks.block_1.level2}/></MDBCol>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center align-items-center">
+                    <MDBCol sm={10} md={10} lg={3}><p className="m-0 p-0">Independent User</p></MDBCol>
+                    <MDBCol sm={8} md={5} lg={4}><TestOptionBlock {...blocks.block_2.level1}/></MDBCol>
+                    <MDBCol sm={8} md={5} lg={4}><TestOptionBlock {...blocks.block_2.level2}/></MDBCol>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center align-items-center">
+                    <MDBCol sm={10} md={10} lg={3}><p className="m-0 p-0">Proficient User</p></MDBCol>
+                    <MDBCol sm={8} md={5} lg={4}><TestOptionBlock {...blocks.block_3.level1}/></MDBCol>
+                    <MDBCol sm={8} md={5} lg={4}><TestOptionBlock {...blocks.block_3.level2}/></MDBCol>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center mt-3">
+                    <ReturnButton action={materialOptionsBlockToShow}/>
+                </MDBRow>
+            </MDBContainer>
         </>
     );
 };

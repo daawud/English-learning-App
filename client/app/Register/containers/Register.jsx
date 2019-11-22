@@ -15,6 +15,7 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {validationError: ''};
     }
 
     /**
@@ -23,7 +24,6 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-
         // если хоть одна ошибка валидации осталась выкидываем сообщение
         if (this.props.nameValidationError !== ''
             || this.props.emailValidationError !== ''

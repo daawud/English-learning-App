@@ -1,24 +1,24 @@
 @import './functions.scss';
 @import './vars.scss';
 
-@mixin course-page-btn-big {
+@mixin choice-button-big {
   width: 100%;
   height: rem(100);
-  background: $mainLightGreen;
+  background: $commonButtonBackGroundColor;
   box-sizing: border-box;
   box-shadow: 0 rem(4) rem(4) rgba(0, 0, 0, 0.25);
   border-radius: rem(24);
   font-size: rem(24);
   line-height: rem(28);
-  color: $mainBlue;
+  color: $mainFont;
   &:hover {
     text-decoration: none;
     color: #FFFFFF;
   }
 }
 
-@mixin page-headings-style {
-  color: $mainBlue;
+@mixin page-headings-text {
+  color: $mainFont;
   font-size: rem(28);
   font-family: $mainFontBold;
 }
@@ -29,17 +29,20 @@
   justify-content: center;
 }
 
-@mixin main-btn {
+@mixin common-button-style {
   font-size: rem(24);
   line-height: rem(28);
-  color: $mainBlue;
-  background: $mainLightGreen;
-  border: 3px solid $lightGrey;
+  color: $mainFont;
+  background: $commonButtonBackGroundColor;
+  border: 3px solid $lightSecondaryFont;
   box-sizing: border-box;
   box-shadow: 0 rem(10) rem(10) rgba(0, 0, 0, 0.25);
   border-radius: rem(24);
   font-family: $mainFontBold;
   height: rem(70);
+  &:hover {
+    color: $lightSecondaryFont;
+  }
 }
 
 @mixin logotype {

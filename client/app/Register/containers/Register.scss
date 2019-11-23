@@ -1,37 +1,15 @@
-.reg-modal {
-  background: #E5E5E5!important;
-  color: #FFFFFF;
-  &__body {
-    background: #97999A!important;
-  }
-}
-.reg-form {
-  &__link {
-    color: #FFFFFF;
-    cursor: pointer;
-  }
-  &__input-cover {
-    position: relative;
-    z-index: 0;
-  }
-  &__show-password {
-    position: absolute;
-    z-index: 9999;
-    top: 15.62%;
-    bottom: 15.62%;
-    right: 3%;
-  }
-  &__input-eye {
-    width: auto;
-    height: 25px;
-  }
-  &__input-custom {
-    padding-right: 40px!important;
-  }
-  &__close {
-    position: absolute;
-    top: -2%;
-    right: 0;
-    color: #FFFFFF;
-  }
+@import '~/assets/scss/resources.scss';
+
+.error-message {
+  font-size: $mdMainFontSize;
+  line-height: $mdMainFontSize;
+  background: $lightSecondaryFont;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 300;
+  color: $mainFont;
+  margin: 0.6em;
+  transition: all 0.3s ease-in-out;
+  width: 90%;
+  ruby-align: center;
 }

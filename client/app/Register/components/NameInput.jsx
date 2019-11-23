@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Manager, Reference, Popper } from 'react-popper';
 
-import PopUpMessageArrowLeft from '~/components/PopUpMassageArrorLeft/PopUpMessageArrowLeft.jsx';
+import {Arrow} from '~/Register/Arrows/Arrows';
 import { nameOnChange, nameOnBlur, clearNameErrorMassage } from '~/Register/actions';
 
 class NameInput extends Component {
@@ -41,20 +42,34 @@ class NameInput extends Component {
         return (
             <>
                 <label htmlFor="nameForm">ИМЯ</label>
-                <div className="reg-form__input-cover">
-                    <input
-                        type="text"
-                        id="nameForm"
-                        className="form-control mb-3"
-                        name="name"
-                        value={this.props.value}
-                        onChange={this.onChangeHandler}
-                        onBlur={this.onBlurHandler}
-                        onFocus={this.onFocusHandler}
-                        maxLength="50"
-                    />
-                    {this.props.error
-                    && <PopUpMessageArrowLeft message={this.props.error}/>}
+                <div className="forms__input-cover">
+
+                    <Manager>
+                        <Reference>
+                            {({ref}) => (
+                                <input
+                                    ref={ref}
+                                    type="text"
+                                    id="nameForm"
+                                    className="form-control mb-4 forms__input-custom"
+                                    name="name"
+                                    value={this.props.value}
+                                    onChange={this.onChangeHandler}
+                                    onBlur={this.onBlurHandler}
+                                    onFocus={this.onFocusHandler}
+                                    maxLength="50"
+                                />
+                            )}
+                        </Reference>
+                        {this.props.error && <Popper placement="auto">
+                            {({ref, style, placement, arrowProps}) => (
+                                <div className="error-message rounded" ref={ref} style={style} data-placement={placement}>
+                                    {this.props.error}
+                                    <Arrow ref={arrowProps.ref} data-placement={placement} style={arrowProps.style} />
+                                </div>
+                            )}
+                        </Popper>}
+                    </Manager>
                 </div>
             </>
         );

@@ -1,8 +1,8 @@
+@import '~/assets/scss/resources.scss';
+
 .test-option {
-  background-color: #E5E5E5;
-  color: #0A477D;
-  font-family: 'Raleway', serif;
-  font-style: normal;
+  background-color: $commonBackLayerPageColor;
+  color: $mainFont;
   font-size: 24px;
 }
 

@@ -1,7 +1,8 @@
 import './Header.scss';
-import { MDBNavbarBrand, MDBBtn } from 'mdbreact';
-import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { MDBBtn } from 'mdbreact';
+
+import { MDBNavbar, MDBNavLink, MDBNavbarToggler, MDBCollapse } from 'mdbreact';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import HeaderUserPic from '~/Header/components/HeaderUserPic/HeaderUserPic.jsx';
@@ -10,21 +11,38 @@ import RegisterForm from '~/Register/containers/Register.jsx';
 import ForgotPasswordForm from '~/ForgotPassword/containers/ForgotPassword.jsx';
 import { authFormToOpen } from '~/Header/actions';
 
+import man from '~/assets/img/man.svg';
+import award from '~/assets/img/award_icon_header.svg';
+
 class Header extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isOpen: false
+        };
+        this.toggleCollapse = this.toggleCollapse.bind(this);
     }
+
+    toggleCollapse = () => {
+        this.setState({ isOpen: !this.state.isOpen });
+    };
 
     render() {
         let userBlock;
 
         if (this.props.userIsLogged) {
             userBlock = (
-                <>
-                    <span className="text-white" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">100</span>
-                    <HeaderUserPic />
-                    <Link to="/cabinet" className="btn bg-light" data-toggle="tooltip" title="Войти в личный кабинет">Войти в личный кабинет</Link>
-                </>)
+                <div className="user-signed-in">
+                    <HeaderUserPic/>
+                    <MDBNavLink to="/cabinet" title="Войти в личный кабинет">
+                        <MDBBtn className="cabinet-btn">КАБИНЕТ</MDBBtn>
+                    </MDBNavLink>
+                    <MDBNavLink to="#" title="Выбрать курс обучения">
+                        <div>
+                            <img src={man} alt="курс"/>
+                        </div>
+                    </MDBNavLink>
+                </div>)
         } else {
             userBlock = (
                 <MDBBtn className="sign-in-btn"
@@ -37,19 +55,20 @@ class Header extends Component {
         }
 
         return (
-            <header className="header_bg d-flex justify-content-between align-items-center">
+            <>
                 {this.props.authModalOpened && <AuthForm />}
                 {this.props.registerModalOpened && <RegisterForm />}
                 {this.props.forgotPasswordModalOpened && <ForgotPasswordForm />}
-                <MDBNavbarBrand>
-                    <Link to="/" className="" data-toggle="tooltip" title="Перейти на главную страницу">
-                        <span className="logo-text">eLA</span>
-                    </Link>
-                </MDBNavbarBrand>
-                <div>
-                    {userBlock}
-                </div>
-            </header>
+                <MDBNavbar className="header_bg" color="indigo" dark expand="md">
+                    <MDBNavLink className="logo-block p-0" to="/"><span className="logo-text">eLA</span></MDBNavLink>
+                    <MDBNavbarToggler onClick={this.toggleCollapse} />
+                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+                        <div className="buttons-set container-fluid d-flex justify-content-end mr-5">
+                            {userBlock}
+                        </div>
+                    </MDBCollapse>
+                </MDBNavbar>
+            </>
         );
     }
 }

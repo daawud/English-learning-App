@@ -5,6 +5,9 @@ import LearningMaterialButton
     from '~/LearningMaterialOptions/components/LearningMaterialButton/LearningMaterialButton.jsx';
 import { testOptionsBlockToShow, materialOptionsBlockToShow, courseOptionsBlockToShow } from '~/TopBlockMainPage/actions';
 
+import { MDBCol, MDBContainer, MDBRow, MDBNavLink } from 'mdbreact';
+import ReturnButton from '~/TopBlockMainPage/components/ReturnButton/ReturnButton.jsx';
+
 class LearningMaterialOptions extends Component {
     constructor(props) {
         super(props);
@@ -35,19 +38,26 @@ class LearningMaterialOptions extends Component {
         };
 
         return (
-            <div className="material-show">
-                <p className="learning-material text-center font-weight-bold mb-2">
-                    Выберите с чем будете работать
-                </p>
-                <div className="row justify-content-center">
-                    <LearningMaterialButton {...buttons.button_1}/>
-                    <LearningMaterialButton {...buttons.button_2}/>
-                </div>
-                <div className="row justify-content-center">
-                    <LearningMaterialButton {...buttons.button_3}/>
-                    <LearningMaterialButton {...buttons.button_4}/>
-                </div>
-            </div>
+            <MDBContainer className="material-show py-2">
+                <MDBRow className="d-flex justify-content-center">
+                    <p className="material-show__heading text-center font-weight-bold mb-5">
+                        Выберите с чем будете работать
+                    </p>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center align-items-center">
+                    <MDBCol sm={8} md={5} lg={5}><LearningMaterialButton {...buttons.button_1}/></MDBCol>
+                    <MDBCol sm={8} md={5} lg={5}><LearningMaterialButton {...buttons.button_2}/></MDBCol>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center align-items-center">
+                    <MDBCol sm={8} md={5} lg={5}><LearningMaterialButton {...buttons.button_3}/></MDBCol>
+                    <MDBCol sm={8} md={5} lg={5}><LearningMaterialButton {...buttons.button_4}/></MDBCol>
+                </MDBRow>
+                <MDBRow className="d-flex justify-content-center">
+                    <MDBNavLink to="/">
+                        <ReturnButton/>
+                    </MDBNavLink>
+                </MDBRow>
+            </MDBContainer>
         );
     }
 }

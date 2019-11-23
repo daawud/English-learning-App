@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 
 const LearningMaterialButton = (props) => {
     return (
-        <MDBPopover placement="bottom"
-                    popover
-                    hover>
-            <MDBBtn className="learning-material-btn" onClick={() => props.dispatch(props.showBlock)}>
-                <span>{props.buttonText}</span>
+        <MDBPopover placement="bottom" popover hover>
+            <MDBBtn className="learning-material-btn mb-4" onClick={() => props.dispatch(props.showBlock)}>
+                {props.buttonText}
             </MDBBtn>
             <MDBPopoverBody>
                 {props.popoverText}

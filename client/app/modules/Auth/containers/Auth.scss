@@ -1,0 +1,133 @@
+@import '~/assets/scss/resources.scss';
+
+.modal-content {
+  border-radius: rem(20)!important;
+  min-height: 500px;
+  color: $mainFont;
+}
+
+.forms {
+  position: relative;
+  z-index: 0;
+  label {
+    padding-left: 1rem;
+  }
+  background: $commonButtonBackGroundColor;
+  &-modal {
+    &__body {
+      background: $commonButtonBackGroundColor;
+      border-radius: rem(20);
+    }
+  }
+
+  // крестик для закрытия формы - бутстраповский не кастомизируется по размеру
+  &__close {
+    position: absolute;
+    font-size: 2.5rem;
+    top: rem(-7);
+    right: 19px;
+    font-weight: 400;
+    cursor: pointer;
+    z-index: 1;
+    &:hover {
+      color: $lightSecondaryFont;
+    }
+  }
+
+  // общие стили для полей инпут
+  &-fields {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    input {
+      background: $lightSecondaryFont;
+      box-shadow: inset rem(4) rem(4) rem(4) rgba(0, 0, 0, 0.25);
+      border-radius: rem(4);
+    }
+  }
+
+  &__heading {
+    font-family: $mainFontBold;
+    font-size: rem(35);
+    line-height: rem(49);
+    margin: 1rem 0;
+  }
+
+  &__btn {
+    position: relative;
+    background: $mainFont;
+    border: 3px solid $lightSecondaryFont;
+    color: $lightSecondaryFont;
+    z-index: 0;
+    margin: 1rem 0 0 0;
+    width: 100%;
+    height: 58px;
+    font-family: $mainFontBold;
+    &:hover {
+      color: #fff;
+      filter: brightness(0.7);
+    }
+  }
+
+  // стили для ссылок на форме
+  &__link {
+    cursor: pointer;
+    color: $mainFont;
+    font-weight: 600;
+    font-size: rem(18);
+    line-height: rem(21);
+    text-align: center;
+    text-decoration-line: underline;
+  }
+
+  // стили для текста
+  &__text {
+    font-weight: 600;
+    font-size: rem(18);
+    line-height: rem(21);
+  }
+  // специальный контейнер для инпута чтобы ошибка конкретно к нему цеплялась
+  &__input-cover {
+    position: relative;
+    z-index: 0;
+  }
+
+  // в данном блоке глазик
+  &__show-password {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    right: 3%;
+    cursor: pointer;
+  }
+
+  // размер глазика
+  &__input-eye {
+    width: 28px;
+    height: 28px;
+
+  }
+
+  // в инпуте с глазиком делаем отступ справа чтобы пароль не заходил на глази
+  &__input-custom {
+    padding-right: 40px !important;
+  }
+
+}
+
+// тут далее не обращаем внимания - стили для мобилки
+@media screen and (max-width: $smWidth) {
+  .forms {
+    &__heading {
+      font-size: 25px;
+    }
+
+    &-fields {
+      font-size: $lgMainFontSize;
+      width: 90%;
+    }
+  }
+}
+

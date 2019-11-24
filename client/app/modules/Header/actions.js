@@ -1,0 +1,63 @@
+import aTypes from './actionTypes';
+
+/**
+ * Функция отвечающая за показ модального окна Формы входа в личный кабинет
+ * @returns {Object} type - название типа action
+ */
+export function authFormToOpen() {
+    return {
+        type: aTypes.AUTH_MODAL_OPEN,
+    };
+}
+
+/**
+ * Функция отвечающая за закрытие модального окна Формы входа в личный кабинет
+ * @returns {Object} type - название типа action
+ */
+export function authFormToClose() {
+    return {
+        type: aTypes.AUTH_MODAL_CLOSE,
+    };
+}
+
+
+/**
+ * Функция отвечающая за показ модального окна Формы регистрации пользователя
+ * @returns {Object} type - название типа action
+ */
+export function registerFormOpen() {
+    return {
+        type: aTypes.REGISTER_FORM_OPEN,
+    };
+}
+
+/**
+ * Функция отвечающая за закрытие модального окна Формы регистрации пользователя
+ * @returns {Object} type - название типа action
+ */
+export function registerFormClose() {
+    return {
+        type: aTypes.REGISTER_FORM_CLOSE,
+    };
+}
+
+/**
+ * Функция отвечающая за показ модального окна Формы сброса пароля
+ * @returns {Object} type - название типа action
+ */
+export function forgotPasswordModalToOpen() {
+    return {
+        type: aTypes.FORGOT_PASSWORD_MODAL_OPEN,
+    };
+}
+
+/**
+ * Функция отвечающая за закрытие модального окна Формы сброса пароля
+ * @returns {Object} type - название типа action
+ */
+export function forgotPasswordModalToClose() {
+    return {
+        type: aTypes.FORGOT_PASSWORD_MODAL_CLOSE,
+    };
+}
+

@@ -1,0 +1,15 @@
+@import '~/assets/scss/resources.scss';
+
+.error-message {
+  font-size: $mdMainFontSize;
+  line-height: $mdMainFontSize;
+  background: $lightSecondaryFont;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 300;
+  color: $mainFont;
+  margin: 0.6em;
+  transition: all 0.3s ease-in-out;
+  width: 90%;
+  ruby-align: center;
+}

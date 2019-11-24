@@ -1,0 +1,37 @@
+@import '~/assets/scss/resources.scss';
+
+.test-option {
+  &__heading {
+    @include page-headings-text;
+  }
+
+  &__btn {
+    @include choice-button-big;
+    border: 2px solid $mainFont;
+    background: $commonBackLayerPageColor;
+    z-index: 0;
+    font-size: 24px;
+    padding: 0 30px 0 100px;
+
+    a {
+      color: $mainFont;
+      text-decoration: none;
+    }
+
+    &__filled {
+      @include choice-button-big;
+      position: absolute;
+      width: 100px;
+      top: -2px;
+      left: -2px;
+      background: #62CEBB;
+      font-family: $mainFontBold;
+      z-index: 999;
+    }
+  }
+
+  &__user {
+    @include element-fully-centred;
+    font-family: $mainFontBold;
+  }
+}

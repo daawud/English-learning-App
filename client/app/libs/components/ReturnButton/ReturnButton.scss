@@ -1,0 +1,21 @@
+@import '~/assets/scss/resources.scss';
+
+.return-btn {
+  width: 100px;
+  height: 100px;
+  background: $mainBackgroundColor;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  &__rectangle {
+    position: absolute;
+    top: 20px;
+    left: 14px;
+  }
+  &__arrow {
+    position: absolute;
+    top: 31px;
+    left: 36px;
+  }
+}

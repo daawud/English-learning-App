@@ -1,0 +1,154 @@
+@import '~/assets/scss/resources.scss';
+
+.footer-ela {
+  min-height: 230px;
+}
+
+.layer {
+  position: relative;
+  background: $mainBackgroundColor;
+  box-shadow: rem(10) 0 rem(10) rgba(0, 0, 0, 0.25);
+  border-radius: 0 rem(20) 0 0;
+  z-index: 0;
+  &-4 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 230px;
+  }
+  &-3 {
+    position: absolute;
+    height: 220px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  &-2 {
+    position: absolute;
+    height: 210px;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+  &-1 {
+    position: absolute;
+    height: 200px;
+    left: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+  &__text {
+    height: rem(125);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    a {
+      text-decoration: none;
+      font-family: $mainFontBold;
+      font-size: rem(24);
+      line-height: rem(28);
+      text-transform: uppercase;
+      color: $lightSecondaryFont;
+    }
+  }
+}
+
+.footer-icons {
+  position: relative;
+  width: 161px;
+  height: 161px;
+  &__crest {
+    position: absolute;
+  }
+  &__facebook {
+    position: absolute;
+    top: 7px;
+    right: 27px;
+  }
+
+  &__youtube {
+    position: absolute;
+    right: 11px;
+    bottom: 15px;
+  }
+
+  &__vkontakte {
+    position: absolute;
+    left: 7px;
+    top: 15px;
+  }
+
+  &__instagram {
+    position: absolute;
+    left: 8px;
+    bottom: 10px;
+  }
+}
+
+.footer-logo {
+  font-family: $logoFont;
+  font-size: rem(96);
+  line-height: rem(102);
+  color: #FFFFFF;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  text-transform: initial;
+}
+
+/* ЭТОТ блок стилей изменится после выхода мобильной версии макета - пока оставляем так для теста функционала */
+
+@media screen and (max-width: $lgWidth) {
+  .layer {
+    &__text {
+      a {
+        font-size: rem(18);
+        line-height: rem(20);
+      }
+    }
+  }
+  .footer-logo {
+    font-size: rem(76);
+    line-height: rem(76);
+  }
+}
+
+@media screen and (max-width: $smWidth) {
+    .footer-logo {
+    font-size: rem(76);
+    line-height: rem(76);
+  }
+  .layer {
+    &-4, &-3, &-2, &-1 {
+      position: relative;
+      z-index: inherit;
+      height: 180px;
+    }
+    &-3, &-2 {
+      justify-content: center!important;
+    }
+    &-4 {
+      height: 230px;
+    }
+    &__text {
+      a {
+        font-size: rem(18);
+        line-height: rem(20);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $xsWidth) {
+  .layer {
+    &-4, &-3, &-2, &-1 {
+      position: relative;
+      z-index: inherit;
+      height: 180px;
+    }
+    &-3, &-2 {
+      justify-content: center!important;
+    }
+    &-4 {
+      height: 230px;
+    }
+  }
+}

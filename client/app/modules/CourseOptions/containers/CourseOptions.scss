@@ -1,0 +1,8 @@
+@import '~/assets/scss/resources.scss';
+
+.course-show {
+  background-color: $commonBackLayerPageColor;
+  &__heading {
+    @include page-headings-text;
+  }
+}

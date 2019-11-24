@@ -20,9 +20,15 @@ export default class Tokens {
     getFromLocalStorage() {
         const tokens = {};
 
-        tokens.token = localStorage.setItem('token', token['token']);
-        tokens.refreshToken = localStorage.setItem('refreshToken', token['refreshToken']);
+        tokens.token = localStorage.getItem('token');
+        tokens.refreshToken = localStorage.getItem('refreshToken');
 
         return tokens;
+    }
+    /**
+     * Метод очищает LocalStorage
+     */
+    removeTokensFromLocalStorage() {
+        localStorage.clear();
     }
 }

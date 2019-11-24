@@ -1,3 +1,7 @@
+import Tokens from "~/classes/Tokens";
+
+const tokenLS = new Tokens();
+
 export const URL_AUTH = 'http://ela-auth-service.abirula.com/api/v1/auth';
 
 /**
@@ -26,6 +30,7 @@ export async function fetchData(URL, options, timeout = 15000) {
     try {
         const response = await Promise.race([fetchTimer(timeout), fetch(URL, options)]);
 
+
         if (response.ok) {
             return await response.json();
         } else {
@@ -36,6 +41,21 @@ export async function fetchData(URL, options, timeout = 15000) {
             return {err: errorBody};
         }
     } catch (err) {
-        return err;
+        return ({err: {
+                errors: err,
+            }});
     }
+}
+
+/**
+ * Функци возвращающая заголовок с токеном
+ * @return {Object} заголовок запроса без метода
+ */
+export function titleWithToken() {
+    return {
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        Authorization: `Bearer ${tokenLS.getFromLocalStorage().token ? tokenLS.getFromLocalStorage().token : null}`
+    };
 }

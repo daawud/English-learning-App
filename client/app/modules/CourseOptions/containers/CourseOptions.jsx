@@ -10,7 +10,6 @@ class CourseOptions extends Component {
     }
 
     render() {
-        console.log(this.props.heading)
         const buttons = {
             button_1: {
                 buttonText: 'Словарь',

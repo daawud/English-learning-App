@@ -61,3 +61,12 @@ export function forgotPasswordModalToClose() {
     };
 }
 
+/**
+ * Функция отвечающая за закрытие модального окна Формы сброса пароля
+ * @returns {Object} type - название типа action
+ */
+export function headerGetData() {
+    return {
+        type: aTypes.HEADER_GET_DATA,
+    };
+}

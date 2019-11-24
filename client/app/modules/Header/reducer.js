@@ -6,6 +6,8 @@ const initStore = {
     forgotPasswordModalOpened: false,
     userIsRegistered: false,
     userIsLogged: false,
+    showSpinner: false,
+    data: {},
 };
 
 const headerReducer = (store = initStore, {type, payload}) => {
@@ -38,8 +40,21 @@ const headerReducer = (store = initStore, {type, payload}) => {
                 registerModalOpened: false,
                 forgotPasswordModalOpened: true};
         }
+
         case aTypes.FORGOT_PASSWORD_MODAL_CLOSE: {
             return { ...store, forgotPasswordModalOpened: false};
+        }
+
+        case aTypes.AUTH_USER_IS_LOGGED: {
+            return { ...store, userIsLogged: true};
+        }
+
+        case aTypes.AUTH_USER_IS_LOGOUT: {
+            return { ...store, userIsLogged: false, data: {}};
+        }
+
+        case aTypes.HEADER_GET_DATA_FULFILL: {
+            return { ...store, userIsLogged: true, data: payload};
         }
     }
     return store;

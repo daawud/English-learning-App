@@ -9,7 +9,8 @@ import HeaderUserPic from '~/modules/Header/components/HeaderUserPic/HeaderUserP
 import AuthForm from '~/modules/Auth/containers/Auth.jsx';
 import RegisterForm from '~/modules/Register/containers/Register.jsx';
 import ForgotPasswordForm from '~/modules/ForgotPassword/containers/ForgotPassword.jsx';
-import { authFormToOpen } from '~/modules/Header/actions';
+import { authFormToOpen, headerGetData  } from '~/modules/Header/actions';
+import Tokens from '~/classes/Tokens';
 
 import man from '~/assets/img/man.svg';
 import award from '~/assets/img/award_icon_header.svg';
@@ -27,13 +28,23 @@ class Header extends Component {
         this.setState({ isOpen: !this.state.isOpen });
     };
 
+    componentDidMount() {
+        // Проверка наличия токенов при первой загрузке компонента
+        const tok = new Tokens();
+        const tokenLS = tok.getFromLocalStorage();
+
+        if (tokenLS['token']) {
+            this.props.dispatch(headerGetData());
+        }
+    }
+
     render() {
         let userBlock;
 
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">
-                    <HeaderUserPic/>
+                    <HeaderUserPic userData={this.props.data}/>
                     <MDBNavLink to="/cabinet" title="Войти в личный кабинет">
                         <MDBBtn className="cabinet-btn">КАБИНЕТ</MDBBtn>
                     </MDBNavLink>

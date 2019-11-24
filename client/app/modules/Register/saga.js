@@ -31,6 +31,8 @@ function* sendRequestForRegister(action) {
         yield all([
             yield put({type: aTypes.REGISTER_FORM_CLOSE}),
             yield put({type: aTypes.REGISTER_CLEAR_FIELDS}),
+            yield put({type: aTypes.AUTH_USER_IS_LOGGED}),
+            yield put({type: aTypes.HEADER_GET_DATA}),
         ]);
 
     } catch(err) {

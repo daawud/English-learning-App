@@ -3,9 +3,7 @@ import React from 'react';
 import {MDBBtn, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from 'mdbreact';
 import award from "~/assets/img/award_icon_header.svg";
 
-const imageIcon = 'http://gensec.eu/doc/trap/database/trap/images/Adwaita/256x256/status/avatar-default.png';
-
-function HeaderUserPic() {
+function HeaderUserPic(props) {
     return (
         <MDBPopover placement="bottom" popover hover id="popper1">
             <MDBBtn >
@@ -17,9 +15,9 @@ function HeaderUserPic() {
             <div>
                 <MDBPopoverHeader>Пользователь:</MDBPopoverHeader>
                 <MDBPopoverBody>
-                    <strong>User: </strong>User<br/>
-                    <strong>UserAge: </strong>UserAge<br/>
-                    <strong>UserAknowledge: </strong>Aknowledge<br/>
+                    <strong>User: </strong>{props.userData['name']}<br/>
+                    <strong>UserAge: </strong>{props.userData['age']}<br/>
+                    <strong>Knowledge: </strong>{props.userData['knowledge']}<br/>
                 </MDBPopoverBody>
             </div>
         </MDBPopover>

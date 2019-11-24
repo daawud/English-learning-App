@@ -29,8 +29,10 @@ function* sendRequestForAuth(action) {
 
         //закрыть модально окно и очистить данные из редюсера
         yield all([
-            put({type: aTypes.AUTH_MODAL_CLOSE}),
-            put({type: aTypes.AUTH_CLEAR_FIELDS}),
+            yield put({type: aTypes.AUTH_MODAL_CLOSE}),
+            yield put({type: aTypes.AUTH_CLEAR_FIELDS}),
+            yield put({type: aTypes.AUTH_USER_IS_LOGGED}),
+            yield put({type: aTypes.HEADER_GET_DATA}),
         ]);
 
     } catch(err) {

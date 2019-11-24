@@ -2,34 +2,31 @@
 
 namespace app\controllers;
 
-use app\models\User;
 use app\models\Users;
 use yii\db\Exception;
 use yii\rest\ActiveController;
 
-class UsersController extends ActiveController
+class UserController extends ActiveController
 {
     public $modelClass = 'app\models\Users';
-
-    public function behaviors()
-    {
-
-        return [
-            [
-                'class' => \yii\filters\ContentNegotiator::className(),
-
-            ],
-        ];
-    }
 
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['update'], $actions['create'], $actions['delete']);
+        unset($actions['update'], $actions['create'], $actions['delete'], $actions['index'], $actions['view']);
 
         return $actions;
     }
-
+		
+	public function actionIndex() {
+    	$userId = \Yii::$app->request->get('id');
+		if ($userId) {
+			return Users::findOne($userId);
+		} else {
+			return Users::find()->all();
+		}
+    }
+	
     public function actionUpdate(){
         $k = 0;
 
@@ -70,4 +67,5 @@ class UsersController extends ActiveController
     public function actionDelete() {
         return "Воспользуйтесь модулем аутенфикации";
     }
+    
 }

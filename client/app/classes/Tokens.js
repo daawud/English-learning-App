@@ -9,7 +9,7 @@ export default class Tokens {
      * Метод сохранения access и refresh токенов в LocalStorage
      * @param token {Object} - объект с access и refresh токеном
      */
-    saveToLocalStorage(token) {
+    static saveToLocalStorage(token) {
         localStorage.setItem('token', token['token']);
         localStorage.setItem('refreshToken', token['refreshToken']);
     }
@@ -17,12 +17,19 @@ export default class Tokens {
      * Метод извлечения access и refresh из LocalStorage
      * @return {Object} - объект с access и refresh токеном
      */
-    getFromLocalStorage() {
-        const tokens = {};
+    static getFromLocalStorage() {
+        const tokens = {
+            token: localStorage.getItem('token'),
+            refreshToken: localStorage.getItem('refreshToken'),
+        };
 
-        tokens.token = localStorage.setItem('token', token['token']);
-        tokens.refreshToken = localStorage.setItem('refreshToken', token['refreshToken']);
-
-        return tokens;
+        return (tokens);
+    }
+    /**
+     * Метод очищает LocalStorage
+     */
+    static removeTokensFromLocalStorage() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
     }
 }

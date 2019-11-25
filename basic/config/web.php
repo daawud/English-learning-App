@@ -20,10 +20,15 @@ $config = [
             ],
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '4szcB4v1j3p1axAEBjwG_qbE2DDomQF5',
-            'response' => [
-                'format' => yii\web\Response::FORMAT_JSON,
-                'charset' => 'UTF-8',
-            ],
+
+        ],
+//        'response' => [
+//            'format' => yii\web\Response::FORMAT_JSON,
+//            'charset' => 'UTF-8',
+//        ],
+        'jwt' => [
+            'class' => '',
+            'key' => 'dktlb74jfvmtu3od8rhvn453bdey3a23'
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -59,8 +64,10 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [ 'class' => 'yii\rest\UrlRule',
-                    'controller' => 'rest',
+                    'controller' => 'user',
                     'pluralize' => false ],
+
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'tasks'],
             ],
         ],
 

@@ -1,7 +1,5 @@
 import Tokens from "~/classes/Tokens";
 
-const tokenLS = new Tokens();
-
 export const URL_AUTH = 'http://ela-auth-service.abirula.com/api/v1/auth';
 
 /**
@@ -56,6 +54,6 @@ export function titleWithToken() {
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
         },
-        Authorization: `Bearer ${tokenLS.getFromLocalStorage().token ? tokenLS.getFromLocalStorage().token : null}`
+        Authorization: `Bearer ${Tokens.getFromLocalStorage().token ? Tokens.getFromLocalStorage().token : null}`
     };
 }

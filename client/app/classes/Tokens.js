@@ -17,18 +17,19 @@ export default class Tokens {
      * Метод извлечения access и refresh из LocalStorage
      * @return {Object} - объект с access и refresh токеном
      */
-    getFromLocalStorage() {
-        const tokens = {};
+    static getFromLocalStorage() {
+        const tokens = {
+            token: localStorage.getItem('token'),
+            refreshToken: localStorage.getItem('refreshToken'),
+        };
 
-        tokens.token = localStorage.getItem('token');
-        tokens.refreshToken = localStorage.getItem('refreshToken');
-
-        return tokens;
+        return (tokens);
     }
     /**
      * Метод очищает LocalStorage
      */
     removeTokensFromLocalStorage() {
-        localStorage.clear();
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
     }
 }

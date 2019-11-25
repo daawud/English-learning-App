@@ -1,0 +1,7 @@
+@import '~/assets/scss/resources.scss';
+
+.sign-out-btn {
+  @include common-button-style;
+  width: 120px;
+  height: 80px;
+}

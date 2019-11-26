@@ -2,7 +2,7 @@ import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 
 import { fetchData, URL_AUTH } from '~/libs/api/api';
 import aTypes from '~/modules/Auth/actionTypes';
-import Tokens from '~/classes/Tokens';
+import Tokens from '~/libs/api/Tokens';
 
 const fetchParam = {
     method: 'POST',
@@ -17,15 +17,18 @@ function* sendRequestForAuth(action) {
 
         // извлечь из события
         param.body = JSON.stringify(action.payload);
+
+        yield put({type: aTypes.AUTH_MODAL_LOADING});
         const response = yield call(fetchData, `${URL_AUTH}/login`, param);
 
         if (response.err) {
             throw new Error(response.err['errors']);
         }
 
+        yield put({type: aTypes.AUTH_MODAL_LOADING_REJECT});
+
         // Сохранить токены в localStorage
-        let token = new Tokens();
-        token.saveToLocalStorage(response);
+        Tokens.saveToLocalStorage(response);
 
         //закрыть модально окно и очистить данные из редюсера
         yield all([

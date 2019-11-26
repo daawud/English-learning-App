@@ -2,9 +2,8 @@ import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 import { fetchData, URL_AUTH} from '~/libs/api/api';
 
 import aTypes from '~/modules/TokenHandler/actionTypes';
-import Tokens from "~/classes/Tokens";
+import Tokens from "~/libs/api/Tokens";
 
-const token = new Tokens();
 const fetchParam = {
     method: 'POST',
     headers: {
@@ -15,22 +14,21 @@ const fetchParam = {
 function* sendRefreshRequest(action) {
     try {
         const param = {...fetchParam};
-        const tokenLS = token.getFromLocalStorage();
+        const tokenLS = Tokens.getFromLocalStorage();
 
         param.body = JSON.stringify(tokenLS);
         const response = yield call(fetchData, `${URL_AUTH}/refresh`, param);
-        console.log(response);
 
         if (response.err) {
             throw new Error(response.err['errors']);
         }
 
         // Сохраняем полученную пару токенов в LocalStorage
-        token.saveToLocalStorage(response);
+        Tokens.saveToLocalStorage(response);
         yield put({type: action.payload});
 
     } catch(err) {
-        token.removeTokensFromLocalStorage();
+        Tokens.removeTokensFromLocalStorage();
         yield all([
             put({type: aTypes.AUTH_MODAL_OPEN}),
             put({type: aTypes.AUTH_USER_IS_LOGOUT}),

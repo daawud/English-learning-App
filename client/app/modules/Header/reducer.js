@@ -6,7 +6,7 @@ const initStore = {
     forgotPasswordModalOpened: false,
     userIsRegistered: false,
     userIsLogged: false,
-    showSpinner: false,
+    isLoading: false,
     data: {},
 };
 
@@ -53,7 +53,7 @@ const headerReducer = (store = initStore, {type, payload}) => {
             return { ...store, userIsLogged: false, data: {}};
         }
 
-        case aTypes.HEADER_GET_DATA_FULFILL: {
+        case aTypes.HEADER_GET_DATA_FULFILD: {
             return { ...store, userIsLogged: true, data: payload};
         }
     }

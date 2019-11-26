@@ -2,7 +2,7 @@ import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 
 import { fetchData, URL_AUTH } from '~/libs/api/api';
 import aTypes from '~/modules/Auth/actionTypes';
-import Tokens from '~/classes/Tokens';
+import Tokens from '~/libs/api/Tokens';
 
 const fetchParam = {
     method: 'POST',

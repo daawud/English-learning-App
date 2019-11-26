@@ -33,3 +33,13 @@ export default class Tokens {
         localStorage.removeItem('refreshToken');
     }
 }
+
+/**
+ * Функци возвращающая заголовок с токеном
+ * @return {Object} заголовок запроса без метода
+ */
+export function getAuthHeader() {
+    return {
+        Authorization: `Bearer ${Tokens.getFromLocalStorage().token ? Tokens.getFromLocalStorage().token : null}`
+    };
+}

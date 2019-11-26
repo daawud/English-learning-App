@@ -1,5 +1,3 @@
-import Tokens from "~/classes/Tokens";
-
 export const URL_AUTH = 'http://ela-auth-service.abirula.com/api/v1/auth';
 
 /**
@@ -43,17 +41,4 @@ export async function fetchData(URL, options, timeout = 15000) {
                 errors: err,
             }});
     }
-}
-
-/**
- * Функци возвращающая заголовок с токеном
- * @return {Object} заголовок запроса без метода
- */
-export function titleWithToken() {
-    return {
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-        },
-        Authorization: `Bearer ${Tokens.getFromLocalStorage().token ? Tokens.getFromLocalStorage().token : null}`
-    };
 }

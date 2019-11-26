@@ -23,9 +23,6 @@ class Answers extends \yii\db\ActiveRecord
     {
         return '{{answers}}';
     }
-    public function getTasks()
-    {
-        return $this->hasOne(Tasks::class(), ['id' => 'tasks_id']);
-    }
+
 
 }

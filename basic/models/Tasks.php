@@ -7,6 +7,7 @@ use \yii\db\ActiveRecord;
  *
  * @property int $id
  * @property int $task_types_id
+ * @property int points
 
  */
 class Tasks extends \yii\db\ActiveRecord
@@ -22,15 +23,6 @@ class Tasks extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAnswers()
-    {
-        return $this->hasMany(Answers::class(), ['tasks_id' => 'id']);
-    }
-    public function getAnswersName()
-    {
-        if ($answers =$this->getAnswers()){
-        return $answers->name;
-        }
-        return "Вариантов ответа нет";
-    }
+
+
 }

@@ -2,6 +2,7 @@
 
 
 namespace controllers;
+use models\Task_types;
 use models\Tasks;
 use yii\rest\Controller;
 
@@ -13,10 +14,11 @@ class TasksController extends Controller
      */
     public function actionTasks()
     {
-        $tasks = Tasks::find()
+        $task_types = Task_types::find()
+            ->with('answers')
             ->all();
 
-        return $this->renderTasks($tasks);
+        return $this->renderTask_types($task_types);
     }
 
 

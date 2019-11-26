@@ -1,8 +1,8 @@
 import aTypes from './actionTypes';
 
 /**
- * Функция
- * @param {*[]} value - значение поля password
+ * Функция получения списка задач и опрокидывания их в редюсер.
+ * @param {Array} value - массив с объектами со всеми словами для угадывания
  * @returns {Object} payload - название action, {Object} type - название типа action
  */
 export function getVocabularyWordsSet(value) {
@@ -13,8 +13,7 @@ export function getVocabularyWordsSet(value) {
 }
 
 /**
- * Функция
- * @param
+ * Функция экшн для обработки нажатия на кнопку NEXT
  * @returns {Object} type - название типа action
  */
 export function nextWord() {
@@ -24,8 +23,8 @@ export function nextWord() {
 }
 
 /**
- * Функция
- * @param
+ * Функция для обработки нажатия на кнопку выбора правильного ответа
+ * @param {String} тип ответа пользователя: correct or incorrect
  * @returns {Object} type - название типа action
  */
 export function recordUserAnswer(value) {

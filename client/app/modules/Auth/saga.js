@@ -22,7 +22,7 @@ function* sendRequestForAuth(action) {
         const response = yield call(fetchData, `${URL_AUTH}/login`, param);
 
         if (response.err) {
-            throw new Error(response.err['errors']);
+            throw new Error(response.err.errors);
         }
 
         yield put({type: aTypes.AUTH_MODAL_LOADING_REJECT});

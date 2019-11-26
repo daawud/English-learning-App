@@ -22,7 +22,7 @@ function* sendRequestForRegister(action) {
         const response = yield call(fetchData, `${URL_AUTH}/register`, param);
 
         if (response.err) {
-            throw new Error(response.err['errors']);
+            throw new Error(response.err.errors);
         }
 
         yield put({type: aTypes.REGISTER_MODAL_LOADING_REJECT});

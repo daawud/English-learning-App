@@ -8,7 +8,7 @@ import { authFormToClose, registerFormOpen, forgotPasswordModalToOpen } from '~/
 import { sendRequestForAuth } from '~/modules/Auth/actions';
 import AuthEmail from '~/modules/Auth/components/AuthEmail.jsx'
 import AuthPassword from '~/modules/Auth/components/AuthPassword.jsx';
-import SpinnerPage from "~/libs/components/Loader/Loader";
+import Loader from "~/libs/components/Loader/Loader";
 
 class Auth extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class Auth extends Component {
                             <p className="forms__heading">Войти в учетную запись</p>
                             <div className="d-flex justify-content-center">
                                 <div className="forms-fields text-left">
-                                    {this.props.isLoading ? <SpinnerPage/> : null}
+                                    {this.props.isLoading ? <Loader/> : null}
                                     <AuthEmail value={this.props.email}/>
                                     <AuthPassword value={this.props.password}/>
                                     <MDBBtn

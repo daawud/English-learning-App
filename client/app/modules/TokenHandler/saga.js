@@ -20,7 +20,7 @@ function* sendRefreshRequest(action) {
         const response = yield call(fetchData, `${URL_AUTH}/refresh`, param);
 
         if (response.err) {
-            throw new Error(response.err['errors']);
+            throw new Error(response.err.errors);
         }
 
         // Сохраняем полученную пару токенов в LocalStorage

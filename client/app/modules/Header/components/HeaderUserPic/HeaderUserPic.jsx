@@ -1,13 +1,13 @@
 import './HeaderUserPic.scss';
 import React from 'react';
 import {MDBBtn, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from 'mdbreact';
-import man from "~/assets/img/man.svg";
+import manImage from "~/assets/img/man.svg";
 
 function HeaderUserPic(props) {
     return (
         <MDBPopover placement="bottom" popover hover id="popper1">
             <MDBBtn >
-                <img src={man} alt="награда"/>
+                <img src={manImage} alt="награда"/>
             </MDBBtn>
             <div>
                 <MDBPopoverHeader>Пользователь:</MDBPopoverHeader>

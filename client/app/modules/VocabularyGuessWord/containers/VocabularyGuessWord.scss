@@ -1,0 +1,36 @@
+@import '~/assets/scss/resources.scss';
+
+.tasks {
+  background: $commonBackLayerPageColor;
+  color: $mainFont;
+  &__heading {
+    @include page-headings-text;
+  }
+  &__show-answer {
+    width: rem(120);
+    text-align: center;
+    text-decoration-line: underline;
+    color: $mainFont;
+  }
+  &__word-given {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  &__btn {
+    @include common-button-style;
+    &-container {
+      flex-wrap: wrap;
+    }
+    &-options {
+      width: 229px;
+      height: 58px;
+      background: #000;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    &-action {
+      width: 150px;
+      height: 60px;
+    }
+  }
+}

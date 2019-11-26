@@ -54,7 +54,7 @@ class VocabularyGuessWord extends Component {
                             {currentTask.taskType === 'chooseEngWord'
                             && <MDBCol className="text-center text font-weight-bold">{currentTask.givenWordRus}</MDBCol>}
                         </MDBRow>
-                        {currentTask.id <=2
+                        {currentTask.taskId <=2
                             ? <VocabularyChooseWord currentTask={currentTask}/>
                             : 'тут будет модуль ИНПУТ'}
                         <MDBRow>

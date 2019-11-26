@@ -46,7 +46,7 @@ class Header extends Component {
                     <MDBBtn >
                         <div className="header-award d-flex justify-content-between align-items-center p-3" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">
                             <img src={award} alt="награда"/>
-                            <div className="header-award__score">0.00</div>
+                            <div className="header-award__score">{this.props.data.points}</div>
                         </div>
                     </MDBBtn>
                     <MDBNavLink to="/cabinet" title="Войти в личный кабинет">

@@ -24,13 +24,20 @@
     font-size: rem(36);
     line-height: rem(40);
   }
-
+  &__choose-options {
+    min-height: rem(160);
+  }
+  &__correct-answer {
+    min-height: 52px;
+  }
 }
 
 @media screen and (max-width: $mdWidth) {
   .tasks {
     min-height: 400px;
-
+    &__choose-options {
+      min-height: rem(100);
+    }
     &__btn {
       &__show-answer {
         width: rem(200);
@@ -53,7 +60,9 @@
 @media screen and (max-width: $smWidth) {
   .tasks {
     min-height: 400px;
-
+    &__choose-options {
+      min-height: rem(100);
+    }
     &__show-answer {
       width: rem(200);
     }

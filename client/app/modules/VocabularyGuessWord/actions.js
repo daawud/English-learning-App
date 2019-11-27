@@ -13,6 +13,28 @@ export function getVocabularyWordsSet(value) {
 }
 
 /**
+ * Функция очистки редюсера.
+ * @returns {Object} type - название типа action
+ */
+export function clearVocabulary() {
+    return {
+        type: aTypes.CLEAR_VOCABULARY,
+    };
+}
+
+/**
+ * Функция получения значения поля INPUT при вводе слова.
+ * @param {Object} value - данные по пол. INPUT при вводе слова
+ * @returns {Object} payload - название action, {Object} type - название типа action
+ */
+export function userTypedAnswer(value) {
+    return {
+        type: aTypes.USER_TYPED_ANSWER,
+        payload: value,
+    };
+}
+
+/**
  * Функция экшн для обработки нажатия на кнопку NEXT
  * @returns {Object} type - название типа action
  */
@@ -24,10 +46,10 @@ export function nextWord() {
 
 /**
  * Функция для обработки нажатия на кнопку выбора правильного ответа
- * @param {String} тип ответа пользователя: correct or incorrect
+ * @param {String} value тип ответа пользователя: correct or incorrect
  * @returns {Object} type - название типа action
  */
-export function recordUserAnswer(value) {
+export function userCorrectAnswer(value) {
     return {
         type: aTypes.RECORD_USER_ANSWER,
         payload: value,

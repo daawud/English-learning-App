@@ -40,11 +40,13 @@ export function onNextChanges(store) {
     return tasks;
 }
 
+// временная заглушка ответа от БД с учетом всех видов задач
 export const tasks = [
     {
         'taskId': 1,
         'points': 1,
         'taskType': 'chooseRusWord',
+        'description': 'Выберите правильный перевод с английского языка',
         'imgUrl': 'https://placehold.it/300x200',
         'transcription': '[kæt]',
         'givenWordEng': 'Cat',
@@ -72,6 +74,7 @@ export const tasks = [
         'taskId': 2,
         'points': 1,
         'taskType': 'chooseEngWord',
+        'description': 'Выберите правильный перевод с русского языка',
         'imgUrl': 'https://placehold.it/300x200',
         'transcription': '[dɔg]',
         'givenWordEng': 'Dog',
@@ -99,6 +102,7 @@ export const tasks = [
         'taskId': 1,
         'points': 1,
         'taskType': 'chooseRusWord',
+        'description': 'Выберите правильный перевод с английского языка',
         'imgUrl': 'https://placehold.it/300x200',
         'transcription': '[ˈbæʧələr]',
         'givenWordEng': 'Bachelor',
@@ -126,6 +130,7 @@ export const tasks = [
         'taskId': 2,
         'points': 1,
         'taskType': 'chooseEngWord',
+        'description': 'Выберите правильный перевод с русского языка',
         'imgUrl': 'https://placehold.it/300x200',
         'transcription': '[braɪd]',
         'givenWordEng': 'bride',
@@ -148,5 +153,49 @@ export const tasks = [
                 'type': 'incorrect'
             }
         ]
+    },
+    {
+        'taskId': 3,
+        'points': 1,
+        'taskType': 'typeRusWord',
+        'description': 'Введите перевод на русский язык',
+        'imgUrl': 'https://placehold.it/300x200',
+        'transcription': '[kæt]',
+        'givenWordEng': 'Cat',
+        'givenWordRus': 'Кошка',
+        'givenAnswers': 'Кошка'
+    },
+    {
+        'taskId': 4,
+        'points': 1,
+        'taskType': 'typeEngWord',
+        'description': 'Введите перевод на английский язык',
+        'imgUrl': 'https://placehold.it/300x200',
+        'transcription': '[dɔg]',
+        'givenWordEng': 'Dog',
+        'givenWordRus': 'Собака',
+        'givenAnswers': 'Dog'
+    },
+    {
+        'taskId': 3,
+        'points': 1,
+        'taskType': 'typeRusWord',
+        'description': 'Введите перевод на русский язык',
+        'imgUrl': 'https://placehold.it/300x200',
+        'transcription': '[ˈbæʧələr]',
+        'givenWordEng': 'Bachelor',
+        'givenWordRus': 'холостяк',
+        'givenAnswers': 'холостяк'
+    },
+    {
+        'taskId': 4,
+        'points': 1,
+        'taskType': 'typeEngWord',
+        'description': 'Введите перевод на английский язык',
+        'imgUrl': 'https://placehold.it/300x200',
+        'transcription': '[braɪd]',
+        'givenWordEng': 'bride',
+        'givenWordRus': 'невеста',
+        'givenAnswers': 'bride'
     },
 ];

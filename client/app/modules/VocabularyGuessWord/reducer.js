@@ -6,7 +6,12 @@ const initStore = {
     tasks: [],
     currentTaskIndex: 0,
     currentsUserAnswer: '',
-    isAnswered: false
+    isAnswered: false,
+    userInputTypedAnswer: {
+        value: '',
+        color: 'red'
+    },
+    showAnswerModal: false,
 };
 
 const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
@@ -20,6 +25,11 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
             return {...store, tasks: [...tasks]};
         }
 
+        case aTypes.CLEAR_VOCABULARY: {
+            /* очищаем редюсер */
+            return {...store, ...initStore};
+        }
+
         case aTypes.RECORD_USER_ANSWER: {
             if (store.isAnswered) {
                 return store;
@@ -30,6 +40,10 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
             return {...store, tasks, currentsUserAnswer: payload, isAnswered: true};
         }
 
+        case aTypes.USER_TYPED_ANSWER: {
+            return {...store, userInputTypedAnswer: payload};
+        }
+
         case aTypes.VOCABULARY_GO_TO_NEXT_WORD: {
             if ((store.currentTaskIndex + 1) < store.tasks.length) {
                 const tasks = onNextChanges(store);
@@ -38,7 +52,11 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
                     ...store, tasks,
                     currentTaskIndex: store.currentTaskIndex + 1,
                     currentsUserAnswer: '',
-                    isAnswered: false
+                    isAnswered: false,
+                    userInputTypedAnswer: {
+                        value: '',
+                        color: 'red'
+                    }
                 };
             } else {
                 // логика запроса следующего пула слов

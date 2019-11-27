@@ -3,7 +3,7 @@ import './VocabularyGuessWord.scss';
 import { MDBBtn, MDBRow, MDBCol } from 'mdbreact';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ProgressBar from '~/modules/VocabularyGuessWord/components/ProgressBar/ProgressBar.jsx';
 import VocabularyChooseWord
@@ -11,6 +11,7 @@ import VocabularyChooseWord
 import { tasks } from '~/modules/VocabularyGuessWord/helpers'
 import { getVocabularyWordsSet, nextWord } from '~/modules/VocabularyGuessWord/actions';
 import Loader from '~/libs/components/Loader/Loader';
+import divWithClassName from 'react-bootstrap/cjs/utils/divWithClassName';
 
 class VocabularyGuessWord extends Component {
     constructor(props) {
@@ -22,10 +23,11 @@ class VocabularyGuessWord extends Component {
         const currentTask = this.props.tasks[currentTaskIndex];
 
         return (
+
             <div className="tasks">
-                {!currentTask ? <Loader /> : (
-                    <div className="m-0 tasks p-1">
-                        <MDBRow className="m-0">
+                {!currentTask ? <Loader/> :
+                    <div className="m-0 p-1">
+                        <MDBRow className="mx-2">
                             <ProgressBar tasks={this.props.tasks}/>
                         </MDBRow>
                         <MDBRow>
@@ -40,23 +42,28 @@ class VocabularyGuessWord extends Component {
                                 </div>
                             </MDBCol>
                             <MDBCol md={4} className="d-flex justify-content-center">
-                                <img src={currentTask.imgUrl} className="rounded-lg shadow border border-default tasks__img"
+                                <img src={currentTask.imgUrl}
+                                    className="rounded-lg shadow border border-default tasks__img"
                                     alt="картинка слова"/>
                             </MDBCol>
-                            <MDBCol md={4} className="d-flex justify-content-center align-items-center mt-3">
+                            <MDBCol md={4} className="d-flex justify-content-center align-items-center mt-3 mb-0">
                                 {this.props.currentsUserAnswer === 'incorrect' &&
-                                <p className="bg-danger border border-white rounded p-2 text text-light">НЕ ПРАВИЛЬНО</p>}
+                                <p className="bg-danger border border-white rounded p-2 text text-light">НЕ
+                                    ПРАВИЛЬНО</p>}
                                 {this.props.currentsUserAnswer === 'correct' &&
                                 <p className="bg-success border border-white rounded p-2 text text-light">ПРАВИЛЬНО</p>}
                             </MDBCol>
                         </MDBRow>
-                        <MDBRow className="tasks__word-given my-4">
+                        <MDBRow className="tasks__word-given mt-2 mb-4">
                             {currentTask.taskType === 'chooseRusWord'
-                            && <MDBCol className="text-center text font-weight-bold">{currentTask.givenWordEng} {currentTask.transcription}</MDBCol>}
+                            && <MDBCol
+                                className="text-center text font-weight-bold">{currentTask.givenWordEng}
+                                <span className="tasks__transcription">{currentTask.transcription}</span></MDBCol>}
                             {currentTask.taskType === 'chooseEngWord'
-                            && <MDBCol className="text-center text font-weight-bold">{currentTask.givenWordRus}</MDBCol>}
+                            && <MDBCol
+                                className="text-center text font-weight-bold">{currentTask.givenWordRus}</MDBCol>}
                         </MDBRow>
-                        {currentTask.taskId <=2
+                        {currentTask.taskId <= 2
                             ? <VocabularyChooseWord currentTask={currentTask}/>
                             : 'тут будет модуль ИНПУТ'}
                         <MDBRow className="mx-4 my-3">
@@ -68,7 +75,8 @@ class VocabularyGuessWord extends Component {
                                     onClick={() => this.props.dispatch(nextWord())}>Далее</MDBBtn>
                             </MDBCol>
                         </MDBRow>
-                    </div>)}
+                    </div>
+                }
             </div>
         );
     }

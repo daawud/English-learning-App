@@ -26,6 +26,7 @@ export async function fetchData(URL, options, timeout = 15000) {
     try {
         const response = await Promise.race([fetchTimer(timeout), fetch(URL, options)]);
 
+
         if (response.ok) {
             return await response.json();
         } else {
@@ -36,6 +37,8 @@ export async function fetchData(URL, options, timeout = 15000) {
             return {err: errorBody};
         }
     } catch (err) {
-        return err;
+        return ({err: {
+                errors: err,
+            }});
     }
 }

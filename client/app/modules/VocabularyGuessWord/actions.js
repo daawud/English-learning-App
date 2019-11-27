@@ -55,3 +55,23 @@ export function userCorrectAnswer(value) {
         payload: value,
     };
 }
+
+/**
+ * Функция экшн для обработки нажатия на кнопку ПОКАЗАТЬ ОТВЕТ
+ * @returns {Object} type - название типа action
+ */
+export function vocabularyShowAnswerModal() {
+    return {
+        type: aTypes.VOCABULARY_SHOW_ANSWER_MODAL,
+    };
+}
+
+/**
+ * Функция экшн для обработки нажатия на кнопку закрыть модальное окно показа правильного ответа
+ * @returns {Object} type - название типа action
+ */
+export function vocabularyCloseAnswerModal() {
+    return {
+        type: aTypes.VOCABULARY_CLOSE_ANSWER_MODAL,
+    };
+}

@@ -10,7 +10,7 @@ import EmailInput from '~/modules/Register/components/EmailInput.jsx';
 import PasswordInput from '~/modules/Register/components/PasswordInput.jsx';
 import NameInput from '~/modules/Register/components/NameInput.jsx';
 import PasswordRepeatInput from '~/modules/Register/components/PasswordRepeatInput.jsx';
-import Loader from "~/libs/components/Loader/Loader";
+import SpinnerPage from "~/libs/components/Loader/Loader";
 
 class Register extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class Register extends Component {
                                 <p className="forms__heading">Зарегистрироваться </p>
                                 <div className="d-flex justify-content-center">
                                     <div className="forms-fields text-left">
-                                        {this.props.isLoading ? <Loader/> : null}
+                                        {this.props.isLoading ? <SpinnerPage /> : null}
                                         <NameInput value={this.props.name} error={this.props.nameValidationError} />
                                         <EmailInput value={this.props.email} error={this.props.emailValidationError} />
                                         <PasswordInput value={this.props.password} error={this.props.passwordValidationError} />

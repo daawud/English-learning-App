@@ -1,5 +1,5 @@
 import './Header.scss';
-import { MDBBtn } from 'mdbreact';
+import {MDBBtn, MDBPopover} from 'mdbreact';
 
 import { MDBNavbar, MDBNavLink, MDBNavbarToggler, MDBCollapse } from 'mdbreact';
 import React, { Component } from 'react';
@@ -9,7 +9,8 @@ import HeaderUserPic from '~/modules/Header/components/HeaderUserPic/HeaderUserP
 import AuthForm from '~/modules/Auth/containers/Auth.jsx';
 import RegisterForm from '~/modules/Register/containers/Register.jsx';
 import ForgotPasswordForm from '~/modules/ForgotPassword/containers/ForgotPassword.jsx';
-import { authFormToOpen } from '~/modules/Header/actions';
+import { authFormToOpen, headerGetData  } from '~/modules/Header/actions';
+import Tokens from '~/libs/api/Tokens';
 
 import man from '~/assets/img/man.svg';
 import award from '~/assets/img/award_icon_header.svg';
@@ -27,21 +28,31 @@ class Header extends Component {
         this.setState({ isOpen: !this.state.isOpen });
     };
 
+    componentDidMount() {
+        // Проверка наличия токенов при первой загрузке компонента
+        const tokenLS = Tokens.getFromLocalStorage();
+
+        if (tokenLS['token']) {
+            this.props.dispatch(headerGetData());
+        }
+    }
+
     render() {
         let userBlock;
 
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">
-                    <HeaderUserPic/>
+                    <MDBBtn >
+                        <div className="header-award d-flex justify-content-between align-items-center p-3" data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">
+                            <img src={award} alt="награда"/>
+                            <div className="header-award__score">{this.props.data.points}</div>
+                        </div>
+                    </MDBBtn>
                     <MDBNavLink to="/cabinet" title="Войти в личный кабинет">
                         <MDBBtn className="cabinet-btn">КАБИНЕТ</MDBBtn>
                     </MDBNavLink>
-                    <MDBNavLink to="#" title="Выбрать курс обучения">
-                        <div>
-                            <img src={man} alt="курс"/>
-                        </div>
-                    </MDBNavLink>
+                    <HeaderUserPic userData={this.props.data}/>
                 </div>)
         } else {
             userBlock = (

@@ -1,3 +1,5 @@
+import './VocabularyChooseWord.scss';
+
 import React from 'react';
 import { MDBBtn, MDBCol, MDBRow } from 'mdbreact';
 import {connect} from 'react-redux'
@@ -8,13 +10,12 @@ const VocabularyChooseWord = (props) => {
 
     return (
         <>
-            <MDBRow>
-                <MDBCol md={3} lg={3} sm={0} className=""/>
-                <MDBCol md={6} lg={6} sm={12} className="d-flex justify-content-between tasks__btn-container">
+            <MDBRow className="d-flex justify-content-center">
+                <MDBCol md={6} lg={6} sm={6} className="d-flex justify-content-center tasks__btn-container">
                     {currentTask.givenAnswers && currentTask.givenAnswers.map((givenAnswer, key) => {
                         return (
                             <MDBBtn key={key}
-                                className="tasks__btn tasks__btn-options rounded-pill"
+                                className="tasks__btn tasks__btn-options rounded-pill mx-1"
                                 onClick={() => props.dispatch(recordUserAnswer(givenAnswer.type))}>
                                 {givenAnswer.word}
                             </MDBBtn>)

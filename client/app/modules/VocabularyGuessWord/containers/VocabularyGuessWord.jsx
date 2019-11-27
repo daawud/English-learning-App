@@ -1,7 +1,9 @@
 import './VocabularyGuessWord.scss';
-import { MDBBtn, MDBRow, MDBCol, MDBNavLink } from 'mdbreact';
+
+import { MDBBtn, MDBRow, MDBCol } from 'mdbreact';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import ProgressBar from '~/modules/VocabularyGuessWord/components/ProgressBar/ProgressBar.jsx';
 import VocabularyChooseWord
@@ -20,7 +22,7 @@ class VocabularyGuessWord extends Component {
         const currentTask = this.props.tasks[currentTaskIndex];
 
         return (
-            <>
+            <div className="tasks">
                 {!currentTask ? <Loader /> : (
                     <div className="m-0 tasks p-1">
                         <MDBRow className="m-0">
@@ -38,14 +40,14 @@ class VocabularyGuessWord extends Component {
                                 </div>
                             </MDBCol>
                             <MDBCol md={4} className="d-flex justify-content-center">
-                                <img src={currentTask.imgUrl} className="rounded-lg shadow border border-default"
+                                <img src={currentTask.imgUrl} className="rounded-lg shadow border border-default tasks__img"
                                     alt="картинка слова"/>
                             </MDBCol>
-                            <MDBCol md={4} className="d-flex justify-content-center align-items-center">
+                            <MDBCol md={4} className="d-flex justify-content-center align-items-center mt-3">
                                 {this.props.currentsUserAnswer === 'incorrect' &&
-                                <h4 className="bg-danger border border-white rounded p-2 text text-light">НЕ ПРАВИЛЬНО</h4>}
+                                <p className="bg-danger border border-white rounded p-2 text text-light">НЕ ПРАВИЛЬНО</p>}
                                 {this.props.currentsUserAnswer === 'correct' &&
-                                <h4 className="bg-success border border-white rounded p-2 text text-light">ПРАВИЛЬНО</h4>}
+                                <p className="bg-success border border-white rounded p-2 text text-light">ПРАВИЛЬНО</p>}
                             </MDBCol>
                         </MDBRow>
                         <MDBRow className="tasks__word-given my-4">
@@ -57,24 +59,27 @@ class VocabularyGuessWord extends Component {
                         {currentTask.taskId <=2
                             ? <VocabularyChooseWord currentTask={currentTask}/>
                             : 'тут будет модуль ИНПУТ'}
-                        <MDBRow>
-                            <MDBCol md={12} lg={12} sm={12} className="d-flex justify-content-between my-1 px-5">
-                                <MDBNavLink to="/">
+                        <MDBRow className="mx-4 my-3">
+                            <MDBCol md={12} lg={12} sm={12} className="d-flex justify-content-between ">
+                                <Link to="/" className="m-0 p-0">
                                     <MDBBtn className="tasks__btn tasks__btn-action rounded-pill">Выйти</MDBBtn>
-                                </MDBNavLink>
+                                </Link>
                                 <MDBBtn className="tasks__btn tasks__btn-action rounded-pill"
                                     onClick={() => this.props.dispatch(nextWord())}>Далее</MDBBtn>
                             </MDBCol>
                         </MDBRow>
                     </div>)}
-            </>
+            </div>
         );
     }
 
     componentDidMount() {
         // тут или в саге мы получаем tasks из БД
         // пока использую заглушку tasks из файла helpers.js
-        this.props.dispatch(getVocabularyWordsSet(tasks));
+        setTimeout(() => {
+            this.props.dispatch(getVocabularyWordsSet(tasks));
+        }, 1000);
+
     }
 }
 

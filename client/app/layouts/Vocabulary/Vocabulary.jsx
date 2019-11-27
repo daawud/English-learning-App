@@ -8,9 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 function Vocabulary() {
     return (
-        <>
-            < VocabularyGuessWord />
-        </>
+        < VocabularyGuessWord />
     );
 }
+
 export default withRouter(Vocabulary);

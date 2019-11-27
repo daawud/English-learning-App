@@ -3,6 +3,7 @@
 .tasks {
   background: $commonBackLayerPageColor;
   color: $mainFont;
+  min-height: 650px;
   &__heading {
     @include page-headings-text;
   }
@@ -11,26 +12,48 @@
     text-align: center;
     text-decoration-line: underline;
     color: $mainFont;
+    margin-bottom: rem(20);
   }
   &__word-given {
-    font-size: 36px;
-    line-height: 40px;
+    font-size: rem(36);
+    line-height: rem(40);
   }
-  &__btn {
-    @include common-button-style;
-    &-container {
-      flex-wrap: wrap;
-    }
-    &-options {
-      width: 229px;
-      height: 58px;
-      background: #000;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-    &-action {
-      width: 150px;
-      height: 60px;
+
+}
+
+@media screen and (max-width: $mdWidth) {
+  .tasks {
+    &__btn {
+      &__show-answer {
+        width: rem(200);
+      }
+      &-options {
+        width: rem(170);
+        height: rem(50);
+        font-size: 14px;
+      }
+      &-action {
+        width: rem(120);
+        height: rem(50);
+      }
     }
   }
+}
+
+@media screen and (max-width: $smWidth) {
+  .tasks {
+    min-height: 400px;
+    &__show-answer {
+      width: rem(200);
+    }
+    &__word-given {
+      font-size: rem(20);
+      line-height: rem(22);
+    }
+    &__img {
+      width: rem(200);
+      height: auto;
+    }
+  }
+
 }

@@ -1,0 +1,72 @@
+@import '~/assets/scss/resources.scss';
+
+.tasks {
+  background: $commonBackLayerPageColor;
+  color: $mainFont;
+  min-height: 650px;
+
+  &__heading {
+    @include page-headings-text;
+  }
+  &__transcription {
+    font-weight: 300;
+    margin-left: 0.7rem;
+  }
+  &__show-answer {
+    width: rem(120);
+    text-align: center;
+    text-decoration-line: underline;
+    color: $mainFont;
+    margin-bottom: rem(20);
+  }
+
+  &__word-given {
+    font-size: rem(36);
+    line-height: rem(40);
+  }
+
+}
+
+@media screen and (max-width: $mdWidth) {
+  .tasks {
+    min-height: 400px;
+
+    &__btn {
+      &__show-answer {
+        width: rem(200);
+      }
+
+      &-options {
+        width: rem(170);
+        height: rem(50);
+        font-size: 14px;
+      }
+
+      &-action {
+        width: rem(120);
+        height: rem(50);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $smWidth) {
+  .tasks {
+    min-height: 400px;
+
+    &__show-answer {
+      width: rem(200);
+    }
+
+    &__word-given {
+      font-size: rem(20);
+      line-height: rem(22);
+    }
+
+    &__img {
+      width: rem(200);
+      height: rem(134);
+    }
+  }
+
+}

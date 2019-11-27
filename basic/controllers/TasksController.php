@@ -15,6 +15,8 @@ class TasksController extends Controller
     public function actionTasks()
     {
         $task_types = Task_types::find()
+            ->andWhere(['answers_type' => true])
+            ->with('tasks')
             ->with('answers')
             ->all();
 

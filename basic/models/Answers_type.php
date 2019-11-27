@@ -1,26 +1,26 @@
 <?php
+
+
 namespace models;
 use Yii;
 use \yii\db\ActiveRecord;
+
 /**
- * This is the model class for table "tasks".
+ * This is the model class for table "answers_type".
  *
  * @property int $id
- * @property int $task_types_id
- * @property int points
+ * @property string $type
 
  */
-class Tasks extends \yii\db\ActiveRecord
+class Answers_type extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{tasks}}';
+        return '{{answers_type}}';
     }
-
-
 
 
 }

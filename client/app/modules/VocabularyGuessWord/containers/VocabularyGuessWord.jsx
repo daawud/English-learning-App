@@ -11,7 +11,6 @@ import VocabularyChooseWord
 import { tasks } from '~/modules/VocabularyGuessWord/helpers'
 import { getVocabularyWordsSet, nextWord } from '~/modules/VocabularyGuessWord/actions';
 import Loader from '~/libs/components/Loader/Loader';
-import divWithClassName from 'react-bootstrap/cjs/utils/divWithClassName';
 
 class VocabularyGuessWord extends Component {
     constructor(props) {

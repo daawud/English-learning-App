@@ -13,16 +13,12 @@ class m191113_155147_Rename_column_users extends Migration
      */
     public function safeUp()
     {
-        $sql = "ALTER TABLE `users` CHANGE COLUMN `id` `userId` VARCHAR(36) NOT NULL;";
-       
-        $this->execute($sql);
+        $this->renameColumn("users", "id", "userId");
     }
 
     
     public function safeDown()
     {
-        $sql = "ALTER TABLE `users` CHANGE COLUMN `userId` `id` VARCHAR(36) NOT NULL;";
-
-        $this->execute($sql);
+        $this->renameColumn("users", "userId", "id");
     }
 }

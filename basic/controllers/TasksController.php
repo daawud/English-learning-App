@@ -1,12 +1,12 @@
 <?php
 
 
-namespace controllers;
+namespace app\controllers;
 use models\Task_types;
 use models\Tasks;
-use yii\rest\Controller;
+use yii\rest\ActiveController;
 
-class TasksController extends Controller
+class TasksController extends ActiveController
 {
     /**
      *

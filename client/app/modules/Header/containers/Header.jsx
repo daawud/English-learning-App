@@ -1,18 +1,17 @@
 import './Header.scss';
-import { MDBBtn } from 'mdbreact';
+import { MDBBtn, MDBPopover, MDBPopoverBody } from 'mdbreact';
 
 import { MDBNavbar, MDBNavLink, MDBNavbarToggler, MDBCollapse } from 'mdbreact';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import HeaderUserPic from '~/modules/Header/components/HeaderUserPic/HeaderUserPic.jsx';
-import SignOutButton from '~/modules/Header/components/SignOutButton/SignOut.jsx';
 import AuthForm from '~/modules/Auth/containers/Auth.jsx';
 import RegisterForm from '~/modules/Register/containers/Register.jsx';
 import ForgotPasswordForm from '~/modules/ForgotPassword/containers/ForgotPassword.jsx';
-import { authFormToOpen } from '~/modules/Header/actions';
+import { authFormToOpen, headerGetData, userLogOut } from '~/modules/Header/actions';
+import Tokens from '~/libs/api/Tokens';
 
-import man from '~/assets/img/man.svg';
 import award from '~/assets/img/award_icon_header.svg';
 
 class Header extends Component {
@@ -22,10 +21,25 @@ class Header extends Component {
             isOpen: false,
         };
         this.toggleCollapse = this.toggleCollapse.bind(this);
+        this.logOutHandler = this.logOutHandler.bind(this);
     }
 
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
+    };
+
+    componentDidMount() {
+        // Проверка наличия токенов при первой загрузке компонента
+        const tokenLS = Tokens.getFromLocalStorage();
+
+        if (tokenLS['token']) {
+            this.props.dispatch(headerGetData());
+        }
+    };
+
+    logOutHandler(){
+        Tokens.removeTokensFromLocalStorage();
+        this.props.dispatch(userLogOut());
     };
 
     render() {
@@ -34,16 +48,27 @@ class Header extends Component {
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">
-                    <HeaderUserPic/>
+                    <MDBBtn>
+                        <div className="header-award d-flex justify-content-between align-items-center p-3"
+                             data-toggle="tooltip" title="Количество доступных очков для открытия новых уроков">
+                            <img src={award} alt="награда"/>
+                            <div className="header-award__score">{this.props.data.points}</div>
+                        </div>
+                    </MDBBtn>
                     <MDBNavLink to="/cabinet" title="Войти в личный кабинет">
                         <MDBBtn className="cabinet-btn">КАБИНЕТ</MDBBtn>
                     </MDBNavLink>
-                    <MDBNavLink to="#" title="Выбрать курс обучения">
-                        <div>
-                            <img src={man} alt="курс"/>
-                        </div>
-                    </MDBNavLink>
-                    <SignOutButton/>
+                    <HeaderUserPic userData={this.props.data}/>
+                    <MDBPopover placement="bottom" popover hover>
+                        <MDBNavLink to="/">
+                            <MDBBtn className="sign-out-btn" onClick={this.logOutHandler}>
+                                Выйти
+                            </MDBBtn>
+                        </MDBNavLink>
+                        <MDBPopoverBody>
+                            Выйти из личного кабинета
+                        </MDBPopoverBody>
+                    </MDBPopover>
                 </div>);
         } else {
             userBlock = (

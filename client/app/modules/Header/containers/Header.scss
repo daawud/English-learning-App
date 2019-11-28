@@ -15,7 +15,12 @@
   @include common-button-style;
   width: rem(200);
   height: rem(60);
+}
 
+.sign-out-btn {
+  @include common-button-style;
+  width: 120px;
+  height: 80px;
 }
 
 .cabinet-btn {

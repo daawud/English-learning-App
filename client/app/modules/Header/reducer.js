@@ -5,7 +5,7 @@ const initStore = {
     registerModalOpened: false,
     forgotPasswordModalOpened: false,
     userIsRegistered: false,
-    userIsLogged: false,
+    userIsLogged: true,
     isLoading: false,
     data: {},
 };

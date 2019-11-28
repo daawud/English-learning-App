@@ -1,0 +1,55 @@
+@import '~/assets/scss/resources.scss';
+
+.tasks {
+  &__btn {
+    @include common-button-style;
+
+    &-container {
+      flex-wrap: wrap;
+    }
+
+    &-options {
+      width: rem(229);
+      height: rem(58);
+      background: #000;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    &-action {
+      width: rem(150);
+      height: rem(60);
+    }
+  }
+}
+
+@media screen and (max-width: $mdWidth) {
+  .tasks {
+    &__btn {
+      &-options {
+        width: rem(170);
+        height: rem(50);
+        font-size: 14px;
+      }
+      &-action {
+        width: rem(120);
+        height: rem(50);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $smWidth) {
+  .tasks {
+    &__btn {
+      &-options {
+        width: rem(170);
+        height: rem(50);
+        font-size: 14px;
+      }
+      &-action {
+        width: rem(120);
+        height: rem(50);
+      }
+    }
+  }
+}

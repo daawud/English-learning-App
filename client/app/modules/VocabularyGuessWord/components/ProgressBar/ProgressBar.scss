@@ -1,0 +1,23 @@
+@import '~/assets/scss/resources.scss';
+
+.progress-scale {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  &__pill {
+    height: rem(15);
+    border: rem(3) solid #ffffff;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25)!important;
+    &-ongoing {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    &-upcoming {
+      background: #FFFFFF;
+    }
+    &-correct {
+      background: green;
+    }
+    &-incorrect {
+      background: red;
+    }
+  }
+}

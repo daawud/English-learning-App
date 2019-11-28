@@ -14,7 +14,7 @@ class CourseOptions extends Component {
             button_1: {
                 buttonText: 'Словарь',
                 popoverText: 'Добавь в свой словарь новые слова',
-                link: '',
+                link: '/vocabulary',
             },
             button_2: {
                 buttonText: 'Грамматика',

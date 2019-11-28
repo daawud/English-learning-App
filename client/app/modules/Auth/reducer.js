@@ -4,6 +4,7 @@ const initStore = {
     email: '',
     password: '',
     errorAuth: '',
+    isLoading: false,
 };
 
 const authFormReducer = (store = initStore, {type, payload}) => {
@@ -22,6 +23,14 @@ const authFormReducer = (store = initStore, {type, payload}) => {
 
         case aTypes.SEND_REQUEST_FOR_AUTH_REJECT: {
             return {...store, errorAuth: payload};
+        }
+
+        case aTypes.AUTH_MODAL_LOADING: {
+            return {...store, isLoading: true};
+        }
+
+        case aTypes.AUTH_MODAL_LOADING_REJECT: {
+            return {...store, isLoading: false};
         }
     }
     return store;

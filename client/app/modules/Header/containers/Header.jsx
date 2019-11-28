@@ -37,7 +37,7 @@ class Header extends Component {
         }
     };
 
-    logOutHandler(){
+    logOutHandler() {
         Tokens.removeTokensFromLocalStorage();
         this.props.dispatch(userLogOut());
     };
@@ -72,9 +72,7 @@ class Header extends Component {
                 </div>);
         } else {
             userBlock = (
-                <MDBBtn className="sign-in-btn"
-                        data-toggle="tooltip"
-                        title="Войти в учетную запись"
+                <MDBBtn className="sign-in-btn" data-toggle="tooltip" title="Войти в учетную запись"
                         onClick={() => this.props.dispatch(authFormToOpen())}>
                     Войти
                 </MDBBtn>

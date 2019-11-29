@@ -15,12 +15,17 @@
   @include common-button-style;
   width: rem(200);
   height: rem(60);
+}
 
+.sign-out-btn {
+  @include common-button-style;
+  width: 120px;
+  height: 80px;
 }
 
 .cabinet-btn {
   @include common-button-style;
-  width: 180px;
+  width: 150px;
   height: 80px;
 }
 
@@ -30,7 +35,7 @@
 
 .logo-block {
   margin-top: -1.5%;
-  margin-left: 5rem;
+  margin-left: 1rem;
 }
 
 
@@ -57,9 +62,6 @@
     height: 40px;
     font-size: 18px;
     line-height: 22px;
-  }
-  .buttons-set {
-    justify-content: center!important;
   }
   .logo-block {
     margin-left: 1rem;

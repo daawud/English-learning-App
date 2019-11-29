@@ -70,3 +70,13 @@ export function headerGetData() {
         type: aTypes.HEADER_GET_DATA,
     };
 }
+
+/**
+ * Функция отвечающая за выход из личного кабинета
+ * @returns {Object} type - название типа action
+ */
+export function userLogOut() {
+    return {
+        type: aTypes.AUTH_USER_IS_LOGOUT,
+    };
+}

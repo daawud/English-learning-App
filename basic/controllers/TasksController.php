@@ -2,8 +2,11 @@
 
 
 namespace app\controllers;
-use models\Task_types;
-use models\Tasks;
+use app\models\TaskTypes;
+use app\models\Tasks;
+use app\models\Words;
+use app\models\Answers;
+use app\models\AnswersType;
 use yii\rest\ActiveController;
 
 class TasksController extends ActiveController
@@ -12,15 +15,11 @@ class TasksController extends ActiveController
      *
      * @return string
      */
-    public function actionTasks()
+    public function actionIndex()
     {
-        $task_types = Task_types::find()
-            ->andWhere(['answers_type' => true])
-            ->with('tasks')
-            ->with('answers')
+        $task_types = TaskTypes::find()
             ->all();
 
-        return $this->renderTask_types($task_types);
     }
 
 

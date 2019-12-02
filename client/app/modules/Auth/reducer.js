@@ -32,6 +32,10 @@ const authFormReducer = (store = initStore, {type, payload}) => {
         case aTypes.AUTH_MODAL_LOADING_REJECT: {
             return {...store, isLoading: false};
         }
+
+        case aTypes.AUTH_MODAL_CLEAR_ERROR: {
+            return {...store, errorAuth: ''};
+        }
     }
     return store;
 };

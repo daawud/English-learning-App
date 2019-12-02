@@ -1,0 +1,24 @@
+@import '~/assets/scss/resources.scss';
+
+.notification {
+  background: $commonButtonBackGroundColor;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-Index: 9999;
+  min-width: 300px;
+}
+
+.notification-title {
+  color: $mainFont;
+  background: $commonButtonBackGroundColor;
+}
+
+.notification-close {
+  color: $mainFont;
+  background: $commonButtonBackGroundColor;
+}
+
+.notification-close:hover {
+  color: $lightSecondaryFont;
+}

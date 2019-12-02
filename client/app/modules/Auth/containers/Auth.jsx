@@ -5,15 +5,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { authFormToClose, registerFormOpen, forgotPasswordModalToOpen } from '~/modules/Header/actions';
-import { sendRequestForAuth } from '~/modules/Auth/actions';
+import { sendRequestForAuth, authClearError } from '~/modules/Auth/actions';
 import AuthEmail from '~/modules/Auth/components/AuthEmail.jsx'
 import AuthPassword from '~/modules/Auth/components/AuthPassword.jsx';
-import SpinnerPage from "~/libs/components/Loader/Loader";
+import Notification from "~/libs/components/Notification/Notification.jsx";
 
 class Auth extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        // Очищение ощибок из store, чтобы при повторном открытии модельного окна не показывались старые ошибки
+        this.props.dispatch(authClearError());
     }
 
     /**
@@ -32,10 +37,10 @@ class Auth extends Component {
                     <MDBModalBody className="forms-modal__body">
                     <div className="forms__close" onClick={() => this.props.dispatch(authFormToClose())}>&times;</div>
                         <form onSubmit={this.handleSubmit} className="text-center forms">
+                            {this.props.errorAuth && <Notification className="forms-modal__body" errMessage={this.props.errorAuth}/>}
                             <p className="forms__heading">Войти в учетную запись</p>
                             <div className="d-flex justify-content-center">
                                 <div className="forms-fields text-left">
-                                    {this.props.isLoading ? <SpinnerPage/> : null}
                                     <AuthEmail value={this.props.email}/>
                                     <AuthPassword value={this.props.password}/>
                                     <MDBBtn

@@ -16,7 +16,6 @@ function* sendRequestGetData() {
 
         const response = yield call(fetchData, HEADER_API, param);
         response.age = calcAge(response.birth_date);
-        console.log(response.age);
 
         if (response.err) {
             throw new Error(response.err.errors);

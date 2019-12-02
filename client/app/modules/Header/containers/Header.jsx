@@ -47,7 +47,7 @@ class Header extends Component {
 
     render() {
         let userBlock;
-
+        console.log(this.props.isLoading);
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">
@@ -76,7 +76,7 @@ class Header extends Component {
         } else {
             userBlock = (
                 <MDBBtn className="sign-in-btn" data-toggle="tooltip" title="Войти в учетную запись"
-                        onClick={() => this.props.dispatch(authFormToOpen())} disabled={this.state.tokensExist}>
+                        onClick={() => this.props.dispatch(authFormToOpen())} disabled={this.state.tokensExist || this.props.isLoading}>
                     Войти
                 </MDBBtn>
             );

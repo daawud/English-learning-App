@@ -36,7 +36,7 @@ export function sendRequestForAuth(email, password) {
 }
 
 /**
- * Функция обработки изменения данных в поле email по onChange
+ * Функция очищает предыдущие ошибки в store
  * @returns {Object} type - название типа action
  */
 export function authClearError() {

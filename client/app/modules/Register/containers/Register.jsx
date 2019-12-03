@@ -1,5 +1,5 @@
 import './Register.scss';
-import { MDBModal, MDBModalBody, MDBBtn, MDBCloseIcon, MDBContainer } from 'mdbreact';
+import { MDBModal, MDBModalBody, MDBBtn, MDBContainer } from 'mdbreact';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -39,10 +39,9 @@ class Register extends Component {
                 <MDBContainer className="container-fluid">
                     <MDBModal isOpen toggle={() => this.props.dispatch(registerFormClose())} className="forms-modal">
                         <MDBModalBody className="forms-modal__body">
-                            <div className="forms__close"
-                                onClick={() => this.props.dispatch(registerFormClose())}>&times;</div>
+                            <div className="forms__close" onClick={() => this.props.dispatch(registerFormClose())}>&times;</div>
+                            {this.props.errorRegister && <Notification className="forms-modal__body" errMessage={this.props.errorRegister}/>}
                             <form onSubmit={this.handleSubmit} className="text-center forms">
-                                {this.props.errorRegister && <Notification className="forms-modal__body" errMessage={this.props.errorRegister}/>}
                                 <p className="forms__heading">Зарегистрироваться </p>
                                 <div className="d-flex justify-content-center">
                                     <div className="forms-fields text-left">

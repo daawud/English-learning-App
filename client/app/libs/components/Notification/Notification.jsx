@@ -1,14 +1,14 @@
 import React from "react";
-import { MDBNotification, MDBIcon } from "mdbreact";
+import { MDBNotification } from "mdbreact";
 import './Notification.scss';
 
 export default function Notification(props) {
     return (
         <MDBNotification className="notification"
-                         // autohide={4000}
+                         autohide={4000}
                          show
                          fade
-                         icon="fas fa-bell"
+                         icon="bell"
                          iconClassName="notification-icon"
                          closeClassName="notification-close"
                          titleClassName="notification-title"

@@ -36,8 +36,8 @@ class Auth extends Component {
                 <MDBModal isOpen toggle={() => this.props.dispatch(authFormToClose())} className="forms-modal">
                     <MDBModalBody className="forms-modal__body">
                     <div className="forms__close" onClick={() => this.props.dispatch(authFormToClose())}>&times;</div>
+                        {this.props.errorAuth && <Notification className="forms-modal__body" errMessage={this.props.errorAuth}/>}
                         <form onSubmit={this.handleSubmit} className="text-center forms">
-                            {this.props.errorAuth && <Notification className="forms-modal__body" errMessage={this.props.errorAuth}/>}
                             <p className="forms__heading">Войти в учетную запись</p>
                             <div className="d-flex justify-content-center">
                                 <div className="forms-fields text-left">

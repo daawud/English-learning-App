@@ -88,7 +88,7 @@ class Header extends Component {
                     <MDBNavLink className="logo-block p-0" to="/"><span className="logo-text">eLA</span></MDBNavLink>
                     <MDBNavbarToggler onClick={this.toggleCollapse}/>
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                        <div className="buttons-set container-fluid d-flex justify-content-center mr-auto">
+                        <div className="buttons-set container-fluid d-flex justify-content-end mr-auto">
                             {userBlock}
                         </div>
                     </MDBCollapse>

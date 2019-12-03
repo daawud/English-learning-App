@@ -2,60 +2,93 @@
 
 .top-block {
   position: relative;
-  overflow: hidden;
-
+  &__content {
+    position: absolute;
+    top: 12.3%;
+    left: 0;
+    &-text {
+      margin-left: 325px;
+    }
+  }
   &__heading {
     font-family: $mainFontBold;
     font-weight: 900;
     font-size: rem(50);
     line-height: rem(59);
-    color: #62CEBB;
+    color: $mainPageText;
     text-shadow: 0 rem(10) rem(10) rgba(0, 0, 0, 0.25);
+
     &-small {
-      display: block;
       padding: 0;
-      margin: -4% 0 0 0;
-      font-size: 20px;
+      margin: -2% 0 0 0;
+      font-size: rem(24);
+      line-height: rem(28);
     }
   }
-
   &__btn {
+    margin-left: 870px;
     &-block {
       @include common-button-style;
       width: rem(300);
     }
   }
+  &__img {
+    width: 100%;
+  }
 }
 
-.clearfix__block {
-  height: rem(105);
+// локальный миксин - не применим для других страниц
+@mixin clear-margin {
+  .top-block {
+    &__content {
+      padding: 2rem;
+      top: 0;
+      &-text {
+        margin-left: 0;
+      }
+    }
+    &__btn {
+      margin: 3rem 0 0 0;
+    }
+    &__img {
+      height: 668px;
+    }
+  }
+}
+
+@media screen and (orientation:landscape) and (max-width: $xlWidth) {
+  @include  clear-margin
+}
+
+@media screen and (orientation:landscape) and (max-width: $lgWidth) {
+  @include  clear-margin;
+}
+
+@media screen and (max-width: $xlWidth) {
+  @include  clear-margin;
 }
 
 @media screen and (max-width: $lgWidth) {
-  .clearfix__block {
-    height: rem(55);
-  }
+  @include  clear-margin;
+}
 
-}
 @media screen and (max-width: $mdWidth) {
-  .clearfix__block {
-    height: rem(45);
-  }
-  .top-block__btn {
-    justify-content: end;
-  }
+  @include  clear-margin;
 }
+
 @media screen and (max-width: $smWidth) {
-  .clearfix__block {
-    display: none;
-  }
+  @include  clear-margin;
   .top-block {
-    &__content {
-      margin: 2rem;
+    overflow: hidden;
+    &__img {
+      height: 568px;
+      width: inherit;
+      margin-left: -400px;
     }
     &__heading {
       font-size: rem(30);
       line-height: rem(30);
+
       &-small {
         display: block;
         padding: 0;
@@ -63,19 +96,16 @@
         font-size: rem(15);
       }
     }
+
     &__btn {
+      position: relative;
       margin-top: 2rem;
-      justify-content: center!important;
       &-block {
         width: rem(220);
         height: rem(50);
         font-size: rem(18);
         line-height: rem(25);
       }
-
     }
   }
-}
-@media screen and (max-width: $xsWidth) {
-  font-size: $xsMainFontSize;
 }

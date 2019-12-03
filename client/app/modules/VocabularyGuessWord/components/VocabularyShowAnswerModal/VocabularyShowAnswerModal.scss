@@ -1,0 +1,15 @@
+@import '~/assets/scss/resources.scss';
+
+.vocabulary-modal {
+  &__text {
+    font-size: 42px;
+    line-height: 46px;
+  }
+
+  &__btn {
+    @include common-button-style;
+    width: rem(130);
+    height: rem(50);
+    font-size: rem(18);
+  }
+}

@@ -10,9 +10,11 @@ import VocabularyChooseWord
     from '~/modules/VocabularyGuessWord/components/VocabularyChooseWord/VocabularyChooseWord.jsx';
 import VocabularyInputWord
     from '~/modules/VocabularyGuessWord/components/VocabularyInputWord/VocabularyInputWord.jsx';
-
+import VocabularyShowAnswerModal
+    from '~/modules/VocabularyGuessWord/components/VocabularyShowAnswerModal/VocabularyShowAnswerModal.jsx';
 import { tasks } from '~/modules/VocabularyGuessWord/helpers'
-import { getVocabularyWordsSet, nextWord, clearVocabulary } from '~/modules/VocabularyGuessWord/actions';
+import { getVocabularyWordsSet, nextWord, clearVocabulary,
+    vocabularyShowAnswerModal, vocabularyCloseAnswerModal } from '~/modules/VocabularyGuessWord/actions';
 import Loader from '~/libs/components/Loader/Loader';
 
 class VocabularyGuessWord extends Component {
@@ -26,6 +28,7 @@ class VocabularyGuessWord extends Component {
 
         return (
             <div className="tasks">
+                {this.props.showAnswerModal && <VocabularyShowAnswerModal currentTask={currentTask}/>}
                 {!currentTask ? <Loader/> :
                     <div className="m-0 p-1">
                         <MDBRow className="mx-2">
@@ -38,7 +41,8 @@ class VocabularyGuessWord extends Component {
                         <MDBRow className="m-0">
                             <MDBCol md={4} lg={4} sm={false}
                                 className="d-flex justify-content-center align-items-center">
-                                <MDBBtn className="tasks__show-answer">
+                                <MDBBtn className="tasks__show-answer" 
+                                    onClick={() => this.props.dispatch(vocabularyShowAnswerModal())}>
                                     ПОКАЗАТЬ ОТВЕТ
                                 </MDBBtn>
                             </MDBCol>

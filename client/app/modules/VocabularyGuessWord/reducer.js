@@ -44,6 +44,14 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
             return {...store, userInputTypedAnswer: payload};
         }
 
+        case aTypes.VOCABULARY_SHOW_ANSWER_MODAL: {
+            return {...store, showAnswerModal: true};
+        }
+
+        case aTypes.VOCABULARY_CLOSE_ANSWER_MODAL: {
+            return {...store, showAnswerModal: false};
+        }
+
         case aTypes.VOCABULARY_GO_TO_NEXT_WORD: {
             if ((store.currentTaskIndex + 1) < store.tasks.length) {
                 const tasks = onNextChanges(store);

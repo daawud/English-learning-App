@@ -5,26 +5,22 @@ import MainPage from '~/layouts/MainPage/MainPage.jsx';
 import Vocabulary from '~/layouts/Vocabulary/Vocabulary.jsx';
 import Header from '~/modules/Header/containers/Header.jsx';
 import Footer from '~/modules/Footer/Footer.jsx';
-import PageNotFound from '~/modules/PageNotFound/PageNotFound.jsx';
 
 
-export default function Routes() {
+function Routes() {
     return (
         <div className="container">
             <Header/>
-            <div className="main-container">
-                <Switch>
-                    <Redirect exact from="/" to="/home" />
-                    <Route exact path="/home/dashboard"><MainPage/></Route>
-                    <Route exact path="/home/test"><MainPage/></Route>
-                    <Route exact path="/home/training"><MainPage/></Route>
-                    <Route exact path="/home/study"><MainPage/></Route>
-                    <Route exact path="/home"><MainPage/></Route>
-                    <Route exact path="/vocabulary"><Vocabulary/></Route>
-                    <Route path="/*"><PageNotFound/></Route>
-                </Switch>
-            </div>
+            <Switch>
+                <Redirect exact from="/" to="/home" />
+                <Route path="/home/:page" children={<MainPage />}/>
+                <Route path="/home" children={<MainPage />}/>
+                <Route path="/vocabulary/:type" children={<Vocabulary />}/>
+                <Route path="/vocabulary" children={<Vocabulary />}/>
+            </Switch>
             <Footer/>
         </div>
     );
 }
+
+export default Routes;

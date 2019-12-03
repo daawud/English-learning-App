@@ -8,7 +8,7 @@ import { vocabularyCloseAnswerModal } from '~/modules/VocabularyGuessWord/action
 const VocabularyShowAnswerModal = (props) => {
     return (
         <MDBContainer className="container-fluid">
-            <MDBModal isOpen toggle={() => props.dispatch(vocabularyCloseAnswerModal())} className="">
+            <MDBModal isOpen toggle={() => props.dispatch(vocabularyCloseAnswerModal())}>
                 <MDBModalBody className="position-relative ">
                     <div className="forms__close"
                         onClick={() => props.dispatch(vocabularyCloseAnswerModal())}>&times;</div>

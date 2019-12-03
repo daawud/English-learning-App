@@ -195,6 +195,7 @@ footer {
     }
 
     &__text {
+      display: inherit;
       flex-direction: column;
       justify-content: space-evenly;
 

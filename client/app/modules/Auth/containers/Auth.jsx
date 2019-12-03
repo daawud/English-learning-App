@@ -1,5 +1,5 @@
 import './Auth.scss';
-import { MDBModal, MDBModalBody, MDBBtn, MDBContainer } from 'mdbreact';
+import {MDBModal, MDBModalBody, MDBBtn, MDBContainer, MDBIcon} from 'mdbreact';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -51,6 +51,7 @@ class Auth extends Component {
                             </div>
                             <p className="forms__link" onClick={() => this.props.dispatch(forgotPasswordModalToOpen())}>Восстановить
                                 пароль</p>
+                            <MDBIcon icon="bell" />
                             <p className="forms__text">Нет учетной записи?&nbsp;
                                 <span className="forms__link" onClick={() => this.props.dispatch(registerFormOpen())}> Зарегистрируйся</span>
                             </p>

@@ -161,3 +161,13 @@ export function sendRequestForRegister(name, email, password) {
         payload: {name, email, password},
     }
 }
+
+/**
+ * Функция обработки изменения данных в поле email по onChange
+ * @returns {Object} type - название типа action
+ */
+export function registerClearError() {
+    return {
+        type: aTypes.REGISTER_MODAL_CLEAR_ERROR,
+    };
+}

@@ -18,6 +18,7 @@ function* sendRequestForRegister(action) {
         // извлечь из события name, email, password
         param.body = JSON.stringify(action.payload);
 
+        yield put({type: aTypes.REGISTER_MODAL_CLEAR_ERROR});
         yield put({type: aTypes.REGISTER_MODAL_LOADING});
         const response = yield call(fetchData, `${URL_AUTH}/register`, param);
 
@@ -42,7 +43,8 @@ function* sendRequestForRegister(action) {
         yield put({
             type: aTypes.SEND_REQUEST_FOR_REGISTER_REJECT,
             payload: err.message,
-        })
+        });
+        yield put({type: aTypes.REGISTER_MODAL_LOADING_REJECT});
     }
 }
 

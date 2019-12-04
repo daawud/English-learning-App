@@ -12,7 +12,7 @@ function HeaderUserPic(props) {
             <div>
                 <MDBPopoverHeader>Пользователь:</MDBPopoverHeader>
                 <MDBPopoverBody>
-                    <strong>Имя: </strong>{props.userData.first_name}<br/>
+                    <strong>Имя: </strong>{props.userData.firstName}<br/>
                     <strong>Возраст: </strong>{props.userData.age}<br/>
                 </MDBPopoverBody>
             </div>

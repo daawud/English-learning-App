@@ -2,6 +2,7 @@
 
 .material-show {
   background-color: $commonBackLayerPageColor;
+  min-height: 853px;
   &__heading {
     @include page-headings-text;
   }

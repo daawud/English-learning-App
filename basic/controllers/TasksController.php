@@ -2,14 +2,10 @@
 
 
 namespace app\controllers;
-use app\models\TaskTypes;
-use app\models\Tasks;
-use app\models\Words;
-use app\models\Answers;
-use app\models\AnswersType;
-use yii\rest\ActiveController;
+use yii\web\Controller;
 
-class TasksController extends ActiveController
+
+class TasksController extends Controller
 {
     /**
      *
@@ -17,9 +13,9 @@ class TasksController extends ActiveController
      */
     public function actionIndex()
     {
-        $task_types = TaskTypes::find()
-            ->all();
+        $response = \Yii::$app->tasks->getTask(81);
 
+        return $response;
     }
 
 

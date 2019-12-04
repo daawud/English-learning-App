@@ -30,6 +30,9 @@ $config = [
             'class' => '',
             'key' => 'dktlb74jfvmtu3od8rhvn453bdey3a23'
         ],
+        'tasks' => [
+            'class'=> 'app\components\TaskComponent',
+            ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

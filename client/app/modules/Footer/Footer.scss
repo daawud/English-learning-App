@@ -1,7 +1,21 @@
 @import '~/assets/scss/resources.scss';
 
-.footer-ela {
+footer {
+  padding: 0;
+  margin: 0;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.container-row {
   min-height: 230px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
 }
 
 .layer {
@@ -10,38 +24,68 @@
   box-shadow: rem(10) 0 rem(10) rgba(0, 0, 0, 0.25);
   border-radius: 0 rem(20) 0 0;
   z-index: 0;
-  &-4 {
-    position: absolute;
+  display: flex;
+  align-items: center;
+
+  &-social {
     right: 0;
     top: 0;
     height: 230px;
+    margin: 0;
+    padding: 0;
   }
-  &-3 {
-    position: absolute;
+
+  &-links-2 {
     height: 220px;
     left: 0;
     bottom: 0;
     z-index: 1;
+    justify-content: flex-end;
+    flex-basis: 75%;
+    max-width: 75%;
   }
-  &-2 {
-    position: absolute;
+
+  &-links-1 {
     height: 210px;
     left: 0;
     bottom: 0;
     z-index: 2;
+    justify-content: flex-end;
+    flex-basis: 50%;
+    max-width: 50%;
   }
-  &-1 {
-    position: absolute;
+
+  &-logo {
     height: 200px;
     left: 0;
     bottom: 0;
     z-index: 3;
   }
+
+  &-social, &-links-2, &-links-1, &-1 {
+    position: absolute;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &-links-2, &-links-1, &-1 {
+    padding: 0 15px;
+  }
+
+  &-social, &-1 {
+    justify-content: center;
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+
   &__text {
     height: rem(125);
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0;
+    margin-right: 1rem;
+
     a {
       text-decoration: none;
       font-family: $mainFontBold;
@@ -49,6 +93,10 @@
       line-height: rem(28);
       text-transform: uppercase;
       color: $lightSecondaryFont;
+
+      #terms-policy {
+        width: 145px;
+      }
     }
   }
 }
@@ -57,9 +105,13 @@
   position: relative;
   width: 161px;
   height: 161px;
-  &__crest {
+  margin: 0;
+  padding: 0;
+
+  &__cross {
     position: absolute;
   }
+
   &__facebook {
     position: absolute;
     top: 7px;
@@ -94,15 +146,22 @@
   text-transform: initial;
 }
 
-/* ЭТОТ блок стилей изменится после выхода мобильной версии макета - пока оставляем так для теста функционала */
-
-@media screen and (max-width: $lgWidth) {
+@media screen and (max-width: $mdWidth) {
   .layer {
-    &__text {
-      a {
-        font-size: rem(18);
-        line-height: rem(20);
-      }
+    &-social, &-links-2, &-links-1, &-logo {
+      flex-basis: 50%;
+      max-width: 50%;
+      position: relative;
+      z-index: inherit;
+      height: 185px;
+    }
+
+    &-links-2, &-links-1 {
+      justify-content: center;
+    }
+
+    &-logo, &-links-2 {
+      border-radius: 0;
     }
   }
   .footer-logo {
@@ -112,43 +171,39 @@
 }
 
 @media screen and (max-width: $smWidth) {
-    .footer-logo {
-    font-size: rem(76);
-    line-height: rem(76);
-  }
   .layer {
-    &-4, &-3, &-2, &-1 {
-      position: relative;
-      z-index: inherit;
-      height: 180px;
-    }
-    &-3, &-2 {
-      justify-content: center!important;
-    }
-    &-4 {
-      height: 230px;
-    }
-    &__text {
-      a {
-        font-size: rem(18);
-        line-height: rem(20);
-      }
-    }
-  }
-}
+    border-radius: rem(20) rem(20) 0 0;
 
-@media screen and (max-width: $xsWidth) {
-  .layer {
-    &-4, &-3, &-2, &-1 {
-      position: relative;
-      z-index: inherit;
-      height: 180px;
+    &-social, &-links-2, &-links-1, &-logo {
+      flex-basis: 100%;
+      max-width: 100%;
+      height: 185px;
     }
-    &-3, &-2 {
-      justify-content: center!important;
+
+    &-links-2, &-links-1 {
+      height: 95px;
+      justify-content: flex-start;
     }
-    &-4 {
-      height: 230px;
+
+    &-links-2 {
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    &-logo {
+      order: 1;
+    }
+
+    &__text {
+      display: inherit;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      a {
+        #terms-policy {
+          width: 286px;
+        }
+      }
     }
   }
 }

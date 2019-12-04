@@ -1,4 +1,4 @@
-import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
+import { call, put, fork, takeEvery } from 'redux-saga/effects';
 
 import aType from '~/modules/VocabularyGuessWord/actionTypes';
 import { URI_RANDOM_TASKS } from './api';
@@ -11,7 +11,6 @@ const fetchParam = {
 function* fetchVocabularyGuessWord() {
     try {
         const param = {...fetchParam};
-
         const response = yield call(fetchData, URI_RANDOM_TASKS, param);
 
         if (response.err) {
@@ -19,7 +18,7 @@ function* fetchVocabularyGuessWord() {
         }
 
         yield put({
-            type: aType.GET_VOCABULARY_WORDS_SET_FULFILD,
+            type: aType.GET_VOCABULARY_WORDS_SET_FULFILLED,
             payload: response,
         });
 

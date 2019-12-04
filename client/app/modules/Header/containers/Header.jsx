@@ -58,7 +58,7 @@ class Header extends Component {
                             <div className="header-award__score">{this.props.data.points}</div>
                         </div>
                     </MDBBtn>
-                    <MDBNavLink to="/cabinet" title="Войти в личный кабинет">
+                    <MDBNavLink to="/#" title="Войти в личный кабинет" onClick={e => e.preventDefault()}>
                         <MDBBtn className="cabinet-btn">КАБИНЕТ</MDBBtn>
                     </MDBNavLink>
                     <HeaderUserPic userData={this.props.data}/>

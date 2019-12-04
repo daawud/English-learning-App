@@ -36,13 +36,13 @@ const Footer = (props) => {
                     <div className="layer layer-social">
                         <div className="footer-icons">
                             <img className="footer-icons__cross" src={crossImg} alt=""/>
-                            <a href="https://www.facebook.com/"><img className="footer-icons__facebook" src={facebookImg}
+                            <a href="https://www.facebook.com/" target="_blank"><img className="footer-icons__facebook" src={facebookImg}
                                                                      alt="Facebook"/></a>
-                            <a href="https://www.youtube.com/"><img className="footer-icons__youtube" src={youtubeImg}
+                            <a href="https://www.youtube.com/" target="_blank"><img className="footer-icons__youtube" src={youtubeImg}
                                                                     alt="Youtube"/></a>
-                            <a href="https://vk.com/"><img className="footer-icons__vkontakte" src={vkontakteImg}
+                            <a href="https://vk.com/" target="_blank"><img className="footer-icons__vkontakte" src={vkontakteImg}
                                                            alt="Vkontakte"/></a>
-                            <a href="https://www.instagram.com/"><img className="footer-icons__instagram" src={instagramImg}
+                            <a href="https://www.instagram.com/" target="_blank"><img className="footer-icons__instagram" src={instagramImg}
                                                                       alt="Instagram"/></a>
                         </div>
                     </div>

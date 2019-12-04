@@ -17,13 +17,13 @@ const initStore = {
 
 const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
     switch (type) {
-        case aTypes.GET_VOCABULARY_WORDS_SET_FULFILD: {
+        case aTypes.GET_VOCABULARY_WORDS_SET_FULFILLED: {
             /* довавляем ключ и статус каждому слову для сортировки прогресс-бара */
             const tasks = payload.map((task, key) => {
                 return {...task, id: key, status: key === 0 ? 'ongoing' : 'upcoming'}
             });
 
-            return {...store, ...initStore, tasks: [...tasks]};
+            return {...store, ...initStore, tasks};
         }
 
         case aTypes.CLEAR_VOCABULARY: {

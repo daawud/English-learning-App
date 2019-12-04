@@ -23,6 +23,7 @@ class VocabularyGuessWord extends Component {
     render() {
         const currentTaskIndex = this.props.currentTaskIndex;
         const currentTask = this.props.tasks[currentTaskIndex];
+        const defaultImgSrc = 'https://placehold.it/300x200';
 
         return (
             <div className="tasks d-flex justify-content-center align-items-center">
@@ -45,7 +46,7 @@ class VocabularyGuessWord extends Component {
                                 </MDBBtn>
                             </MDBCol>
                             <MDBCol md={4} className="d-flex justify-content-center">
-                                <img src={currentTask.imgUrl ? currentTask.imgUrl : 'https://placehold.it/300x200'}
+                                <img src={currentTask.imgUrl ? currentTask.imgUrl : defaultImgSrc}
                                     className="rounded-lg shadow border border-default tasks__img"
                                     alt="Картинка текущего слова"/>
                             </MDBCol>

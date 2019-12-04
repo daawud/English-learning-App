@@ -1,4 +1,4 @@
-import { call, put, fork, takeEvery } from 'redux-saga/effects';
+import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 
 import aTypes from "~/modules/Header/actionTypes";
 import { fetchData } from '~/libs/api/api';
@@ -14,26 +14,31 @@ function* sendRequestGetData() {
     try {
         const param = {...fetchParam, ...getAuthHeader()};
 
+        yield put({type: aTypes.HEADER_LOADING_DATA});
         const response = yield call(fetchData, HEADER_API, param);
         response.age = calcAge(response.birth_date);
-        console.log(response.age);
 
         if (response.err) {
             throw new Error(response.err.errors);
         }
 
+        yield put({type: aTypes.HEADER_LOADING_DATA_REJECT});
         yield put({
             type: aTypes.HEADER_GET_DATA_FULFILD,
             payload: response,
         });
     } catch (err) {
         if (err.message === 'TypeError: Failed to fetch') {
-            yield put({type: aTypes.AUTH_USER_IS_LOGOUT});
+            yield all([
+                yield put({type: aTypes.AUTH_USER_IS_LOGOUT}),
+                yield put({type: aTypes.HEADER_LOADING_DATA_REJECT}),
+            ]);
         } else {
             yield put({
                 type: aTypes.SEND_REFRESH_TOKEN_TO_AUTH,
                 payload: aTypes.HEADER_GET_DATA,
             });
+            yield put({type: aTypes.HEADER_LOADING_DATA_REJECT});
         }
     }
 }

@@ -19,6 +19,7 @@ class Header extends Component {
         super(props);
         this.state = {
             isOpen: false,
+            tokensExist: false,
         };
         this.toggleCollapse = this.toggleCollapse.bind(this);
         this.logOutHandler = this.logOutHandler.bind(this);
@@ -33,6 +34,7 @@ class Header extends Component {
         const tokenLS = Tokens.getFromLocalStorage();
 
         if (tokenLS['token']) {
+            this.setState({tokensExist: true});
             this.props.dispatch(headerGetData());
         }
     };
@@ -40,11 +42,12 @@ class Header extends Component {
     logOutHandler() {
         Tokens.removeTokensFromLocalStorage();
         this.props.dispatch(userLogOut());
+        this.setState({tokensExist: false});
     };
 
     render() {
         let userBlock;
-
+        console.log(this.props.isLoading);
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">
@@ -73,7 +76,7 @@ class Header extends Component {
         } else {
             userBlock = (
                 <MDBBtn className="sign-in-btn" data-toggle="tooltip" title="Войти в учетную запись"
-                        onClick={() => this.props.dispatch(authFormToOpen())}>
+                        onClick={() => this.props.dispatch(authFormToOpen())} disabled={this.state.tokensExist || this.props.isLoading}>
                     Войти
                 </MDBBtn>
             );

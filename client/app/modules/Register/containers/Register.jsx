@@ -39,14 +39,13 @@ class Register extends Component {
                                 <p className="forms__heading">Зарегистрироваться </p>
                                 <div className="d-flex justify-content-center">
                                     <div className="forms-fields text-left">
-                                        {this.props.isLoading ? <SpinnerPage /> : null}
                                         <NameInput value={this.props.name} error={this.props.nameValidationError} />
                                         <EmailInput value={this.props.email} error={this.props.emailValidationError} />
                                         <PasswordInput value={this.props.password} error={this.props.passwordValidationError} />
                                         <PasswordRepeatInput value={this.props.passwordRepeat} error={this.props.passwordRepeatValidationError} />
                                         <MDBBtn
                                             className="forms__btn btn rounded-pill"
-                                            type="submit"> СОЗДАТЬ
+                                            type="submit">{this.props.isLoading ? <SpinnerPage /> : 'СОЗДАТЬ'}
                                         </MDBBtn>
                                     </div>
                                 </div>

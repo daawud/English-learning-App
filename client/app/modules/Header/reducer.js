@@ -56,6 +56,14 @@ const headerReducer = (store = initStore, {type, payload}) => {
         case aTypes.HEADER_GET_DATA_FULFILD: {
             return { ...store, userIsLogged: true, data: payload};
         }
+
+        case aTypes.HEADER_LOADING_DATA: {
+            return {...store, isLoading: true};
+        }
+
+        case aTypes.HEADER_LOADING_DATA_REJECT: {
+            return {...store, isLoading: false};
+        }
     }
     return store;
 };

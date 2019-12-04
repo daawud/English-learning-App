@@ -35,12 +35,11 @@ class Auth extends Component {
                             <p className="forms__heading">Войти в учетную запись</p>
                             <div className="d-flex justify-content-center">
                                 <div className="forms-fields text-left">
-                                    {this.props.isLoading ? <SpinnerPage/> : null}
                                     <AuthEmail value={this.props.email}/>
                                     <AuthPassword value={this.props.password}/>
                                     <MDBBtn
                                         className="forms__btn btn btn-block border-white rounded-pill"
-                                        type="submit"> ВОЙТИ
+                                        type="submit">{this.props.isLoading ? <SpinnerPage /> : 'ВОЙТИ'}
                                     </MDBBtn>
                                 </div>
                             </div>

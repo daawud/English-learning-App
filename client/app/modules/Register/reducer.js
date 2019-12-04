@@ -12,6 +12,7 @@ const initStore = {
     passwordRepeatValidationError: '',
     errorRegister: '',
     isLoading: false,
+    errorAuth: '',
 };
 
 const registerFormReducer = (store = initStore, { type, payload }) => {
@@ -108,6 +109,7 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
         case aTypes.REGISTER_MODAL_LOADING_REJECT: {
             return {...store, isLoading: false};
         }
+
     }
     return store;
 };

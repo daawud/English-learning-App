@@ -1,21 +1,27 @@
 import './Register.scss';
-import { MDBModal, MDBModalBody, MDBBtn, MDBCloseIcon, MDBContainer } from 'mdbreact';
+import { MDBModal, MDBModalBody, MDBBtn, MDBContainer } from 'mdbreact';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { registerFormClose, authFormToOpen } from '~/modules/Header/actions';
-import { sendRequestForRegister } from '~/modules/Register/actions';
+import { sendRequestForRegister, registerClearError } from '~/modules/Register/actions';
 import EmailInput from '~/modules/Register/components/EmailInput.jsx';
 import PasswordInput from '~/modules/Register/components/PasswordInput.jsx';
 import NameInput from '~/modules/Register/components/NameInput.jsx';
 import PasswordRepeatInput from '~/modules/Register/components/PasswordRepeatInput.jsx';
 import SpinnerPage from "~/libs/components/Loader/Loader";
+import Notification from "~/libs/components/Notification/Notification.jsx";
 
 class Register extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        // Очищение ощибок из store, чтобы при повторном открытии модельного окна не показывались старые ошибки
+        this.props.dispatch(registerClearError());
     }
 
     /**
@@ -33,8 +39,8 @@ class Register extends Component {
                 <MDBContainer className="container-fluid">
                     <MDBModal isOpen toggle={() => this.props.dispatch(registerFormClose())} className="forms-modal">
                         <MDBModalBody className="forms-modal__body">
-                            <div className="forms__close"
-                                onClick={() => this.props.dispatch(registerFormClose())}>&times;</div>
+                            <div className="forms__close" onClick={() => this.props.dispatch(registerFormClose())}>&times;</div>
+                            {this.props.errorRegister && <Notification className="forms-modal__body" errMessage={this.props.errorRegister}/>}
                             <form onSubmit={this.handleSubmit} className="text-center forms">
                                 <p className="forms__heading">Зарегистрироваться </p>
                                 <div className="d-flex justify-content-center">

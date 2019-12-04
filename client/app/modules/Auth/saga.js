@@ -18,6 +18,7 @@ function* sendRequestForAuth(action) {
         // извлечь из события
         param.body = JSON.stringify(action.payload);
 
+        yield put({type: aTypes.AUTH_MODAL_CLEAR_ERROR});
         yield put({type: aTypes.AUTH_MODAL_LOADING});
         const response = yield call(fetchData, `${URL_AUTH}/login`, param);
 
@@ -42,7 +43,8 @@ function* sendRequestForAuth(action) {
         yield put({
             type: aTypes.SEND_REQUEST_FOR_AUTH_REJECT,
             payload: err.message,
-        })
+        });
+        yield put({type: aTypes.AUTH_MODAL_LOADING_REJECT});
     }
 }
 

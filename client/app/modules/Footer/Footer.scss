@@ -62,18 +62,18 @@ footer {
     z-index: 3;
   }
 
-  &-social, &-links-2, &-links-1, &-1 {
+  &-social, &-links-2, &-links-1, &-logo {
     position: absolute;
     width: 100%;
     flex-grow: 0;
     flex-shrink: 0;
   }
 
-  &-links-2, &-links-1, &-1 {
+  &-links-2, &-links-1, &-logo {
     padding: 0 15px;
   }
 
-  &-social, &-1 {
+  &-social, &-logo {
     justify-content: center;
     flex-basis: 25%;
     max-width: 25%;
@@ -192,6 +192,7 @@ footer {
 
     &-logo {
       order: 1;
+      z-index: 4;
     }
 
     &__text {

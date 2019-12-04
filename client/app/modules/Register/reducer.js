@@ -110,6 +110,10 @@ const registerFormReducer = (store = initStore, { type, payload }) => {
             return {...store, isLoading: false};
         }
 
+        case aTypes.REGISTER_MODAL_CLEAR_ERROR: {
+            return {...store, errorRegister: ''};
+        }
+
     }
     return store;
 };

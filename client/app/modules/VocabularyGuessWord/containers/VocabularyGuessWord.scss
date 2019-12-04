@@ -4,7 +4,13 @@
   background: $commonBackLayerPageColor;
   color: $mainFont;
   min-height: 650px;
-
+  &__container {
+    width: 100%;
+  }
+  &__img {
+    width: auto;
+    height: rem(200);
+  }
   &__heading {
     @include page-headings-text;
   }
@@ -30,6 +36,12 @@
   &__correct-answer {
     min-height: 52px;
   }
+  &__btn {
+    &-action {
+      min-width: 200px;
+      min-height: rem(50);
+    }
+  }
 }
 
 @media screen and (max-width: $mdWidth) {
@@ -50,8 +62,8 @@
       }
 
       &-action {
-        width: rem(120);
-        height: rem(50);
+        min-width: rem(120);
+        min-height: rem(50);
       }
     }
   }
@@ -68,14 +80,20 @@
     }
 
     &__word-given {
-      font-size: rem(20);
-      line-height: rem(22);
+      font-size: rem(25);
+      line-height: rem(30);
     }
 
     &__img {
       width: rem(200);
       height: rem(134);
+
+    }
+    &__btn {
+      &-action {
+        min-width: rem(120);
+        min-height: rem(50);
+      }
     }
   }
-
 }

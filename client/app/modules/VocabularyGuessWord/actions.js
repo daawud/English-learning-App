@@ -1,14 +1,13 @@
 import aTypes from './actionTypes';
 
 /**
- * Функция получения списка задач и опрокидывания их в редюсер.
+ * Функция запуска саги, отвечающая за запрос данных с data сервера
  * @param {Array} value - массив с объектами со всеми словами для угадывания
  * @returns {Object} payload - название action, {Object} type - название типа action
  */
-export function getVocabularyWordsSet(value) {
+export function getVocabularyWordsSet() {
     return {
         type: aTypes.GET_VOCABULARY_WORDS_SET,
-        payload: value,
     };
 }
 

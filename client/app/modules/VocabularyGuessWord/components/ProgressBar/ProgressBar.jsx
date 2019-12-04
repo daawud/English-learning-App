@@ -14,7 +14,7 @@ const ProgressBar = (props) => {
         <>
             <MDBCol md={2} sm={0}/>
             <MDBCol className="progress-scale" sm={12} md={8}>
-                <MDBRow className="d-flex justify-content-center">
+                <MDBRow className="progress-scale__container">
                     {pills}
                 </MDBRow>
             </MDBCol>

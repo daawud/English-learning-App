@@ -47,7 +47,7 @@ class Header extends Component {
 
     render() {
         let userBlock;
-        console.log(this.props.isLoading);
+
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">

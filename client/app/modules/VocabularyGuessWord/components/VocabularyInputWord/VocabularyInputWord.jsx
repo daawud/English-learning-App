@@ -20,20 +20,23 @@ class VocabularyInputWord extends Component {
     onChangeHandler(event) {
         const {currentTask} = this.props;
         const value = event.target.value;
+        const correctAnswers = currentTask.givenAnswers.filter(answer => answer.type === 'correct');
+        correctAnswers.forEach(answer => {
+            if (value.toLowerCase() === answer.word.toLowerCase()) {
+                this.props.dispatch(userTypedAnswer({
+                    value: value.toLowerCase(),
+                    color: 'green'
+                }));
 
-        if (value.toLowerCase() === currentTask.givenAnswers.toLowerCase()) {
-            this.props.dispatch(userTypedAnswer({
-                value: value.toLowerCase(),
-                color: 'green'
-            }));
+                this.props.dispatch(userCorrectAnswer('correct'));
+            } else {
+                this.props.dispatch(userTypedAnswer({
+                    value: value.toLowerCase(),
+                    color: 'red'
+                }))
+            }
+        })
 
-            this.props.dispatch(userCorrectAnswer('correct'));
-        } else {
-            this.props.dispatch(userTypedAnswer({
-                value: value.toLowerCase(),
-                color: 'red'
-            }))
-        }
     }
 
     /**
@@ -43,8 +46,15 @@ class VocabularyInputWord extends Component {
     onBlurHandler(event) {
         const {currentTask} = this.props;
         const value = event.target.value;
-        if (value.toLowerCase() !== currentTask.givenAnswers.toLowerCase()) {
-            this.props.dispatch(userCorrectAnswer('incorrect'));
+
+        // если строка не пустая делаем проверку
+        if (value) {
+            const correctAnswers = currentTask.givenAnswers.filter(answer => answer.type === 'correct');
+            correctAnswers.forEach(answer => {
+                if (value.toLowerCase() !== answer.word.toLowerCase()) {
+                    this.props.dispatch(userCorrectAnswer('incorrect'));
+                }
+            })
         }
     }
 
@@ -59,10 +69,10 @@ class VocabularyInputWord extends Component {
                             currentTask.taskType === 'typeRusWord' ? '(на рус)' : '(на англ)'
                         }: </label>
                         <input
-                            style={{color: this.props.typedAnswer.color}}
+                            style={{color: this.props.userInputTypedAnswer.color}}
                             type="text"
                             id="inputWord"
-                            value={this.props.typedAnswer.value}
+                            value={this.props.userInputTypedAnswer.value}
                             className="px-2 voc-input"
                             onChange={this.onChangeHandler}
                             onBlur={this.onBlurHandler}
@@ -74,5 +84,7 @@ class VocabularyInputWord extends Component {
         );
     }
 }
-
-export default connect()(VocabularyInputWord);
+function mapStateToProps(state) {
+    return state.guessWordVocabularyReducer;
+}
+export default connect(mapStateToProps)(VocabularyInputWord);

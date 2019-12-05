@@ -8,7 +8,8 @@ import { authFormToClose, registerFormOpen, forgotPasswordModalToOpen } from '~/
 import { sendRequestForAuth, authClearError } from '~/modules/Auth/actions';
 import AuthEmail from '~/modules/Auth/components/AuthEmail.jsx'
 import AuthPassword from '~/modules/Auth/components/AuthPassword.jsx';
-import Notification from "~/libs/components/Notification/Notification.jsx";
+import SpinnerPage from "~/libs/components/Loader/Loader";
+import Notification from '~/libs/components/Notification/Notification.jsx';
 
 class Auth extends Component {
     constructor(props) {

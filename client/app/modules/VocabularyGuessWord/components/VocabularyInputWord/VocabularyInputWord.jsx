@@ -19,21 +19,25 @@ class VocabularyInputWord extends Component {
      */
     onChangeHandler(event) {
         const {currentTask} = this.props;
-        const value = event.target.value;
+        const value = event.target.value.toLowerCase();
+        const correctAnswers = currentTask.givenAnswers.filter(answer => answer.type === 'correct');
 
-        if (value.toLowerCase() === currentTask.givenAnswers.toLowerCase()) {
-            this.props.dispatch(userTypedAnswer({
-                value: value.toLowerCase(),
-                color: 'green'
-            }));
+        correctAnswers.forEach(answer => {
+            if (value === answer.word.toLowerCase()) {
+                this.props.dispatch(userTypedAnswer({
+                    value,
+                    color: 'green'
+                }));
 
-            this.props.dispatch(userCorrectAnswer('correct'));
-        } else {
-            this.props.dispatch(userTypedAnswer({
-                value: value.toLowerCase(),
-                color: 'red'
-            }))
-        }
+                this.props.dispatch(userCorrectAnswer('correct'));
+            } else {
+                this.props.dispatch(userTypedAnswer({
+                    value,
+                    color: 'red'
+                }))
+            }
+        })
+
     }
 
     /**
@@ -43,8 +47,16 @@ class VocabularyInputWord extends Component {
     onBlurHandler(event) {
         const {currentTask} = this.props;
         const value = event.target.value;
-        if (value.toLowerCase() !== currentTask.givenAnswers.toLowerCase()) {
-            this.props.dispatch(userCorrectAnswer('incorrect'));
+
+        // если строка не пустая делаем проверку
+        if (value) {
+            const correctAnswers = currentTask.givenAnswers.filter(answer => answer.type === 'correct');
+
+            correctAnswers.forEach(answer => {
+                if (value.toLowerCase() !== answer.word.toLowerCase()) {
+                    this.props.dispatch(userCorrectAnswer('incorrect'));
+                }
+            })
         }
     }
 

@@ -9,8 +9,8 @@
     }
 
     &-options {
-      width: rem(229);
-      height: rem(58);
+      min-width: rem(229);
+      min-height: rem(58);
       background: #000;
       color: #fff;
       margin-bottom: 1rem;
@@ -26,8 +26,8 @@
   .tasks {
     &__btn {
       &-options {
-        width: rem(170);
-        height: rem(50);
+        min-width: rem(170);
+        min-height: rem(50);
         font-size: 14px;
       }
       &-action {

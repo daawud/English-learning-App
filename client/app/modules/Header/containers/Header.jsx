@@ -47,7 +47,7 @@ class Header extends Component {
 
     render() {
         let userBlock;
-        console.log(this.props.isLoading);
+
         if (this.props.userIsLogged) {
             userBlock = (
                 <div className="user-signed-in">
@@ -58,7 +58,7 @@ class Header extends Component {
                             <div className="header-award__score">{this.props.data.points}</div>
                         </div>
                     </MDBBtn>
-                    <MDBNavLink to="/cabinet" title="Войти в личный кабинет">
+                    <MDBNavLink to="/#" title="Войти в личный кабинет" onClick={e => e.preventDefault()}>
                         <MDBBtn className="cabinet-btn">КАБИНЕТ</MDBBtn>
                     </MDBNavLink>
                     <HeaderUserPic userData={this.props.data}/>

@@ -30,7 +30,6 @@ class VocabularyInputWord extends Component {
                 }));
 
                 this.props.dispatch(userCorrectAnswer('correct'));
-                console.log('i am he are');
             } else {
                 this.props.dispatch(userTypedAnswer({
                     value,

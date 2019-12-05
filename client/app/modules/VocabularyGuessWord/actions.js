@@ -74,3 +74,23 @@ export function vocabularyCloseAnswerModal() {
         type: aTypes.VOCABULARY_CLOSE_ANSWER_MODAL,
     };
 }
+
+/**
+ * Функция экшн, вызывает сагу для начисления балла
+ * @returns {Object} type - название типа action
+ */
+export function addPointOnCorrectAnswer() {
+    return {
+        type: aTypes.VOCABULARY_ADD_POINT,
+    };
+}
+
+/**
+ * Функция экшн, фиксирует угаданное слово, чтобы исключить добавление очков при повторном редактировании ответа в инпуте
+ * @returns {Object} type - название типа action
+ */
+export function setCorrectAnswer() {
+    return {
+        type: aTypes.SET_CORRECT_ANSWER,
+    };
+}

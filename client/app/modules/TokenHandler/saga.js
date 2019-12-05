@@ -17,8 +17,9 @@ function* sendRefreshRequest(action) {
         const tokenLS = Tokens.getFromLocalStorage();
 
         param.body = JSON.stringify(tokenLS);
+        console.log(param);
         const response = yield call(fetchData, `${URL_AUTH}/refresh`, param);
-
+        console.log(response);
         if (response.err) {
             throw new Error(response.err.errors);
         }

@@ -11,7 +11,6 @@ const fetchParam = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: getAuthHeader(),
     },
 };
 
@@ -19,12 +18,12 @@ function* sendRequestGetData() {
     try {
         const userID = Token.getUserIdFromToken();
         const URI = USER_DATA_API + userID;
+        const params = {...fetchParam};
 
-        console.log(getAuthHeader());
+        params.headers.Authorization = getAuthHeader();
         yield put({type: aTypes.HEADER_LOADING_DATA});
-        const response = yield call(fetchData, URI, fetchParam);
+        const response = yield call(fetchData, URI, params);
         response.birthDate ? response.age = calcAge(response.birthDate) : response.age = 'Укажите дату рождения';
-        console.log(response);
 
         if (response.err) {
             throw new Error(response.err.errors);
@@ -36,16 +35,17 @@ function* sendRequestGetData() {
             payload: response,
         });
     } catch (err) {
+        console.log(err);
         if (err.message === 'TypeError: Failed to fetch') {
             yield all([
                 yield put({type: aTypes.AUTH_USER_IS_LOGOUT}),
                 yield put({type: aTypes.HEADER_LOADING_DATA_REJECT}),
+                yield put({
+                    type: aTypes.SEND_REFRESH_TOKEN_TO_AUTH,
+                    payload: aTypes.HEADER_GET_DATA,
+                }),
             ]);
         } else {
-            yield put({
-                type: aTypes.SEND_REFRESH_TOKEN_TO_AUTH,
-                payload: aTypes.HEADER_GET_DATA,
-            });
             yield put({type: aTypes.HEADER_LOADING_DATA_REJECT});
         }
     }

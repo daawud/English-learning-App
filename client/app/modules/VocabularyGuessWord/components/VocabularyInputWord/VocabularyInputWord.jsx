@@ -71,10 +71,10 @@ class VocabularyInputWord extends Component {
                             currentTask.taskType === 'typeRusWord' ? '(на рус)' : '(на англ)'
                         }: </label>
                         <input
-                            style={{color: this.props.userInputTypedAnswer.color}}
+                            style={{color: this.props.typedAnswer.color}}
                             type="text"
                             id="inputWord"
-                            value={this.props.userInputTypedAnswer.value}
+                            value={this.props.typedAnswer.value}
                             className="px-2 voc-input"
                             onChange={this.onChangeHandler}
                             onBlur={this.onBlurHandler}
@@ -86,7 +86,5 @@ class VocabularyInputWord extends Component {
         );
     }
 }
-function mapStateToProps(state) {
-    return state.guessWordVocabularyReducer;
-}
-export default connect(mapStateToProps)(VocabularyInputWord);
+
+export default connect()(VocabularyInputWord);

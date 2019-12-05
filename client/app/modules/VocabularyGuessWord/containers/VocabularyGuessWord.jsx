@@ -35,7 +35,7 @@ class VocabularyGuessWord extends Component {
                         </MDBRow>
                         <MDBRow>
                             <MDBCol className="offset-sm-0 offset-md-2 tasks__heading text-center mb-3"
-                                md="8" sm="12">{currentTask.description}</MDBCol>
+                                md="8" sm="12">{currentTask.taskDescription}</MDBCol>
                         </MDBRow>
                         <MDBRow className="m-0">
                             <MDBCol md={4} lg={4} sm={false}
@@ -70,7 +70,7 @@ class VocabularyGuessWord extends Component {
                                 className="text-center text font-weight-bold">{currentTask.givenWordRus}</MDBCol>}
                         </MDBRow>
                         <div className="tasks__choose-options">
-                            {currentTask.taskId <= 2
+                            {(currentTask.taskType === 'chooseRusWord' || currentTask.taskType === 'chooseEngWord')
                                 ? <VocabularyChooseWord currentTask={currentTask}/>
                                 : <VocabularyInputWord currentTask={currentTask}
                                     typedAnswer={this.props.userInputTypedAnswer}/>

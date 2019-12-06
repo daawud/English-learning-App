@@ -12,7 +12,8 @@ const initStore = {
         color: 'red'
     },
     showAnswerModal: false,
-    ifGivenWordsFinished: false
+    ifGivenWordsFinished: false,
+    sendPoint: false,
 };
 
 const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
@@ -67,11 +68,17 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
                         value: '',
                         color: 'red'
                     },
+                    sendPoint: false,
                 };
             } else {
                 // логика запроса следующего пула слов
             }
         }
+
+        case aTypes.SET_CORRECT_ANSWER: {
+            return {...store, sendPoint: true};
+        }
+
     }
     return store;
 };

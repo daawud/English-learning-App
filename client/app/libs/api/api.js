@@ -26,9 +26,15 @@ export async function fetchData(URL, options, timeout = 15000) {
     try {
         const response = await Promise.race([fetchTimer(timeout), fetch(URL, options)]);
 
-
         if (response.ok) {
-            return await response.json();
+            switch (response.status) {
+                case 200: {
+                    return await response.json();
+                }
+                case 204: {
+                    return response.status;
+                }
+            }
         } else {
             const errorBody = await response.json();
 

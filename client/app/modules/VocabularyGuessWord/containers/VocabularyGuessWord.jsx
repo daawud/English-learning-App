@@ -12,13 +12,34 @@ import VocabularyInputWord
     from '~/modules/VocabularyGuessWord/components/VocabularyInputWord/VocabularyInputWord.jsx';
 import VocabularyShowAnswerModal
     from '~/modules/VocabularyGuessWord/components/VocabularyShowAnswerModal/VocabularyShowAnswerModal.jsx';
-import {getVocabularyWordsSet, nextWord, clearVocabulary, vocabularyShowAnswerModal} from '~/modules/VocabularyGuessWord/actions';
+import {
+    getVocabularyWordsSet,
+    nextWord,
+    clearVocabulary,
+    vocabularyShowAnswerModal,
+    addPointOnCorrectAnswer,
+    setCorrectAnswer
+} from '~/modules/VocabularyGuessWord/actions';
 import Loader from '~/libs/components/Loader/Loader';
+import Tokens from "~/libs/api/Tokens";
 
 class VocabularyGuessWord extends Component {
     constructor(props) {
         super(props);
+        this.correctAnswer = this.correctAnswer.bind(this);
     }
+
+    // Функция при правильном ответе инициирует запрос на отправку очка в data service и сохраняет состояние,
+    // что вопрос решен верно.
+    correctAnswer = () => {
+        if (!this.props.sendPoint) {
+            const tokenLS = Tokens.getFromLocalStorage();
+
+            tokenLS.token && this.props.dispatch(addPointOnCorrectAnswer());
+            this.props.dispatch(setCorrectAnswer());
+         }
+        return <p className="bg-success border border-white rounded p-2 text text-light">ПРАВИЛЬНО</p>
+    };
 
     render() {
         const currentTaskIndex = this.props.currentTaskIndex;
@@ -53,10 +74,8 @@ class VocabularyGuessWord extends Component {
                             <MDBCol md={4}
                                 className="tasks__correct-answer d-flex justify-content-center align-items-center mt-3 mb-0">
                                 {this.props.currentsUserAnswer === 'incorrect' &&
-                                <p className="bg-danger border border-white rounded p-2 text text-light">НЕ
-                                    ПРАВИЛЬНО</p>}
-                                {this.props.currentsUserAnswer === 'correct' &&
-                                <p className="bg-success border border-white rounded p-2 text text-light">ПРАВИЛЬНО</p>}
+                                <p className="bg-danger border border-white rounded p-2 text text-light">НЕ ПРАВИЛЬНО</p>}
+                                {this.props.currentsUserAnswer === 'correct' && this.correctAnswer() }
                             </MDBCol>
                         </MDBRow>
                         <MDBRow className="tasks__word-given mt-2 mb-4">

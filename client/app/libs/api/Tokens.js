@@ -32,6 +32,12 @@ export default class Tokens {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
     }
+
+    static getUserIdFromToken() {
+        const token = localStorage.getItem('token');
+        const payloadToken = JSON.parse(atob(token.split('.')[1]));
+        return payloadToken.userId;
+    }
 }
 
 /**
@@ -39,7 +45,5 @@ export default class Tokens {
  * @return {Object} заголовок запроса без метода
  */
 export function getAuthHeader() {
-    return {
-        Authorization: `Bearer ${Tokens.getFromLocalStorage().token ? Tokens.getFromLocalStorage().token : null}`
-    };
+    return `Bearer ${Tokens.getFromLocalStorage().token ? Tokens.getFromLocalStorage().token : null}`;
 }

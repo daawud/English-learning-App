@@ -33,7 +33,6 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({validationError: ''});
         // если не все обязательные поля заполнены - выкидываем ошибку
         if (!this.props.email || !this.props.password || !this.props.passwordRepeat) {
             this.setState({validationError: 'Поля: "Электронная почта, пароль и повтор пароля" - обязательны к заполнению'});

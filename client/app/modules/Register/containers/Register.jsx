@@ -33,13 +33,15 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
+        console.log('submit is pressed');
+        this.setState({validationError: ''});
         // если не все обязательные поля заполнены - выкидываем ошибку
         if (!this.props.email || !this.props.password || !this.props.passwordRepeat) {
             this.setState({validationError: 'Поля: "Электронная почта, пароль и повтор пароля" - обязательны к заполнению'});
             // очищаем ошибку по времени
             setTimeout(() => {
                 this.setState({validationError: ''})
-            }, 4000)
+            }, 5000)
         } else if (this.props.nameValidationError
             || this.props.emailValidationError
             || this.props.passwordValidationError
@@ -49,7 +51,7 @@ class Register extends Component {
             // очищаем ошибку по времени
             setTimeout(() => {
                 this.setState({validationError: ''})
-            }, 4000)
+            }, 5000)
         } else {
             // если все поля прошли валидацию - делаем запрос на регистрацию пользователя
             this.props.dispatch(sendRequestForRegister(this.props.name, this.props.email, this.props.password));

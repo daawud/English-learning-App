@@ -10,12 +10,15 @@ import EmailInput from '~/modules/Register/components/EmailInput.jsx';
 import PasswordInput from '~/modules/Register/components/PasswordInput.jsx';
 import NameInput from '~/modules/Register/components/NameInput.jsx';
 import PasswordRepeatInput from '~/modules/Register/components/PasswordRepeatInput.jsx';
-import SpinnerPage from "~/libs/components/Loader/Loader";
-import Notification from "~/libs/components/Notification/Notification.jsx";
+import SpinnerPage from '~/libs/components/Loader/Loader';
+import Notification from '~/libs/components/Notification/Notification.jsx';
 
 class Register extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            validationError: ''
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -30,7 +33,29 @@ class Register extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        this.props.dispatch(sendRequestForRegister(this.props.name, this.props.email, this.props.password));
+        // если не все обязательные поля заполнены - выкидываем ошибку
+        if (!this.props.email || !this.props.password || !this.props.passwordRepeat) {
+            this.setState({validationError: 'Поля: "Электронная почта, пароль и повтор пароля" - обязательны к заполнению'});
+            // очищаем ошибку по времени
+            setTimeout(() => {
+                this.setState({validationError: ''})
+            }, 4000)
+        } else if (this.props.nameValidationError
+            || this.props.emailValidationError
+            || this.props.passwordValidationError
+            || this.props.passwordRepeatValidationError) {
+            // если есть хоть одно поле не прошедшее валидацию - выкидываем ошибку
+            this.setState({validationError: 'Не все поля формы заполнены корректно!'});
+            // очищаем ошибку по времени
+            setTimeout(() => {
+                this.setState({validationError: ''})
+            }, 4000)
+        } else {
+            // если все поля прошли валидацию - делаем запрос на регистрацию пользователя
+            this.props.dispatch(sendRequestForRegister(this.props.name, this.props.email, this.props.password));
+            // очищаем ошибку
+            this.setState({validationError: ''})
+        }
     }
 
     render() {
@@ -41,6 +66,7 @@ class Register extends Component {
                         <MDBModalBody className="forms-modal__body">
                             <div className="forms__close" onClick={() => this.props.dispatch(registerFormClose())}>&times;</div>
                             {this.props.errorRegister && <Notification className="forms-modal__body" errMessage={this.props.errorRegister}/>}
+                            {this.state.validationError && <Notification className="forms-modal__body" errMessage={this.state.validationError}/>}
                             <form onSubmit={this.handleSubmit} className="text-center forms">
                                 <p className="forms__heading">Зарегистрироваться </p>
                                 <div className="d-flex justify-content-center">

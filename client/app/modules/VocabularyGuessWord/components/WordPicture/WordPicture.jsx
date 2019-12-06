@@ -8,7 +8,7 @@ const WordPicture = (props) => {
     return (
         <img src={currentTask.imgUrl ? `${currentImgDomain}/${currentTask.imgUrl.trim()}`: defaultImgSrc}
             className="rounded-lg shadow border border-default tasks__img"
-            alt="Картинка текущего слова"
+            alt={currentTask.givenWordEng}
         />
     );
 };

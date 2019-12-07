@@ -1,6 +1,6 @@
 import './SwipeToSlide.scss';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Slider from 'react-slick';
 
 import cardsImg from '~/assets/img/main-page-middle-block-mobile-cards.svg';
@@ -14,16 +14,15 @@ import russianImg from '~/assets/img/main-page-middle-block-mobile-russian.svg';
 import testsImg from '~/assets/img/main-page-middle-block-mobile-tests.svg';
 
 export default class SwipeToSlide extends Component {
-    render(){
+    render() {
         const settings = {
-            className: "center",
+            className: 'center',
             infinite: false,
             arrows: false,
             slidesToShow: 1,
             swipeToSlide: true,
-            centerMode: true,
         };
-        return(
+        return (
             <Slider {...settings}>
                 <div className="middle-block__slide">
                     <img src={cardsImg} alt="Карточки изучения лексики"/>

@@ -13,20 +13,24 @@
     top: 182px;
     color: $mainPageText;
   }
+
   &__flex {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
   }
+
   &__icon {
 
   }
+
   &__text {
     display: block;
     font-weight: 900;
     font-size: 32px;
     line-height: 46px;
     margin: 0;
+
     &-small {
       font-weight: 900;
       font-size: 24px;
@@ -34,35 +38,48 @@
       margin-bottom: 1.5rem;
     }
   }
+
   &__span {
     &-1 {
       margin-left: 372px;
     }
+
     &-2 {
       margin-left: 151px;
     }
+
     &-3 {
       margin-left: 105px;
     }
+
     &-4 {
       margin-left: 205px;
     }
+
     &-5 {
       margin-left: 114px;
     }
+
     &-6 {
       margin-left: 475px;
     }
+
     &-7 {
       margin-left: 252px;
     }
+
     &-8 {
       margin-left: 73px;
     }
+
     &-9 {
       margin-left: 561px;
     }
   }
+}
+
+.middle-block__mobile{
+  display: none;
 }
 
 // локальный миксин - не применим для других страниц
@@ -72,16 +89,20 @@
     margin-top: -220px;
     margin-bottom: -120px;
     background-image: linear-gradient(to bottom, transparent, #0A477D 40%, #0A477D 78%, transparent);
+
     &__content {
       padding: 0.5rem;
       top: 10px;
     }
+
     &__flex {
       margin: 0 0 1rem 0;
     }
+
     &__icon {
       transform: scale(0.7);
     }
+
     &__text {
       font-weight: 700;
       font-size: 15px;
@@ -112,31 +133,56 @@
   }
 }
 
-@media screen and (orientation:landscape) and (max-width: $xlWidth) {
-  @include  mobile-screen
+@media screen and (orientation: landscape) and (max-width: $xlWidth) {
+  @include mobile-screen
 }
 
-@media screen and (orientation:landscape) and (max-width: $lgWidth) {
-  @include  mobile-screen
+@media screen and (orientation: landscape) and (max-width: $lgWidth) {
+  @include mobile-screen
 }
 
 @media screen and (max-width: $xlWidth) {
-  @include  mobile-screen;
-  @include  tablets;
+  @include mobile-screen;
+  @include tablets;
 }
 
 @media screen and (max-width: $lgWidth) {
-  @include  mobile-screen;
-  @include  tablets;
+  @include mobile-screen;
+  @include tablets;
 
 }
 
 @media screen and (max-width: $mdWidth) {
-  @include  mobile-screen;
-  @include  tablets;
+  @include mobile-screen;
+  @include tablets;
 
 }
 
 @media screen and (max-width: $smWidth) {
-  @include  mobile-screen;
+  @include mobile-screen;
+  .middle-block__content{
+    display: none;
+  }
+  .middle-block__mobile{
+    display: block;
+    height: 600px;
+    background-image: linear-gradient(to bottom, transparent, #0A477D 24%, #0A477D 73%, transparent);
+    margin-top: -330px;
+    margin-bottom: -400px;
+  }
+  .middle-block__slide{
+    padding-top: 140px;
+  }
+  .middle-block__slide > img{
+    height: 220px;
+    width: 220px;
+  }
+  .middle-block__swipe{
+    height: 120px;
+    display: flex;
+    padding-top: 30px;
+    justify-content: center;
+    align-content: center;
+  }
+
 }

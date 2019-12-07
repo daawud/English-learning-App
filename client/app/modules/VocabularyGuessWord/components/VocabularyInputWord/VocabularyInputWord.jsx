@@ -1,7 +1,7 @@
 import './VocabularyInputWord.scss';
 import { MDBCol, MDBRow } from 'mdbreact';
 
-import { userCorrectAnswer, userTypedAnswer } from '~/modules/VocabularyGuessWord/actions';
+import { userCorrectAnswer } from '~/modules/VocabularyGuessWord/actions';
 
 import { connect } from 'react-redux';
 import React, { Component } from 'react';

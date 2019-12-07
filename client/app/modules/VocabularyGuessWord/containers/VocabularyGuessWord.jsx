@@ -84,8 +84,7 @@ class VocabularyGuessWord extends Component {
                         <div className="tasks__choose-options">
                             {(currentTask.taskType === 'chooseRusWord' || currentTask.taskType === 'chooseEngWord')
                                 ? <VocabularyChooseWord currentTask={currentTask}/>
-                                : <VocabularyInputWord currentTask={currentTask}
-                                    typedAnswer={this.props.userInputTypedAnswer}/>
+                                : <VocabularyInputWord currentTask={currentTask} index={this.props.currentTaskIndex}/>
                             }
                         </div>
                         <MDBRow className="mx-4 mt-3 tasks__btn-next">

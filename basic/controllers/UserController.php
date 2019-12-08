@@ -5,11 +5,18 @@ namespace app\controllers;
 use app\models\Users;
 use yii\db\Exception;
 use yii\rest\ActiveController;
+use app\controllers\ApiBaseController;
 
-class UserController extends ActiveController
+class UserController extends ApiBaseController
 {
     public $modelClass = 'app\models\Users';
-
+	
+	public function beforeAction($action)
+	{
+		\Yii::$app->response->headers->add('Access-Control-Allow-Headers', 'Authorization,DNT,Keep-Alive,User-Agent,X-CustomHeader,X-Requested-With,If-Modified-Since,Cache-Control,Range,Content-Type');
+		return parent::beforeAction($action);
+	}
+    
     public function actions()
     {
         $actions = parent::actions();
@@ -17,7 +24,28 @@ class UserController extends ActiveController
 
         return $actions;
     }
+	
+	public function behaviors()
+	{
+		$behaviors = parent::behaviors();
 		
+		// add CORS filter
+		$behaviors['corsFilter'] = [
+			'class' => \yii\filters\Cors::className(),
+			'cors' => [
+				'Origin' => ['*'],
+				'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+				'Access-Control-Request-Headers' => ['*'],
+				'Access-Control-Allow-Credentials' => true,
+				'Access-Control-Max-Age' => 86400,
+				'Access-Control-Expose-Headers' => ['*'],
+			],
+		
+		];
+		
+		return $behaviors;
+	}
+	
 	public function actionIndex() {
     	$userId = \Yii::$app->request->get('id');
 		if ($userId) {

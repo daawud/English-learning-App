@@ -1,7 +1,7 @@
 import './VocabularyGuessWord.scss';
 
 import { MDBBtn, MDBRow, MDBCol } from 'mdbreact';
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -12,16 +12,9 @@ import VocabularyInputWord
     from '~/modules/VocabularyGuessWord/components/VocabularyInputWord/VocabularyInputWord.jsx';
 import VocabularyShowAnswerModal
     from '~/modules/VocabularyGuessWord/components/VocabularyShowAnswerModal/VocabularyShowAnswerModal.jsx';
-import {
-    getVocabularyWordsSet,
-    nextWord,
-    clearVocabulary,
-    vocabularyShowAnswerModal,
-    addPointOnCorrectAnswer,
-    setCorrectAnswer
-} from '~/modules/VocabularyGuessWord/actions';
+import { getVocabularyWordsSet, nextWord, clearVocabulary, vocabularyShowAnswerModal, addPointOnCorrectAnswer, setCorrectAnswer } from '~/modules/VocabularyGuessWord/actions';
 import Loader from '~/libs/components/Loader/Loader';
-import Tokens from "~/libs/api/Tokens";
+import Tokens from '~/libs/api/Tokens';
 
 class VocabularyGuessWord extends Component {
     constructor(props) {
@@ -37,14 +30,14 @@ class VocabularyGuessWord extends Component {
 
             tokenLS.token && this.props.dispatch(addPointOnCorrectAnswer());
             this.props.dispatch(setCorrectAnswer());
-         }
+        }
         return <p className="bg-success border border-white rounded p-2 text text-light">ПРАВИЛЬНО</p>
     };
 
     render() {
         const currentTaskIndex = this.props.currentTaskIndex;
         const currentTask = this.props.tasks[currentTaskIndex];
-        const defaultImgSrc = 'https://placehold.it/300x200';
+        const WordPicture = lazy(() => import('~/modules/VocabularyGuessWord/components/WordPicture/WordPicture.jsx'));
 
         return (
             <div className="tasks d-flex justify-content-center align-items-center">
@@ -67,9 +60,9 @@ class VocabularyGuessWord extends Component {
                                 </MDBBtn>
                             </MDBCol>
                             <MDBCol md={4} className="d-flex justify-content-center">
-                                <img src={currentTask.imgUrl ? currentTask.imgUrl : defaultImgSrc}
-                                    className="rounded-lg shadow border border-default tasks__img"
-                                    alt="Картинка текущего слова"/>
+                                <Suspense fallback={<div className="tasks__img-container d-flex justify-content-center align-items-center"><Loader/></div>}>
+                                    <WordPicture currentTask={currentTask}/>
+                                </Suspense>
                             </MDBCol>
                             <MDBCol md={4}
                                 className="tasks__correct-answer d-flex justify-content-center align-items-center mt-3 mb-0">
@@ -91,11 +84,10 @@ class VocabularyGuessWord extends Component {
                         <div className="tasks__choose-options">
                             {(currentTask.taskType === 'chooseRusWord' || currentTask.taskType === 'chooseEngWord')
                                 ? <VocabularyChooseWord currentTask={currentTask}/>
-                                : <VocabularyInputWord currentTask={currentTask}
-                                    typedAnswer={this.props.userInputTypedAnswer}/>
+                                : <VocabularyInputWord currentTask={currentTask} index={this.props.currentTaskIndex}/>
                             }
                         </div>
-                        <MDBRow className="mx-4 my-3">
+                        <MDBRow className="mx-4 mt-3 tasks__btn-next">
                             <MDBCol md={12} lg={12} sm={12} className="d-flex justify-content-between ">
                                 <Link to="/" className="m-0 p-0">
                                     <MDBBtn className="tasks__btn tasks__btn-action rounded-pill">Выйти</MDBBtn>
@@ -116,7 +108,6 @@ class VocabularyGuessWord extends Component {
     }
 
     componentDidMount() {
-        // this.getWordsSet();
         this.props.dispatch(getVocabularyWordsSet());
     }
 

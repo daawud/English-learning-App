@@ -7,10 +7,6 @@ const initStore = {
     currentTaskIndex: 0,
     currentsUserAnswer: '',
     isAnswered: false,
-    userInputTypedAnswer: {
-        value: '',
-        color: 'red'
-    },
     showAnswerModal: false,
     ifGivenWordsFinished: false,
     sendPoint: false,
@@ -42,10 +38,6 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
             return {...store, tasks, currentsUserAnswer: payload, isAnswered: true};
         }
 
-        case aTypes.USER_TYPED_ANSWER: {
-            return {...store, userInputTypedAnswer: payload};
-        }
-
         case aTypes.VOCABULARY_SHOW_ANSWER_MODAL: {
             return {...store, showAnswerModal: true};
         }
@@ -64,10 +56,6 @@ const guessWordVocabularyReducer = (store = initStore, {type, payload}) => {
                     currentTaskIndex: store.currentTaskIndex + 1,
                     currentsUserAnswer: '',
                     isAnswered: false,
-                    userInputTypedAnswer: {
-                        value: '',
-                        color: 'red'
-                    },
                     sendPoint: false,
                 };
             } else {

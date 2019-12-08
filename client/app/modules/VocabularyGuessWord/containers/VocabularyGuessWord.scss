@@ -4,12 +4,16 @@
   background: $commonBackLayerPageColor;
   color: $mainFont;
   min-height: 650px;
+  margin-bottom: -21px;
   &__container {
     width: 100%;
   }
   &__img {
     width: auto;
     height: rem(200);
+    &-container {
+      height: rem(200);
+    }
   }
   &__heading {
     @include page-headings-text;
@@ -31,7 +35,7 @@
     line-height: rem(40);
   }
   &__choose-options {
-    min-height: rem(160);
+    min-height: rem(180);
   }
   &__correct-answer {
     min-height: 52px;
@@ -41,6 +45,9 @@
       min-width: 200px;
       min-height: rem(50);
     }
+    &-next {
+      margin-bottom: 40px;
+    }
   }
 }
 
@@ -48,7 +55,7 @@
   .tasks {
     min-height: 400px;
     &__choose-options {
-      min-height: rem(100);
+      min-height: 180px;
     }
     &__btn {
       &__show-answer {
@@ -73,7 +80,7 @@
   .tasks {
     min-height: 400px;
     &__choose-options {
-      min-height: rem(100);
+      min-height: 120px;
     }
     &__show-answer {
       width: rem(200);
@@ -85,7 +92,7 @@
     }
 
     &__img {
-      width: rem(200);
+      width: auto;
       height: rem(134);
 
     }

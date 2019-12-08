@@ -1,7 +1,7 @@
 import './VocabularyInputWord.scss';
 import { MDBCol, MDBRow } from 'mdbreact';
 
-import { userCorrectAnswer, userTypedAnswer } from '~/modules/VocabularyGuessWord/actions';
+import { userCorrectAnswer } from '~/modules/VocabularyGuessWord/actions';
 
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
@@ -9,10 +9,20 @@ import React, { Component } from 'react';
 class VocabularyInputWord extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            value: '',
+            color: 'red'
+        };
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onBlurHandler = this.onBlurHandler.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        // стираем состояние поля INPUT при обновлении компонента
+        if (this.props.index !== prevProps.index) {
+            this.setState({value: '', color: 'red'});
+        }
+    }
     /**
      * Функция обработки ввода слова в поле
      * @param event
@@ -20,24 +30,17 @@ class VocabularyInputWord extends Component {
     onChangeHandler(event) {
         const {currentTask} = this.props;
         const value = event.target.value.toLowerCase();
+        this.setState({...this.state, value});
         const correctAnswers = currentTask.givenAnswers.filter(answer => answer.type === 'correct');
 
         correctAnswers.forEach(answer => {
             if (value === answer.word.toLowerCase()) {
-                this.props.dispatch(userTypedAnswer({
-                    value,
-                    color: 'green'
-                }));
-
+                this.setState({value, color: 'green'});
                 this.props.dispatch(userCorrectAnswer('correct'));
             } else {
-                this.props.dispatch(userTypedAnswer({
-                    value,
-                    color: 'red'
-                }))
+                this.setState({value, color: 'red'});
             }
         })
-
     }
 
     /**
@@ -46,14 +49,14 @@ class VocabularyInputWord extends Component {
      */
     onBlurHandler(event) {
         const {currentTask} = this.props;
-        const value = event.target.value;
+        const value = event.target.value.toLowerCase();
 
         // если строка не пустая делаем проверку
         if (value) {
             const correctAnswers = currentTask.givenAnswers.filter(answer => answer.type === 'correct');
 
             correctAnswers.forEach(answer => {
-                if (value.toLowerCase() !== answer.word.toLowerCase()) {
+                if (value !== answer.word.toLowerCase()) {
                     this.props.dispatch(userCorrectAnswer('incorrect'));
                 }
             })
@@ -71,10 +74,10 @@ class VocabularyInputWord extends Component {
                             currentTask.taskType === 'typeRusWord' ? '(на рус)' : '(на англ)'
                         }: </label>
                         <input
-                            style={{color: this.props.typedAnswer.color}}
+                            style={{color: this.state.color}}
                             type="text"
                             id="inputWord"
-                            value={this.props.typedAnswer.value}
+                            value={this.state.value}
                             className="px-2 voc-input"
                             onChange={this.onChangeHandler}
                             onBlur={this.onBlurHandler}

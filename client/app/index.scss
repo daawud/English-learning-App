@@ -12,11 +12,15 @@
 html, body {
     min-width: 320px;
     height: 100%;
+    .modal-open {
+        overflow: auto;
+    }
 }
 
 /* прижимаем футер к низу страницы: header - 80px + footer - 230px = 310px + */
 .main-container {
     min-height: calc(100vh - 310px)!important;
+    background: #E5E5E5;
 }
 
 html {
